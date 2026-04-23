@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Allow access to the _next folder
+  RewriteRule ^_next/ - [L]
+</IfModule>
+
+<FilesMatch "^\_">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
