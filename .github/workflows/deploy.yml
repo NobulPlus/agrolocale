@@ -1,0 +1,46 @@
+name: Build and Deploy to cPanel
+
+on:
+  # Triggers when you push code to the main branch
+  push:
+    branches:
+      - main
+      - master
+  # Triggers when Sanity sends a webhook (when a post is published)
+  repository_dispatch:
+    types: [sanity-publish]
+  # Allows you to manually trigger the deployment from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your specific Node version
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Static Export
+        run: npm run build
+        env:
+          # We pass the Sanity credentials securely during the build phase
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+
+      - name: Upload to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: /public_html/ # Make sure this matches your cPanel folder structure

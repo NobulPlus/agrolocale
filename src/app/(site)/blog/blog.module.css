@@ -1,0 +1,120 @@
+.blogHero {
+  padding: 8rem 0 4rem;
+  background: var(--green-800);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.blogHero::after {
+  content: ''; position: absolute; inset: 0; background: url('/gallery-2.png') center/cover no-repeat; opacity: 0.15; z-index: 0;
+}
+.heroContent {
+  position: relative; z-index: 1; max-width: 600px; margin: 0 auto;
+}
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.heroTitle em { color: var(--gold-400); font-style: italic; }
+.heroSub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+}
+
+.mainContent {
+  padding: 6rem 0;
+  background: var(--cream-light);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold-300);
+}
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: var(--green-100);
+}
+.cardBody {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+}
+.category {
+  font-weight: 700;
+  color: var(--gold-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.date { color: var(--text-muted); }
+.title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+.excerpt {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.author {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green-900);
+}
+.readMore {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold-600);
+  transition: var(--transition);
+}
+.card:hover .readMore {
+  color: var(--gold-500);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}

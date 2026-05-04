@@ -67,22 +67,24 @@ function generateHtaccess() {
   const htaccessContent = `# Serve index.html as the default document
 DirectoryIndex index.html
 
+# Prevent Apache from automatically redirecting /home to /home/
+DirectorySlash Off
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
   # Explicitly serve index.html for bare domain root requests
-  # This bypasses any cPanel default landing page
   RewriteRule ^$ /index.html [L]
+
+  # Route extensionless URLs to .html files BEFORE checking if directory exists
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.*)$ $1.html [L]
 
   # Serve existing files and directories directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
-
-  # Route extensionless URLs to .html files
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.*)$ $1.html [L]
 </IfModule>
 
 # Cache static assets aggressively (1 year for JS/CSS/images)
@@ -106,7 +108,7 @@ Options -Indexes
 
   const htaccessPath = path.join(outDir, '.htaccess');
   fs.writeFileSync(htaccessPath, htaccessContent, 'utf8');
-  console.log('Generated .htaccess with root redirect fix.');
+  console.log('Generated .htaccess with root redirect fix and DirectorySlash Off.');
 }
 
 if (fs.existsSync(outDir)) {

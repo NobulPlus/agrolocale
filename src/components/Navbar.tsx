@@ -8,6 +8,7 @@ import styles from './Navbar.module.css'
 const navLinks = [
   { href: '/home',     label: 'Home' },
   { href: '/listings', label: 'Find Land' },
+  { href: '/blog',     label: 'Blog' },
   { href: '/about',    label: 'About Us' },
   { href: '/contact',  label: 'Contact' },
 ]

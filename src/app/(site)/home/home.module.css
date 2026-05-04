@@ -421,3 +421,30 @@
   .searchBtn { border-radius: 0 0 var(--radius-md) var(--radius-md); }
   .aboutMini { grid-template-columns: repeat(3,1fr); gap: 0.75rem; }
 }
+
+/* ------------------------------------------------------
+   LATEST INSIGHTS (BLOG)
+------------------------------------------------------ */
+.insightsSection { padding: 6rem 0; background: var(--cream-light); }
+.blogCard {
+  background: var(--white); border-radius: var(--radius-lg);
+  overflow: hidden; border: 1px solid var(--border);
+  transition: var(--transition-slow);
+  display: flex; flex-direction: column; height: 100%;
+}
+.blogCard:hover { transform: translateY(-7px); box-shadow: var(--shadow-xl); border-color: var(--gold-300); }
+.blogImgWrap { position: relative; height: 200px; overflow: hidden; background: var(--green-100); }
+.blogImg { transition: transform 0.65s var(--ease); object-fit: cover; }
+.blogCard:hover .blogImg { transform: scale(1.07); }
+.blogBadge {
+  position: absolute; top: 1rem; left: 1rem;
+  padding: 0.3rem 0.875rem; background: var(--gold-500); color: var(--green-900);
+  border-radius: var(--radius-full); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+}
+.blogCardBody { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.blogDate { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.blogTitle { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.35; }
+.blogExcerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex: 1; }
+.blogReadMore { font-size: 0.85rem; font-weight: 700; color: var(--gold-600); transition: var(--transition); }
+.blogCard:hover .blogReadMore { color: var(--gold-500); }

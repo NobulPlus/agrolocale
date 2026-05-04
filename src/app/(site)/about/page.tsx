@@ -5,31 +5,115 @@ import styles from './about.module.css'
 
 export const metadata: Metadata = {
   title: 'About Us | Agrolocale',
-  description: "Learn about Agrolocale — Nigeria's premier agricultural land marketplace. Our story, mission, values, and the team behind the platform.",
+  description: "Learn about Agrolocale — Nigeria's premier agricultural land marketplace. Our story, mission, values, and the passionate team behind the platform.",
 }
 
 const team = [
-  { name: 'Emeka Okonkwo',   role: 'CEO & Co-Founder',               initials: 'EO', color: '#1e4530', bio: '15 years in Nigerian real estate and agricultural land development across 20+ states.' },
-  { name: 'Fatima Abdullahi', role: 'Head of Listings & Verification', initials: 'FA', color: '#2a6344', bio: 'Certified agronomist with deep expertise in soil assessment, land grading, and valuation.' },
-  { name: 'Chukwudi Nwosu',   role: 'Legal & Compliance Director',     initials: 'CN', color: '#c9a84c', bio: 'Specialist in Nigerian land law, title documentation, C of O processing and due diligence.' },
-  { name: 'Adaobi Ezemba',    role: 'Client Relations Manager',        initials: 'AE', color: '#3a8459', bio: 'Passionate about connecting the right buyer with the perfect agricultural land investment.' },
+  {
+    name: 'Korede Ayeni',
+    role: 'Chief Executive Officer',
+    photo: '/team/korede_ayeni.jpeg',
+    initials: 'KA',
+    color: '#0f2d1a',
+    bio: 'As the visionary founder and CEO of Agrolocale, Korede Ayeni leads the company\'s strategic direction, growth, and mission to transform agricultural land access across Nigeria. With a deep commitment to innovation and impact, he drives the team\'s pursuit of excellence in agro-realty solutions.',
+  },
+  {
+    name: 'Alimat Hamzat Okikiola',
+    role: 'Chief Operations Officer / Accountant',
+    photo: '/team/alimat_hamzat.jpeg',
+    initials: 'AH',
+    color: '#1e4530',
+    bio: 'A results-oriented professional providing leading-edge operational and financial services at Agrolocale. With a friendly spirit that promotes enthusiasm at work and excellent interpersonal communication skills, Alimat is quick at understanding and self-motivating to achieve organisational goals, ensuring smooth financial operations and client-focused service delivery.',
+  },
+  {
+    name: 'Titilope Awolesi',
+    role: 'Head, Legal',
+    photo: '/team/legal.jpeg',
+    initials: 'TA',
+    color: '#2a4a35',
+    bio: 'Titilope Oreoluwa Awolesi is a dedicated lawyer with over six years of post-call experience in corporate and commercial law. A University of Lagos alumna, she delivers comprehensive legal services to SMEs and real estate stakeholders — known for meticulous attention to detail, innovative legal solutions, and an unwavering commitment to client excellence.',
+  },
+  {
+    name: 'Oluwapamilerinayo Adeoluwa',
+    role: 'Head of People / HR',
+    photo: '/team/pamilerin_adeoluwa.jpeg',
+    initials: 'OA',
+    color: '#8b5e2a',
+    bio: 'Leads Agrolocale\'s people strategy, culture development, and HR operations with a passion for structure, employee growth, and organisational excellence. Overseeing talent management, workplace policies, and engagement initiatives, she ensures every team member has the tools, clarity, and support needed to thrive in a professional, inclusive, and purpose-driven work environment.',
+  },
+  {
+    name: 'Shittu Ayomide Olayinka',
+    role: 'Head, Customer Experience & Admin',
+    photo: '/team/shittu_ayomide.jpeg',
+    initials: 'SA',
+    color: '#c9a84c',
+    bio: 'An empathetic and seasoned Customer Experience Officer and Administrator dedicated to improving the customer journey at every touchpoint. A University of Lagos alumna, Ayomide has earned multiple awards for exceptional service delivery at leading organisations and brings strong conflict-resolution skills to every client interaction at Agrolocale.',
+  },
+  {
+    name: 'Faniku Kemisola',
+    role: 'Project Manager',
+    photo: '/team/faniku_kemisola.jpeg',
+    initials: 'FK',
+    color: '#2a6344',
+    bio: 'A Surveying Technology graduate with strong expertise in field surveying, geospatial data collection, and CAD drafting. Skilled in robotic total stations, RTK GNSS, and digital levels, Kemisola has contributed to boundary, construction, and topographic surveys for residential and infrastructure projects, processing data with Civil 3D, MicroSurvey, and GIS software.',
+  },
+  {
+    name: 'Maryam Muhammed-Sanni',
+    role: 'Sales Associate',
+    photo: '/team/maryam_sanni.jpeg',
+    initials: 'MM',
+    color: '#3d6b4f',
+    bio: 'A distinguished real estate professional — visionary, brilliant, purpose-driven, and exceptionally gifted. Maryam is renowned for excellence, integrity, and an unwavering commitment to value creation. Known for her analytical mindset, exceptional client management, and a unique ability to deliver results with precision, she embodies leadership with purpose and ambition with humility.',
+  },
+  {
+    name: 'Elizabeth Oshama Odey',
+    role: 'Account Assistant',
+    photo: '/team/elizabeth_odey.jpeg',
+    initials: 'EO',
+    color: '#4a7c59',
+    bio: 'An Accounting graduate whose experience with leading real estate companies — including Landwey Investment Limited and its subsidiary Ownland Limited — has built strong analytical skills and exposure to structured financial operations. At Agrolocale, Elizabeth ensures accuracy, transparency, and timely documentation across all financial processes with discipline, adaptability, and dedication.',
+  },
+  {
+    name: 'Chinyere Suzan Gift Udeh',
+    role: 'Agronomist',
+    photo: '/team/victoria.jpeg',
+    initials: 'CU',
+    color: '#3a8459',
+    bio: 'A dedicated Agronomist committed to ensuring sustainable crop management for diverse clientele through evidence-based agro practices. Chinyere is passionate about continuous learning, exploring emerging methods, and innovative research to enhance farm yield performance — achieving optimal results, client satisfaction, and long-term agricultural sustainability.',
+  },
+  {
+    name: 'Damilare Oyelola',
+    role: 'Agronomist & Agripreneur',
+    photo: '/team/damilare.jpeg',
+    initials: 'DO',
+    color: '#4a6e30',
+    bio: 'An agripreneur and agronomist from Oyo State who cultivates vegetables organically and promotes climate-smart farming. Damilare blends scientific agronomy with entrepreneurial strategy to develop scalable organic production models — emphasising soil health, composting, irrigation, and biocontrol. He also brings deep expertise in broiler production, including nutrition planning, biosecurity, and disease prevention.',
+  },
+  {
+    name: 'Eniola Ojelere',
+    role: 'Content Creator',
+    photo: '/team/eniola_ojelere.jpeg',
+    initials: 'OE',
+    color: '#5a6e3f',
+    bio: 'A dedicated social media manager and content creator with a strong passion for storytelling and digital communication. At Agrolocale, Eniola oversees content strategy, manages brand presence across platforms, and develops engaging visuals and campaigns that highlight the company\'s work and impact — building meaningful connections between the brand and its audience.',
+  },
 ]
 
 const values = [
-  { icon: '🎯', title: 'Transparency',   desc: 'Every listing is honest, verified, and accurately described. No hidden clauses — ever.' },
+  { icon: '🎯', title: 'Transparency', desc: 'Every listing is honest, verified, and accurately described. No hidden clauses — ever.' },
   { icon: '🌱', title: 'Sustainability', desc: 'We prioritise land that supports sustainable farming and responsible environmental stewardship.' },
-  { icon: '🤝', title: 'Partnership',    desc: 'Every client is a long-term partner in Nigeria\'s agricultural growth story, not a transaction.' },
-  { icon: '⚡', title: 'Excellence',     desc: 'From listing verification to deal closure, we hold ourselves to the highest professional standards.' },
-  { icon: '🔐', title: 'Integrity',      desc: 'Your interests come first. We are bound by strict ethics in all our transactions and advice.' },
-  { icon: '📊', title: 'Data-Driven',    desc: 'Our valuations and market insights are grounded in real field data and agricultural expertise.' },
+  { icon: '🤝', title: 'Partnership', desc: 'Every client is a long-term partner in Nigeria\'s agricultural growth story, not a transaction.' },
+  { icon: '⚡', title: 'Excellence', desc: 'From listing verification to deal closure, we hold ourselves to the highest professional standards.' },
+  { icon: '🔐', title: 'Integrity', desc: 'Your interests come first. We are bound by strict ethics in all our transactions and advice.' },
+  { icon: '📊', title: 'Data-Driven', desc: 'Our valuations and market insights are grounded in real field data and agricultural expertise.' },
 ]
 
 const timeline = [
-  { year: '2016', title: 'Founded in Lagos',            desc: 'Agrolocale launched with a mission to bring transparency to agricultural land acquisition across Nigeria.' },
-  { year: '2018', title: 'Expanded to 10 States',       desc: 'Growing demand led us to expand our verified listings network across the South-West, North-West, and FCT.' },
-  { year: '2020', title: 'Reached 1,000+ Clients',       desc: 'A major milestone — over one thousand farmers and investors trust us with their land acquisition journey.' },
-  { year: '2023', title: '₦100B+ Transacted',           desc: 'Our cumulative transaction value surpassed ₦100 billion, cementing our place as Nigeria\'s top agro-realty platform.' },
-  { year: '2025', title: 'Nationwide Coverage',          desc: 'Active listings in 26 states, with dedicated regional advisors in every major agricultural belt of Nigeria.' },
+  { year: '2016', title: 'Founded in Lagos', desc: 'Agrolocale launched with a mission to bring transparency to agricultural land acquisition across Nigeria.' },
+  { year: '2018', title: 'Expanded to 10 States', desc: 'Growing demand led us to expand our verified listings network across the South-West, North-West, and FCT.' },
+  { year: '2020', title: 'Reached 1,000+ Clients', desc: 'A major milestone — over one thousand farmers and investors trust us with their land acquisition journey.' },
+  { year: '2023', title: '₦100B+ Transacted', desc: 'Our cumulative transaction value surpassed ₦100 billion, cementing our place as Nigeria\'s top agro-realty platform.' },
+  { year: '2025', title: 'Nationwide Coverage', desc: 'Active listings in 26 states, with dedicated regional advisors in every major agricultural belt of Nigeria.' },
 ]
 
 export default function AboutPage() {
@@ -68,10 +152,10 @@ export default function AboutPage() {
 
               <div className={styles.missionStats}>
                 {[
-                  { num: '2016',  lbl: 'Founded'       },
-                  { num: '500+',  lbl: 'Listings'      },
-                  { num: '26',    lbl: 'States'         },
-                  { num: '₦120B+',lbl: 'Transacted'    },
+                  { num: '2016', lbl: 'Founded' },
+                  { num: '500+', lbl: 'Listings' },
+                  { num: '26', lbl: 'States' },
+                  { num: '₦120B+', lbl: 'Transacted' },
                 ].map((s, i) => (
                   <div key={i} className={styles.mStatItem}>
                     <span className={styles.mStatNum}>{s.num}</span>
@@ -138,20 +222,31 @@ export default function AboutPage() {
       {/* ─── TEAM ────────────────────────────────────── */}
       <section className={styles.teamSection}>
         <div className="container">
-          <div className={styles.sectionCenter} style={{ marginBottom: '3rem' }}>
+          <div className={styles.sectionCenter} style={{ marginBottom: '4rem' }}>
             <p className={styles.sectionTag}>The People Behind Agrolocale</p>
             <h2 className={styles.sectionTitle}>Meet Our Team</h2>
             <p className={styles.sectionSub}>
-              A passionate group of agricultural experts, legal professionals, and real estate specialists united by one mission.
+              A passionate group of professionals — legal, operational, agronomic, and creative — united by one mission: transforming agricultural land access in Nigeria.
             </p>
           </div>
           <div className={styles.teamGrid}>
             {team.map((m, i) => (
               <div key={i} className={styles.teamCard}>
-                <div className={styles.teamAvatar} style={{ background: m.color }}>{m.initials}</div>
-                <h3 className={styles.teamName}>{m.name}</h3>
-                <p className={styles.teamRole}>{m.role}</p>
-                <p className={styles.teamBio}>{m.bio}</p>
+                <div className={styles.teamPhotoWrap} style={{ background: m.color }}>
+                  <Image
+                    src={m.photo}
+                    alt={m.name}
+                    fill
+                    sizes="150px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div className={styles.teamCardBody}>
+                  <p className={styles.teamRole}>{m.role}</p>
+                  <h3 className={styles.teamName}>{m.name}</h3>
+                  <div className={styles.teamDivider} />
+                  <p className={styles.teamBio}>{m.bio}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -166,7 +261,7 @@ export default function AboutPage() {
             <p className={styles.ctaSub}>Whether you're buying, selling, or just exploring — our team is here to help every step of the way.</p>
             <div className={styles.ctaBtns}>
               <Link href="/listings" className={styles.ctaPrimary}>Browse Properties</Link>
-              <Link href="/contact"  className={styles.ctaSecondary}>Contact Our Team</Link>
+              <Link href="/contact" className={styles.ctaSecondary}>Contact Our Team</Link>
             </div>
           </div>
         </div>

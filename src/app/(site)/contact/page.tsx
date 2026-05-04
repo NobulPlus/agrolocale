@@ -161,7 +161,7 @@ export default function ContactPage() {
                 <h3 className={styles.infoTitle}>Contact Information</h3>
                 <ul className={styles.infoList}>
                   {[
-                    { icon: '📍', lbl: 'Office Address',    val: '14 Agric Valley Road\nVictoria Island, Lagos, Nigeria' },
+                    { icon: '📍', lbl: 'Office Address',    val: 'Agrolocale HQ\nAyobola Daodu, Lekki Scheme II\nAjah, Lagos State' },
                     { icon: '📞', lbl: 'Phone',              val: '+234 801 234 5678' },
                     { icon: '✉️', lbl: 'Email',              val: 'info@agrolocale.com' },
                     { icon: '🕐', lbl: 'Office Hours',       val: 'Mon – Fri: 8am – 6pm WAT\nSaturday: 10am – 2pm WAT' },
@@ -186,7 +186,7 @@ export default function ContactPage() {
               <div className={styles.mapCard}>
                 <div className={styles.mapInner}>
                   <span className={styles.mapPin}>📍</span>
-                  <p className={styles.mapCity}>Victoria Island, Lagos</p>
+                  <p className={styles.mapCity}>Ajah, Lagos State</p>
                   <p className={styles.mapNote}>Open in Google Maps</p>
                 </div>
               </div>

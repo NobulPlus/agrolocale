@@ -4,6 +4,7 @@ import styles from './Footer.module.css'
 const footerLinks = [
   { href: '/home',     label: 'Home' },
   { href: '/listings', label: 'Find Land' },
+  { href: '/blog',     label: 'Blog' },
   { href: '/about',    label: 'About Us' },
   { href: '/contact',  label: 'Contact' },
 ]
@@ -80,7 +81,7 @@ export default function Footer() {
           <h4 className={styles.groupTitle}>Get In Touch</h4>
           <ul className={styles.contactList}>
             {[
-              { icon: '📍', text: '14 Agric Valley Rd, Victoria Island, Lagos' },
+              { icon: '📍', text: 'Ayobola Daodu, Lekki Scheme II, Ajah, Lagos State' },
               { icon: '📞', text: '+234 801 234 5678' },
               { icon: '✉️', text: 'info@agrolocale.com' },
               { icon: '🕐', text: 'Mon – Fri: 8am – 6pm WAT' },
