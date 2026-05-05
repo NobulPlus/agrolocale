@@ -177,6 +177,75 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
         </div>
       </section>
 
+      {/* ─── FEATURED ON BANNER ───────────────────────── */}
+      <section className={styles.featuredBanner}>
+        <div className="container">
+          <div className={styles.featuredGrid}>
+            <span className={styles.featuredLabel}>As Featured On</span>
+            <span className={styles.featuredLogo}>TVC NEWS</span>
+            <span className={styles.featuredLogo}>VANGUARD NEWS</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHAT WE GROW ─────────────────────────────── */}
+      <section className={styles.growSection}>
+        <div className="container">
+          <div className={styles.sectionCenter}>
+            <p className={styles.sectionTag}>The Best Taste Is Truly Local</p>
+            <h2 className={styles.sectionTitle}>Experience the Freshness Only Our Farm Can Deliver</h2>
+            <p className={styles.sectionSub} style={{ margin: '0 auto' }}>
+              Explore Our Produce. We cultivate high-quality, organic crops tailored to meet the needs of households and food businesses alike.
+            </p>
+          </div>
+          <div className={styles.growGrid}>
+            <div className={styles.growCard}>
+              <h3 className={styles.growTitle}>🍅 Tomato</h3>
+              <p className={styles.growDesc}>Over 500+ households have made our tomatoes the foundation of their daily stew.</p>
+            </div>
+            <div className={styles.growCard}>
+              <h3 className={styles.growTitle}>🌶️ Habanero</h3>
+              <p className={styles.growDesc}>With over 800+ subscribers, we grow habaneros that give your food a story worth telling.</p>
+            </div>
+            <div className={styles.growCard}>
+              <h3 className={styles.growTitle}>🍌 Plantain</h3>
+              <p className={styles.growDesc}>Over 400+ subscribers have made our plantain their weekly recipe.</p>
+            </div>
+            <div className={styles.growCard}>
+              <h3 className={styles.growTitle}>🥒 Cucumber</h3>
+              <p className={styles.growDesc}>Freshly harvested, freshly stored. The perfect addition to any meal.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── COMMITMENT TO QUALITY ────────────────────── */}
+      <section className={styles.qualitySection}>
+        <div className="container">
+          <div className={styles.sectionCenter}>
+            <p className={styles.sectionTag}>Why Choose Our Produce</p>
+            <h2 className={styles.sectionTitle}>Our Commitment to Quality</h2>
+          </div>
+          <div className={styles.qualityGrid}>
+            <div className={styles.qualityCard}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🌾</div>
+              <h3 className={styles.qualityTitle}>Farm-Fresh Quality & Locally Grown</h3>
+              <p className={styles.qualityDesc}>Every produce is nutritious and bursting with natural flavor. Fully traceable from our farm to your table.</p>
+            </div>
+            <div className={styles.qualityCard}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🚫</div>
+              <h3 className={styles.qualityTitle}>Zero Harmful Chemicals</h3>
+              <p className={styles.qualityDesc}>We grow without synthetic pesticides or artificial fertilisers to ensure your health and safety.</p>
+            </div>
+            <div className={styles.qualityCard} style={{ gridColumn: '1 / -1' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🤝</div>
+              <h3 className={styles.qualityTitle}>Restaurant & Food Business Alliance</h3>
+              <p className={styles.qualityDesc}>Agrolocale partners directly with chefs, restaurant owners, and more. With no middleman inflating prices, you get the best value for premium produce.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── STATS ────────────────────────────────────── */}
       <section className={styles.statsSection} ref={statsRef}>
         <div className="container">

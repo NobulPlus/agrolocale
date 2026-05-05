@@ -75,7 +75,7 @@ const team = [
   },
   {
     name: 'Chinyere Suzan Gift Udeh',
-    role: 'Agronomist',
+    role: 'Assistant Customer Experience Officer/Admin',
     photo: '/team/victoria.jpeg',
     initials: 'CU',
     color: '#3a8459',
@@ -83,7 +83,7 @@ const team = [
   },
   {
     name: 'Damilare Oyelola',
-    role: 'Agronomist & Agripreneur',
+    role: 'Head, Farm Manager',
     photo: '/team/damilare.jpeg',
     initials: 'DO',
     color: '#4a6e30',
@@ -141,21 +141,23 @@ export default function AboutPage() {
         <div className="container">
           <div className={styles.missionGrid}>
             <div className={styles.missionContent}>
-              <p className={styles.sectionTag}>Our Mission</p>
-              <h2 className={styles.sectionTitle}>Democratising Access to Agricultural Land</h2>
+              <p className={styles.sectionTag}>Our Vision & Mission</p>
+              <h2 className={styles.sectionTitle}>Pioneering Sustainable Agriculture</h2>
+              <h3 className={styles.subHeading}>Our Vision</h3>
               <p className={styles.missionText}>
-                Nigeria has over 70 million hectares of arable land, yet access to verified, legally-sound agricultural property remains a challenge for most farmers and investors. Agrolocale was founded to change that.
+                Agrolocale's vision is to build self-sustainable (physical and digital) farm cities that are fully solar-powered, technologically advanced, and capable of operating on autopilot to ensure consistent food production, comfortable living, and high-value investment returns.
               </p>
+              <h3 className={styles.subHeading} style={{ marginTop: '1.5rem' }}>Our Mission</h3>
               <p className={styles.missionText}>
-                We believe every farmer, entrepreneur, and investor who wants to contribute to Nigeria's food security deserves access to quality land — with clear titles, honest descriptions, and expert support throughout the process.
+                Agrolocale’s mission centers on combating food insecurity and enhancing agricultural investment through accessible agriculture and sustainable innovation.
               </p>
 
               <div className={styles.missionStats}>
                 {[
-                  { num: '2016', lbl: 'Founded' },
-                  { num: '500+', lbl: 'Listings' },
-                  { num: '26', lbl: 'States' },
-                  { num: '₦120B+', lbl: 'Transacted' },
+                  { num: '04', lbl: 'Projects Completed' },
+                  { num: '250+', lbl: 'Registered Investors' },
+                  { num: '50+', lbl: 'Hectares Sold Out' },
+                  { num: '350+', lbl: 'Households Served' },
                 ].map((s, i) => (
                   <div key={i} className={styles.mStatItem}>
                     <span className={styles.mStatNum}>{s.num}</span>

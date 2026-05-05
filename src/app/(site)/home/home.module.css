@@ -448,3 +448,34 @@
 .blogExcerpt { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex: 1; }
 .blogReadMore { font-size: 0.85rem; font-weight: 700; color: var(--gold-600); transition: var(--transition); }
 .blogCard:hover .blogReadMore { color: var(--gold-500); }
+
+/* ------------------------------------------------------
+   FEATURED BANNER
+------------------------------------------------------ */
+.featuredBanner { padding: 2rem 0; background: var(--green-900); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.featuredGrid { display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.featuredLabel { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; }
+.featuredLogo { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--gold-400); letter-spacing: 0.05em; }
+
+/* ------------------------------------------------------
+   WHAT WE GROW
+------------------------------------------------------ */
+.growSection { padding: 6rem 0; background: var(--white); }
+.growGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.growCard { padding: 2.5rem 1.5rem; background: var(--cream-light); border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--border); transition: var(--transition); }
+.growCard:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold-300); background: var(--white); }
+.growTitle { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--green-800); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.growDesc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+@media (max-width: 900px) { .growGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .growGrid { grid-template-columns: 1fr; } }
+
+/* ------------------------------------------------------
+   COMMITMENT TO QUALITY
+------------------------------------------------------ */
+.qualitySection { padding: 6rem 0; background: var(--cream); }
+.qualityGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+.qualityCard { background: var(--white); padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--border); }
+.qualityCard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--gold-300); }
+.qualityTitle { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--green-900); margin-bottom: 0.75rem; text-transform: uppercase; }
+.qualityDesc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+@media (max-width: 768px) { .qualityGrid { grid-template-columns: 1fr; } }
