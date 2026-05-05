@@ -82,9 +82,9 @@ export default function Footer() {
           <ul className={styles.contactList}>
             {[
               { icon: '📍', text: 'Ayobola Daodu, Lekki Scheme II, Ajah, Lagos State' },
-              { icon: '📞', text: '+234 801 234 5678' },
-              { icon: '✉️', text: 'info@agrolocale.com' },
-              { icon: '🕐', text: 'Mon – Fri: 8am – 6pm WAT' },
+              { icon: '📞', text: '+234 707 152 3904, +234 901 045 8648' },
+              { icon: '✉️', text: 'info@agrolocale.com, customercare@agrolocale.com' },
+              { icon: '🕐', text: 'Mon – Thu: 9am – 4pm | Fri: 10am – 4pm' },
             ].map((item, i) => (
               <li key={i} className={styles.contactItem}>
                 <span className={styles.contactIcon}>{item.icon}</span>

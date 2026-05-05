@@ -162,9 +162,9 @@ export default function ContactPage() {
                 <ul className={styles.infoList}>
                   {[
                     { icon: '📍', lbl: 'Office Address',    val: 'Agrolocale HQ\nAyobola Daodu, Lekki Scheme II\nAjah, Lagos State' },
-                    { icon: '📞', lbl: 'Phone',              val: '+234 801 234 5678' },
-                    { icon: '✉️', lbl: 'Email',              val: 'info@agrolocale.com' },
-                    { icon: '🕐', lbl: 'Office Hours',       val: 'Mon – Fri: 8am – 6pm WAT\nSaturday: 10am – 2pm WAT' },
+                    { icon: '📞', lbl: 'Phone',              val: '+234 707 152 3904\n+234 901 045 8648' },
+                    { icon: '✉️', lbl: 'Email',              val: 'info@agrolocale.com\ncustomercare@agrolocale.com' },
+                    { icon: '🕐', lbl: 'Office Hours',       val: 'Mon – Thursday: 9am – 4pm\nFriday: 10am – 4pm' },
                   ].map((item, i) => (
                     <li key={i} className={styles.infoItem}>
                       <span className={styles.infoIcon}>{item.icon}</span>
@@ -198,7 +198,7 @@ export default function ContactPage() {
                   <h4 className={styles.urgentTitle}>Need urgent help?</h4>
                   <p className={styles.urgentSub}>Our consultants are available for direct calls.</p>
                 </div>
-                <a href="tel:+2348012345678" className={styles.callBtn}>Call Now</a>
+                <a href="tel:+2347071523904" className={styles.callBtn}>Call Now</a>
               </div>
             </aside>
           </div>

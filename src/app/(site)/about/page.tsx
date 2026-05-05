@@ -60,7 +60,7 @@ const team = [
   {
     name: 'Kudayisi Kehinde',
     role: 'Head of Logistics',
-    photo: '/team/kehinde.jpeg',
+    photo: '/team/kudayisi.jpeg',
     initials: 'KK',
     color: '#3d6b4f',
     bio: 'Ensuring seamless operations and timely deliveries across all of Agrolocale’s projects. Kudayisi brings expertise in supply chain management, resource allocation, and logistical planning to keep our physical farm cities and daily produce distribution running efficiently and sustainably.',
