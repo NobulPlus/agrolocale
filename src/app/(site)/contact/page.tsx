@@ -182,14 +182,14 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className={styles.mapCard}>
+              {/* Map link */}
+              <a href="https://maps.app.goo.gl/ZQu3b8ZezYgpNgwr8" target="_blank" rel="noopener noreferrer" className={styles.mapCard}>
                 <div className={styles.mapInner}>
                   <span className={styles.mapPin}>📍</span>
                   <p className={styles.mapCity}>Ajah, Lagos State</p>
                   <p className={styles.mapNote}>Open in Google Maps</p>
                 </div>
-              </div>
+              </a>
 
               {/* Urgent CTA */}
               <div className={styles.urgentCard}>
