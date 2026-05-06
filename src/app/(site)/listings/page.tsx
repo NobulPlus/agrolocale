@@ -7,16 +7,46 @@ import styles from './listings.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
-  { id: 1, title: 'Elysian Farm Estate',         location: 'Abeokuta, Ogun State',   state: 'Ogun',    price: 85_000_000,  acreage: 45,  type: 'mixed',      image: '/elysian-farm.png',    badge: 'Featured', verified: true },
-  { id: 2, title: 'Bounty Harvest Plantation',    location: 'Zaria, Kaduna State',    state: 'Kaduna',  price: 240_000_000, acreage: 120, type: 'commercial', image: '/bounty-harvest.png',  badge: 'Hot Deal', verified: true },
-  { id: 3, title: 'Greenfield Arable Plot',       location: 'Ogbomosho, Oyo State',   state: 'Oyo',     price: 65_000_000,  acreage: 30,  type: 'arable',     image: '/gallery-1.png',       badge: 'New',      verified: true },
-  { id: 4, title: 'Riverside Ranch & Pasture',    location: 'Makurdi, Benue State',   state: 'Benue',   price: 110_000_000, acreage: 80,  type: 'ranch',      image: '/gallery-2.png',       badge: '',         verified: true },
-  { id: 5, title: 'Plateau Highland Farmland',    location: 'Jos, Plateau State',     state: 'Plateau', price: 48_000_000,  acreage: 22,  type: 'arable',     image: '/gallery-3.png',       badge: 'Premium',  verified: true },
-  { id: 6, title: 'Niger Delta Irrigated Estate', location: 'Warri, Delta State',     state: 'Delta',   price: 95_000_000,  acreage: 55,  type: 'irrigated',  image: '/hero-farmland.png',   badge: '',         verified: true },
+  {
+    id: 1, title: 'Fresh Farm Produce',   location: 'Lagos State',          state: 'Lagos',
+    price: 0,  acreage: 0, type: 'produce',
+    image: '/products/current.jpeg',
+    badge: '🔥 Hot Cake', verified: true,
+    priceLabel: 'Contact Us', acreageLabel: 'In Season',
+  },
+  {
+    id: 2, title: 'Premium Harvest',      location: 'Lagos State',          state: 'Lagos',
+    price: 0,  acreage: 0, type: 'produce',
+    image: '/products/product1.jpeg',
+    badge: 'Available', verified: true,
+    priceLabel: 'Contact Us', acreageLabel: 'In Stock',
+  },
+  {
+    id: 3, title: 'Elysian Farm Estate',  location: 'Abeokuta, Ogun State', state: 'Ogun',
+    price: 85_000_000, acreage: 45, type: 'mixed',
+    image: '/elysian-farm.png',
+    badge: 'Featured', verified: true,
+    priceLabel: '', acreageLabel: '',
+  },
+  {
+    id: 4, title: 'Bounty Harvest Plantation', location: 'Zaria, Kaduna State', state: 'Kaduna',
+    price: 240_000_000, acreage: 120, type: 'commercial',
+    image: '/bounty-harvest.png',
+    badge: 'Hot Deal', verified: true,
+    priceLabel: '', acreageLabel: '',
+  },
+  {
+    id: 5, title: 'Greenfield Arable Plot', location: 'Ogbomosho, Oyo State', state: 'Oyo',
+    price: 65_000_000, acreage: 30, type: 'arable',
+    image: '/gallery-1.png',
+    badge: 'New', verified: true,
+    priceLabel: '', acreageLabel: '',
+  },
 ]
 
 const propTypes = [
   { value: '',            label: 'All Types'        },
+  { value: 'produce',     label: 'Farm Produce'     },
   { value: 'arable',      label: 'Arable Farmland'  },
   { value: 'commercial',  label: 'Commercial Farm'  },
   { value: 'ranch',       label: 'Ranch & Pasture'  },
@@ -24,7 +54,7 @@ const propTypes = [
   { value: 'mixed',       label: 'Mixed Farmland'   },
 ]
 
-const states = ['All States','Ogun','Kaduna','Oyo','Benue','Plateau','Delta','Kwara','Niger','Kogi']
+const states = ['All States','Lagos','Ogun','Kaduna','Oyo','Benue','Plateau','Delta','Kwara','Niger','Kogi']
 
 const sortOpts = [
   { value: 'default',     label: 'Default'               },
@@ -36,7 +66,8 @@ const sortOpts = [
 
 type Listing = typeof allListings[0]
 
-function fmt(n: number) {
+function fmt(n: number, label?: string) {
+  if (label) return label
   if (n >= 1e9) return `₦${(n/1e9).toFixed(1)}B`
   return `₦${(n/1e6).toFixed(0)}M`
 }
@@ -45,32 +76,38 @@ function fmt(n: number) {
 function ListingCard({ l, isFav, onFav, mode }: {
   l: Listing; isFav: boolean; onFav: () => void; mode: 'grid' | 'list'
 }) {
-  const badgeClass = l.badge === 'Hot Deal' ? styles.badgeRed : l.badge === 'Premium' ? styles.badgeGreen : styles.badgeGold
+  const isProduce = l.type === 'produce'
+  const badgeClass =
+    l.badge === 'Hot Deal' || l.badge === '🔥 Hot Cake' ? styles.badgeRed
+    : l.badge === 'Premium' || l.badge === 'Available'  ? styles.badgeGreen
+    : styles.badgeGold
 
   return (
     <article className={`${styles.card} ${mode === 'list' ? styles.cardList : ''}`}>
       <div className={styles.cardImg}>
         <Image src={l.image} alt={l.title} fill sizes="(max-width:768px) 100vw, 40vw" className={styles.img} />
         {l.badge && <span className={`${styles.badge} ${badgeClass}`}>{l.badge}</span>}
-        {l.verified && <span className={styles.verified}>✓ Verified</span>}
+        {l.verified && <span className={styles.verified}>{isProduce ? '✓ Fresh' : '✓ Verified'}</span>}
         <button className={styles.fav} onClick={onFav} aria-label="Save listing">{isFav ? '❤️' : '🤍'}</button>
       </div>
 
       <div className={styles.cardBody}>
-        <p className={styles.cardType}>{l.type.charAt(0).toUpperCase() + l.type.slice(1)} Land</p>
+        <p className={styles.cardType}>{isProduce ? 'Farm Produce' : `${l.type.charAt(0).toUpperCase() + l.type.slice(1)} Land`}</p>
         <h2 className={styles.cardTitle}>{l.title}</h2>
         <p className={styles.cardLoc}>📍 {l.location}</p>
         <div className={styles.cardMeta}>
-          <span>📐 {l.acreage} Acres</span>
-          <span>📋 C of O Titled</span>
-          <span>🌱 Fertile Soil</span>
+          {isProduce ? (
+            <><span>🌾 Farm Fresh</span><span>🚚 Direct Delivery</span><span>✅ {l.acreageLabel || 'In Stock'}</span></>
+          ) : (
+            <><span>📐 {l.acreage} Acres</span><span>📋 C of O Titled</span><span>🌱 Fertile Soil</span></>
+          )}
         </div>
         <div className={styles.cardFooter}>
           <div>
-            <div className={styles.cardPrice}>{fmt(l.price)}</div>
-            <span className={styles.priceNote}>Negotiable</span>
+            <div className={styles.cardPrice}>{fmt(l.price, l.priceLabel || undefined)}</div>
+            <span className={styles.priceNote}>{isProduce ? 'Call to Order' : 'Negotiable'}</span>
           </div>
-          <Link href="/contact" className={styles.enquireBtn}>Enquire Now</Link>
+          <Link href="/contact" className={styles.enquireBtn}>{isProduce ? 'Order Now' : 'Enquire Now'}</Link>
         </div>
       </div>
     </article>
@@ -90,7 +127,7 @@ export default function ListingsPage() {
     let d = [...allListings]
     if (type)                    d = d.filter(l => l.type === type)
     if (state !== 'All States') d = d.filter(l => l.state === state)
-    d = d.filter(l => l.price <= maxPrice)
+    d = d.filter(l => l.type === 'produce' || l.price <= maxPrice)
     if (sort === 'price-asc')  d.sort((a,b) => a.price   - b.price)
     if (sort === 'price-desc') d.sort((a,b) => b.price   - a.price)
     if (sort === 'acre-asc')   d.sort((a,b) => a.acreage - b.acreage)

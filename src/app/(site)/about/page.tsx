@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const team = [
   {
     name: 'Korede Ayeni',
-    role: 'CEO',
+    role: 'MD/CEO',
     photo: '/team/korede_ayeni.jpeg',
     initials: 'KA',
     color: '#0f2d1a',
@@ -105,23 +105,35 @@ const team = [
     color: '#3a8459',
     bio: 'A dedicated Agronomist committed to ensuring sustainable crop management for diverse clientele through evidence-based agro practices. Suzan is passionate about continuous learning, exploring emerging methods, and innovative research to enhance farm yield performance — achieving optimal results, client satisfaction, and long-term agricultural sustainability.',
   },
+  {
+    name: 'Maryam Muhammed-Sanni',
+    role: 'Sales Associate',
+    photo: '/team/maryam_sanni.jpeg',
+    initials: 'MM',
+    color: '#3d6b4f',
+    bio: 'Muhammed-Sanni Maryam Osiregbhemhe is a distinguished real estate professional, a visionary force, brilliant, purpose driven, and exceptionally gifted. Maryam is renowned for excellence, integrity, and an unwavering commitment to value creation. She is known for her analytical mindset, exceptional client management, and a unique ability to deliver results with precision. Maryam embodies leadership with purpose, ambition with humility, and brilliance with grace.',
+  },
 ]
 
 const values = [
-  { icon: '🎯', title: 'Transparency', desc: 'Every listing is honest, verified, and accurately described. No hidden clauses — ever.' },
-  { icon: '🌱', title: 'Sustainability', desc: 'We prioritise land that supports sustainable farming and responsible environmental stewardship.' },
-  { icon: '🤝', title: 'Partnership', desc: 'Every client is a long-term partner in Nigeria\'s agricultural growth story, not a transaction.' },
-  { icon: '⚡', title: 'Excellence', desc: 'From listing verification to deal closure, we hold ourselves to the highest professional standards.' },
-  { icon: '🔐', title: 'Integrity', desc: 'Your interests come first. We are bound by strict ethics in all our transactions and advice.' },
-  { icon: '📊', title: 'Data-Driven', desc: 'Our valuations and market insights are grounded in real field data and agricultural expertise.' },
+  { icon: '👨‍👩‍👧‍👦', title: 'Family', desc: 'We foster a supportive, inclusive community where every client and team member belongs.' },
+  { icon: '⭐', title: 'Excellence', desc: 'We consistently strive to exceed expectations and deliver outstanding results in all we do.' },
+  { icon: '💎', title: 'Quality', desc: 'Our farm estates and services are built to the highest standards of premium value.' },
+  { icon: '🙏', title: 'Humility', desc: 'We remain grounded, listening to our clients and learning continuously to serve better.' },
+  { icon: '⚖️', title: 'Integrity', desc: 'We uphold honesty, transparency, and ethical practices in every transaction.' },
+  { icon: '🤝', title: 'Teamwork', desc: 'Collaboration is at our core—we achieve more together with our partners and investors.' },
+  { icon: '💬', title: 'Communication', desc: 'We prioritize clear, timely, and open dialogue to build lasting trust.' },
+  { icon: '💡', title: 'Innovation', desc: 'We pioneer forward-thinking solutions to modernize agricultural land ownership.' },
+  { icon: '📋', title: 'Accountability', desc: 'We take ownership of our commitments and deliver on our promises.' },
+  { icon: '🚀', title: 'Technology', desc: 'We leverage modern tech to create sustainable, autopilot farming ecosystems.' },
 ]
 
 const timeline = [
-  { year: '2016', title: 'Founded in Lagos', desc: 'Agrolocale launched with a mission to bring transparency to agricultural land acquisition across Nigeria.' },
-  { year: '2018', title: 'Expanded to 10 States', desc: 'Growing demand led us to expand our verified listings network across the South-West, North-West, and FCT.' },
-  { year: '2020', title: 'Reached 1,000+ Clients', desc: 'A major milestone — over one thousand farmers and investors trust us with their land acquisition journey.' },
-  { year: '2023', title: '₦100B+ Transacted', desc: 'Our cumulative transaction value surpassed ₦100 billion, cementing our place as Nigeria\'s top agro-realty platform.' },
-  { year: '2025', title: 'Nationwide Coverage', desc: 'Active listings in 26 states, with dedicated regional advisors in every major agricultural belt of Nigeria.' },
+  { year: '2024', title: 'Founded in Lagos', desc: 'Agrolocale launched with a mission to bring transparency to agricultural land acquisition across Nigeria.' },
+  { year: '2024', title: 'First Farm Estate', desc: 'Our first premium farm estate development launched, attracting investors and producing our earliest farmland owners.' },
+  { year: '2025', title: '250+ Registered Investors', desc: 'A major milestone — over 250 investors trust us with their agricultural investment journey.' },
+  { year: '2025', title: '350+ Households Served', desc: 'Our farm produce now reaches 350+ households, delivering fresh, locally-grown food directly to families.' },
+  { year: '2026', title: 'Expanding Our Vision', desc: 'Scaling our premium farm estate developments to drive food security and sufficiency across Nigeria.' },
 ]
 
 export default function AboutPage() {
@@ -138,7 +150,7 @@ export default function AboutPage() {
               <em> Future Together</em>
             </h1>
             <p className={styles.heroSub}>
-              Since 2016, we've been the trusted bridge between agricultural land and the farmers, investors, and communities who need it most.
+              Since 2024, we've been the trusted bridge between agricultural land and the farmers, investors, and communities who need it most.
             </p>
           </div>
         </div>
@@ -151,13 +163,15 @@ export default function AboutPage() {
             <div className={styles.missionContent}>
               <p className={styles.sectionTag}>Our Vision & Mission</p>
               <h2 className={styles.sectionTitle}>Pioneering Sustainable Agriculture</h2>
+              
               <h3 className={styles.subHeading}>Our Vision</h3>
               <p className={styles.missionText}>
-                Agrolocale's vision is to build self-sustainable (physical and digital) farm cities that are fully solar-powered, technologically advanced, and capable of operating on autopilot to ensure consistent food production, comfortable living, and high-value investment returns.
+                To be the go-to company in Africa and the world for everything Agro purchase, investment, research, and technology.
               </p>
+              
               <h3 className={styles.subHeading} style={{ marginTop: '1.5rem' }}>Our Mission</h3>
               <p className={styles.missionText}>
-                Agrolocale’s mission centers on combating food insecurity and enhancing agricultural investment through accessible agriculture and sustainable innovation.
+                To produce as many farmland owners as possible within our premium farm estate developments for food security & sufficiency in the economy.
               </p>
 
               <div className={styles.missionStats}>
@@ -211,7 +225,7 @@ export default function AboutPage() {
         <div className="container">
           <div className={styles.sectionCenter} style={{ marginBottom: '4rem' }}>
             <p className={`${styles.sectionTag} ${styles.tagLight}`}>Our Journey</p>
-            <h2 className={`${styles.sectionTitle} ${styles.titleLight}`}>A Decade of Growth</h2>
+            <h2 className={`${styles.sectionTitle} ${styles.titleLight}`}>Our Journey So Far</h2>
           </div>
           <div className={styles.timeline}>
             {timeline.map((t, i) => (
@@ -259,6 +273,41 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TEAM GALLERY ─────────────────────────────── */}
+      <section className={styles.gallerySection}>
+        <div className="container">
+          <div className={styles.sectionCenter} style={{ marginBottom: '3.5rem' }}>
+            <p className={styles.sectionTag}>Life at Agrolocale</p>
+            <h2 className={styles.sectionTitle}>The People Behind the Mission</h2>
+            <p className={styles.sectionSub} style={{ maxWidth: '600px', margin: '0 auto' }}>
+              One team. One vision. Building Nigeria's agricultural future — together.
+            </p>
+          </div>
+          <div className={styles.teamGalleryGrid}>
+            <div className={`${styles.teamGalleryItem} ${styles.teamGalleryLarge}`}>
+              <Image src="/team/Team1.jpeg" alt="Agrolocale team" fill sizes="(max-width:768px) 100vw, 55vw" style={{ objectFit: 'cover' }} />
+              <div className={styles.galleryOverlay}>
+                <span className={styles.galleryLabel}>🌾 Our Growing Family</span>
+              </div>
+            </div>
+            <div className={styles.teamGalleryStack}>
+              <div className={styles.teamGalleryItem}>
+                <Image src="/team/Team2.jpeg" alt="Agrolocale team gathering" fill sizes="(max-width:768px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
+                <div className={styles.galleryOverlay}>
+                  <span className={styles.galleryLabel}>💚 Teamwork in Action</span>
+                </div>
+              </div>
+              <div className={styles.teamGalleryItem}>
+                <Image src="/team/Team3.jpeg" alt="Agrolocale team at work" fill sizes="(max-width:768px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
+                <div className={styles.galleryOverlay}>
+                  <span className={styles.galleryLabel}>🚀 Building the Future</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

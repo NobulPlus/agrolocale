@@ -9,9 +9,10 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 1, title: 'Elysian Farm Estate',      location: 'Abeokuta, Ogun State',  price: '₦85,000,000',  acreage: '45 Acres',  type: 'Mixed Farmland',    image: '/elysian-farm.png',    badge: 'Featured', badgeKey: 'gold' },
-  { id: 2, title: 'Bounty Harvest Plantation', location: 'Zaria, Kaduna State',   price: '₦240,000,000', acreage: '120 Acres', type: 'Commercial Farm',   image: '/bounty-harvest.png',  badge: 'Hot Deal', badgeKey: 'red'  },
-  { id: 3, title: 'Greenfield Arable Plot',    location: 'Ogbomosho, Oyo State',  price: '₦65,000,000',  acreage: '30 Acres',  type: 'Arable Land',       image: '/gallery-1.png',       badge: 'New',      badgeKey: 'green'},
+  { id: 1, title: 'Elysian Farm Estate',      location: 'Abeokuta, Ogun State',  price: '₦85,000,000',  acreage: '45 Acres',  type: 'Mixed Farmland',    image: '/elysian-farm.png',       badge: 'Featured',   badgeKey: 'gold'  },
+  { id: 2, title: 'Bounty Harvest Plantation', location: 'Zaria, Kaduna State',   price: '₦240,000,000', acreage: '120 Acres', type: 'Commercial Farm',   image: '/bounty-harvest.png',     badge: 'Hot Deal',   badgeKey: 'red'   },
+  { id: 3, title: 'Greenfield Arable Plot',    location: 'Ogbomosho, Oyo State',  price: '₦65,000,000',  acreage: '30 Acres',  type: 'Arable Land',       image: '/gallery-1.png',          badge: 'New',        badgeKey: 'green' },
+  { id: 4, title: 'Fresh Farm Produce',        location: 'Lagos State',           price: 'Contact Us',   acreage: 'In Season', type: 'Farm Produce',      image: '/products/current.jpeg',  badge: '🔥 Hot Cake', badgeKey: 'red'   },
 ]
 
 const statsData = [
@@ -198,22 +199,55 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               Explore Our Produce. We cultivate high-quality, organic crops tailored to meet the needs of households and food businesses alike.
             </p>
           </div>
-          <div className={styles.growGrid}>
-            <div className={styles.growCard}>
-              <h3 className={styles.growTitle}>🍅 Tomato</h3>
-              <p className={styles.growDesc}>Over 500+ households have made our tomatoes the foundation of their daily stew.</p>
+          <div className={styles.produceGrid}>
+            {/* HOT CAKE — currently on sale */}
+            <div className={styles.produceCard}>
+              <div className={styles.produceImgWrap}>
+                <Image
+                  src="/products/current.jpeg"
+                  alt="Current produce on sale"
+                  fill
+                  sizes="(max-width:768px) 100vw, 55vw"
+                  style={{ objectFit: 'cover' }}
+                />
+                <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
+                <span className={styles.produceBadgeAvail}>On Sale Now</span>
+              </div>
+              <div className={styles.produceBody}>
+                <h3 className={styles.produceName}>Fresh Farm Produce</h3>
+                <p className={styles.produceDesc}>
+                  Our most popular produce — currently in season and flying off the shelves. Harvested fresh and delivered straight to your table.
+                </p>
+                <div className={styles.produceStats}>
+                  <span>🌾 Farm Fresh</span>
+                  <span>🚚 Direct Delivery</span>
+                  <span>✅ In Stock</span>
+                </div>
+              </div>
             </div>
-            <div className={styles.growCard}>
-              <h3 className={styles.growTitle}>🌶️ Habanero</h3>
-              <p className={styles.growDesc}>With over 800+ subscribers, we grow habaneros that give your food a story worth telling.</p>
-            </div>
-            <div className={styles.growCard}>
-              <h3 className={styles.growTitle}>🍌 Plantain</h3>
-              <p className={styles.growDesc}>Over 400+ subscribers have made our plantain their weekly recipe.</p>
-            </div>
-            <div className={styles.growCard}>
-              <h3 className={styles.growTitle}>🥒 Cucumber</h3>
-              <p className={styles.growDesc}>Freshly harvested, freshly stored. The perfect addition to any meal.</p>
+            {/* Product 1 */}
+            <div className={styles.produceCard}>
+              <div className={styles.produceImgWrap}>
+                <Image
+                  src="/products/product1.jpeg"
+                  alt="Agrolocale farm produce"
+                  fill
+                  sizes="(max-width:768px) 100vw, 40vw"
+                  style={{ objectFit: 'cover' }}
+                />
+                <span className={styles.produceBadgeAvail}>Available</span>
+              </div>
+              <div className={styles.produceBody}>
+                <h3 className={styles.produceName}>Premium Harvest</h3>
+                <p className={styles.produceDesc}>
+                  Organically grown, zero harmful chemicals, and packed with natural flavour. Perfect for households and food businesses.
+                </p>
+                <div className={styles.produceStats}>
+                  <span>🌱 Organic</span>
+                  <span>🏡 500+ Households</span>
+                  <span>💯 Quality Assured</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -241,6 +275,28 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🤝</div>
               <h3 className={styles.qualityTitle}>Restaurant & Food Business Alliance</h3>
               <p className={styles.qualityDesc}>Agrolocale partners directly with chefs, restaurant owners, and more. With no middleman inflating prices, you get the best value for premium produce.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── VISION & MISSION ────────────────────────── */}
+      <section className={styles.visionMissionHome}>
+        <div className="container">
+          <div className={styles.homeGrid2}>
+            <div className={styles.visionBox}>
+              <p className={styles.sectionTag}>Our Vision</p>
+              <h2 className={styles.homeSectionTitle}>Global Agro Impact</h2>
+              <p className={styles.homeSectionText}>
+                To be the go-to company in Africa and the world for everything Agro purchase, investment, research, and technology.
+              </p>
+            </div>
+            <div className={styles.missionBox}>
+              <p className={styles.sectionTag}>Our Mission</p>
+              <h2 className={styles.homeSectionTitle}>Food Security for All</h2>
+              <p className={styles.homeSectionText}>
+                To produce as many farmland owners as possible within our premium farm estate developments for food security & sufficiency in the economy.
+              </p>
             </div>
           </div>
         </div>
@@ -293,6 +349,35 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <div className={styles.whyIcon}>{w.icon}</div>
                 <h3 className={styles.whyTitle}>{w.title}</h3>
                 <p className={styles.whyDesc}>{w.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CORE VALUES ─────────────────────────────── */}
+      <section className={styles.homeValuesSection}>
+        <div className="container">
+          <div className={styles.sectionCenter}>
+            <p className={styles.sectionTag}>What Drives Us</p>
+            <h2 className={styles.sectionTitle}>Our Core Values</h2>
+          </div>
+          <div className={styles.homeValuesGrid}>
+            {[
+              { icon: '👨‍👩‍👧‍👦', title: 'Family' },
+              { icon: '⭐', title: 'Excellence' },
+              { icon: '💎', title: 'Quality' },
+              { icon: '🙏', title: 'Humility' },
+              { icon: '⚖️', title: 'Integrity' },
+              { icon: '🤝', title: 'Teamwork' },
+              { icon: '💬', title: 'Communication' },
+              { icon: '💡', title: 'Innovation' },
+              { icon: '📋', title: 'Accountability' },
+              { icon: '🚀', title: 'Technology' },
+            ].map((v, i) => (
+              <div key={i} className={styles.homeValueCard}>
+                <span className={styles.homeValueIcon}>{v.icon}</span>
+                <h3 className={styles.homeValueTitle}>{v.title}</h3>
               </div>
             ))}
           </div>

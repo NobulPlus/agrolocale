@@ -187,7 +187,7 @@
   display: flex; flex-direction: column;
 }
 .card:hover { transform: translateY(-7px); box-shadow: var(--shadow-xl); }
-.cardImgWrap { position: relative; height: 220px; overflow: hidden; }
+.cardImgWrap { position: relative; height: 260px; overflow: hidden; background: var(--cream-light); }
 .cardImg { transition: transform 0.65s var(--ease); object-fit: cover; }
 .card:hover .cardImg { transform: scale(1.07); }
 .cardBadge {
@@ -461,13 +461,76 @@
    WHAT WE GROW
 ------------------------------------------------------ */
 .growSection { padding: 6rem 0; background: var(--white); }
-.growGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
-.growCard { padding: 2.5rem 1.5rem; background: var(--cream-light); border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--border); transition: var(--transition); }
-.growCard:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold-300); background: var(--white); }
-.growTitle { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--green-800); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-.growDesc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-@media (max-width: 900px) { .growGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 500px) { .growGrid { grid-template-columns: 1fr; } }
+
+/* Image-based produce cards */
+.produceGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  align-items: start;
+}
+
+.produceCard {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-slow);
+}
+.produceCard:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--gold-300); }
+
+.produceImgWrap {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  background: var(--cream-light);
+}
+.produceImgWrap img { transition: transform 0.65s var(--ease); object-fit: contain !important; }
+.produceCard:hover .produceImgWrap img { transform: scale(1.03); }
+
+.produceBadgeHot {
+  position: absolute; top: 1rem; left: 1rem;
+  background: #e63946; color: #fff;
+  font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.35rem 0.875rem;
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+.produceBadgeAvail {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--gold-500); color: var(--green-900);
+  font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.35rem 0.875rem;
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+
+.produceBody { padding: 2rem; }
+.produceName {
+  font-family: var(--font-display);
+  font-size: 1.35rem; font-weight: 800;
+  color: var(--green-900); margin-bottom: 0.75rem;
+}
+.produceDesc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.produceStats {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.produceStats span {
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--green-800);
+  background: var(--cream-light);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 900px) { .produceGrid { grid-template-columns: 1fr; } }
+@media (max-width: 500px) { .produceImgWrap { height: 240px; } }
 
 /* ------------------------------------------------------
    COMMITMENT TO QUALITY
@@ -479,3 +542,35 @@
 .qualityTitle { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--green-900); margin-bottom: 0.75rem; text-transform: uppercase; }
 .qualityDesc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
 @media (max-width: 768px) { .qualityGrid { grid-template-columns: 1fr; } }
+
+/* ------------------------------------------------------
+   VISION & MISSION HOME
+------------------------------------------------------ */
+.visionMissionHome { padding: 6rem 0; background: var(--white); }
+.homeGrid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+.visionBox, .missionBox { padding: 3rem; border-radius: var(--radius-xl); transition: var(--transition-slow); position: relative; overflow: hidden; }
+.visionBox { background: var(--green-900); color: var(--white); }
+.missionBox { background: var(--gold-500); color: var(--green-900); }
+.homeSectionTitle { font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.1; }
+.homeSectionText { font-size: 1.1rem; line-height: 1.7; opacity: 0.9; }
+.visionBox .sectionTag { color: var(--gold-400); }
+.missionBox .sectionTag { color: var(--green-800); }
+
+@media (max-width: 900px) {
+  .homeGrid2 { grid-template-columns: 1fr; gap: 2rem; }
+  .visionBox, .missionBox { padding: 2rem; }
+  .homeSectionTitle { font-size: 1.75rem; }
+}
+
+/* ------------------------------------------------------
+   HOME VALUES
+------------------------------------------------------ */
+.homeValuesSection { padding: 6rem 0; background: var(--cream-light); }
+.homeValuesGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.homeValueCard { text-align: center; padding: 2rem 1rem; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border); transition: var(--transition); }
+.homeValueCard:hover { transform: translateY(-5px); border-color: var(--gold-400); box-shadow: var(--shadow-md); }
+.homeValueIcon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.homeValueTitle { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green-900); }
+
+@media (max-width: 1100px) { .homeValuesGrid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .homeValuesGrid { grid-template-columns: repeat(2, 1fr); } }

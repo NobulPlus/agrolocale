@@ -174,3 +174,72 @@
   .teamCardBody { padding:1.5rem; }
 }
 @media (max-width:640px) { .valuesGrid { grid-template-columns:1fr; } }
+
+/* ══ Team Gallery ══════════════════════════════════════ */
+.gallerySection { padding: 7rem 0; background: var(--green-900); }
+.gallerySection .sectionTag { color: var(--gold-400); }
+.gallerySection .sectionTitle { color: var(--white); }
+.gallerySection .sectionSub { color: rgba(255,255,255,0.65); }
+
+.teamGalleryGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1.5rem;
+  height: 560px;
+}
+
+.teamGalleryStack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.teamGalleryItem {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.teamGalleryLarge { min-height: 100%; }
+
+.teamGalleryItem img { transition: transform 0.65s ease; }
+.teamGalleryItem:hover img { transform: scale(1.06); }
+
+.galleryOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.75rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.teamGalleryItem:hover .galleryOverlay { opacity: 1; }
+
+.galleryLabel {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+@media (max-width: 900px) {
+  .teamGalleryGrid { grid-template-columns: 1fr; height: auto; }
+  .teamGalleryLarge { height: 320px; }
+  .teamGalleryStack { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+  .teamGalleryStack .teamGalleryItem { height: 200px; }
+}
+@media (max-width: 560px) {
+  .teamGalleryStack { grid-template-columns: 1fr; }
+  .teamGalleryStack .teamGalleryItem { height: 220px; }
+  .galleryOverlay { opacity: 1; }
+}
+
