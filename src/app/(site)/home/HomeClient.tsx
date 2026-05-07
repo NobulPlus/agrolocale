@@ -9,10 +9,11 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 1, title: 'Elysian Farm Estate',      location: 'Abeokuta, Ogun State',  price: '₦85,000,000',  acreage: '45 Acres',  type: 'Mixed Farmland',    image: '/elysian-farm.png',       badge: 'Featured',   badgeKey: 'gold'  },
-  { id: 2, title: 'Bounty Harvest Plantation', location: 'Zaria, Kaduna State',   price: '₦240,000,000', acreage: '120 Acres', type: 'Commercial Farm',   image: '/bounty-harvest.png',     badge: 'Hot Deal',   badgeKey: 'red'   },
-  { id: 3, title: 'Greenfield Arable Plot',    location: 'Ogbomosho, Oyo State',  price: '₦65,000,000',  acreage: '30 Acres',  type: 'Arable Land',       image: '/gallery-1.png',          badge: 'New',        badgeKey: 'green' },
-  { id: 4, title: 'Fresh Farm Produce',        location: 'Lagos State',           price: 'Contact Us',   acreage: 'In Season', type: 'Farm Produce',      image: '/products/current.jpeg',  badge: '🔥 Hot Cake', badgeKey: 'red'   },
+  { id: 1, title: 'Paradiso Farms II',                 location: 'Alabata, Ogun State', price: '₦700K/Plot · ₦4M/Acre', acreage: 'Batch B – 2026', type: 'Farm Investment', image: '/products/paradiso_2.jpeg', badge: '🔥 New Launch', badgeKey: 'red'   },
+  { id: 2, title: 'Paradiso II – Tomato Cultivation',  location: 'Alabata, Ogun State', price: '₦1,100,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_1.jpeg', badge: 'Available',    badgeKey: 'green' },
+  { id: 3, title: 'Paradiso II – Habanero Pepper',     location: 'Alabata, Ogun State', price: '₦1,187,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_3.jpeg', badge: 'Available',    badgeKey: 'green' },
+  { id: 4, title: 'Paradiso II – Sweet Potato',        location: 'Alabata, Ogun State', price: '₦285,000 / Plot',       acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_4.jpeg', badge: 'Featured',     badgeKey: 'gold'  },
+  { id: 5, title: 'Garri Go! – Fresh & Crispy',        location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',   badgeKey: 'red'   },
 ]
 
 const statsData = [
@@ -200,37 +201,37 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             </p>
           </div>
           <div className={styles.produceGrid}>
-            {/* HOT CAKE — currently on sale */}
+            {/* HOT CAKE — Tomato Batch B */}
             <div className={styles.produceCard}>
               <div className={styles.produceImgWrap}>
                 <Image
-                  src="/products/current.jpeg"
-                  alt="Current produce on sale"
+                  src="/products/paradiso_1.jpeg"
+                  alt="Paradiso Farms II – Tomato Cultivation"
                   fill
                   sizes="(max-width:768px) 100vw, 55vw"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
-                <span className={styles.produceBadgeAvail}>On Sale Now</span>
+                <span className={styles.produceBadgeAvail}>Batch B – Jun/Jul 2026</span>
               </div>
               <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Fresh Farm Produce</h3>
+                <h3 className={styles.produceName}>Paradiso II – Tomato Cultivation</h3>
                 <p className={styles.produceDesc}>
-                  Our most popular produce — currently in season and flying off the shelves. Harvested fresh and delivered straight to your table.
+                  Batch B cultivation commencing June/July 2026 at Alabata, Ogun State. Per Plot: ₦1,100,000 total. Per Acre: ₦6,300,000 total.
                 </p>
                 <div className={styles.produceStats}>
-                  <span>🌾 Farm Fresh</span>
-                  <span>🚚 Direct Delivery</span>
-                  <span>✅ In Stock</span>
+                  <span>🍅 Tomato</span>
+                  <span>📍 Alabata, Ogun</span>
+                  <span>✅ Open Now</span>
                 </div>
               </div>
             </div>
-            {/* Product 1 */}
+            {/* Habanero Pepper */}
             <div className={styles.produceCard}>
               <div className={styles.produceImgWrap}>
                 <Image
-                  src="/products/product1.jpeg"
-                  alt="Agrolocale farm produce"
+                  src="/products/paradiso_3.jpeg"
+                  alt="Paradiso Farms II – Habanero Pepper"
                   fill
                   sizes="(max-width:768px) 100vw, 40vw"
                   style={{ objectFit: 'cover' }}
@@ -238,13 +239,13 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <span className={styles.produceBadgeAvail}>Available</span>
               </div>
               <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Premium Harvest</h3>
+                <h3 className={styles.produceName}>Paradiso II – Habanero Pepper</h3>
                 <p className={styles.produceDesc}>
-                  Organically grown, zero harmful chemicals, and packed with natural flavour. Perfect for households and food businesses.
+                  Premium Habanero cultivation slot at Paradiso Farms II. Per Plot: ₦1,187,000 total. Per Acre: ₦6,922,000 total.
                 </p>
                 <div className={styles.produceStats}>
-                  <span>🌱 Organic</span>
-                  <span>🏡 500+ Households</span>
+                  <span>🌶️ Habanero</span>
+                  <span>📍 Alabata, Ogun</span>
                   <span>💯 Quality Assured</span>
                 </div>
               </div>

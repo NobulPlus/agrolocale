@@ -8,53 +8,49 @@ import styles from './listings.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
-    id: 1, title: 'Fresh Farm Produce',   location: 'Lagos State',          state: 'Lagos',
-    price: 0,  acreage: 0, type: 'produce',
-    image: '/products/current.jpeg',
-    badge: '🔥 Hot Cake', verified: true,
-    priceLabel: 'Contact Us', acreageLabel: 'In Season',
+    id: 1, title: 'Paradiso Farms II',                location: 'Alabata, Ogun State', state: 'Ogun',
+    price: 700_000, acreage: 0, type: 'mixed',
+    image: '/products/paradiso_2.jpeg',
+    badge: '🔥 New Launch', verified: true,
+    priceLabel: '₦700K/Plot · ₦4M/Acre', acreageLabel: 'Batch B – 2026',
   },
   {
-    id: 2, title: 'Premium Harvest',      location: 'Lagos State',          state: 'Lagos',
-    price: 0,  acreage: 0, type: 'produce',
-    image: '/products/product1.jpeg',
+    id: 2, title: 'Paradiso II – Tomato Cultivation', location: 'Alabata, Ogun State', state: 'Ogun',
+    price: 1_100_000, acreage: 0, type: 'produce',
+    image: '/products/paradiso_1.jpeg',
     badge: 'Available', verified: true,
-    priceLabel: 'Contact Us', acreageLabel: 'In Stock',
+    priceLabel: '₦1,100,000 / Plot', acreageLabel: 'Jun/Jul 2026',
   },
   {
-    id: 3, title: 'Elysian Farm Estate',  location: 'Abeokuta, Ogun State', state: 'Ogun',
-    price: 85_000_000, acreage: 45, type: 'mixed',
-    image: '/elysian-farm.png',
+    id: 3, title: 'Paradiso II – Habanero Pepper',    location: 'Alabata, Ogun State', state: 'Ogun',
+    price: 1_187_000, acreage: 0, type: 'produce',
+    image: '/products/paradiso_3.jpeg',
+    badge: 'Available', verified: true,
+    priceLabel: '₦1,187,000 / Plot', acreageLabel: 'Jun/Jul 2026',
+  },
+  {
+    id: 4, title: 'Paradiso II – Sweet Potato',       location: 'Alabata, Ogun State', state: 'Ogun',
+    price: 285_000, acreage: 0, type: 'produce',
+    image: '/products/paradiso_4.jpeg',
     badge: 'Featured', verified: true,
-    priceLabel: '', acreageLabel: '',
+    priceLabel: '₦285,000 / Plot', acreageLabel: 'Jun/Jul 2026',
   },
   {
-    id: 4, title: 'Bounty Harvest Plantation', location: 'Zaria, Kaduna State', state: 'Kaduna',
-    price: 240_000_000, acreage: 120, type: 'commercial',
-    image: '/bounty-harvest.png',
-    badge: 'Hot Deal', verified: true,
-    priceLabel: '', acreageLabel: '',
-  },
-  {
-    id: 5, title: 'Greenfield Arable Plot', location: 'Ogbomosho, Oyo State', state: 'Oyo',
-    price: 65_000_000, acreage: 30, type: 'arable',
-    image: '/gallery-1.png',
-    badge: 'New', verified: true,
-    priceLabel: '', acreageLabel: '',
+    id: 5, title: 'Garri Go! – Fresh & Crispy Garri Ijebu', location: 'Nationwide Delivery', state: 'All States',
+    price: 24_590, acreage: 0, type: 'produce',
+    image: '/products/garri.jpeg',
+    badge: '🔥 Hot Cake', verified: true,
+    priceLabel: '₦24,590 (25kg) · ₦48,590 (50kg)', acreageLabel: 'In Stock',
   },
 ]
 
 const propTypes = [
-  { value: '',            label: 'All Types'        },
-  { value: 'produce',     label: 'Farm Produce'     },
-  { value: 'arable',      label: 'Arable Farmland'  },
-  { value: 'commercial',  label: 'Commercial Farm'  },
-  { value: 'ranch',       label: 'Ranch & Pasture'  },
-  { value: 'irrigated',   label: 'Irrigated Plot'   },
-  { value: 'mixed',       label: 'Mixed Farmland'   },
+  { value: '',         label: 'All Types'       },
+  { value: 'produce',  label: 'Farm Produce'    },
+  { value: 'mixed',    label: 'Mixed Farmland'  },
 ]
 
-const states = ['All States','Lagos','Ogun','Kaduna','Oyo','Benue','Plateau','Delta','Kwara','Niger','Kogi']
+const states = ['All States', 'Ogun']
 
 const sortOpts = [
   { value: 'default',     label: 'Default'               },
@@ -109,6 +105,7 @@ function ListingCard({ l, isFav, onFav, mode }: {
           </div>
           <Link href="/contact" className={styles.enquireBtn}>{isProduce ? 'Order Now' : 'Enquire Now'}</Link>
         </div>
+        <a href="/docs/Paradiso_Batch_B.pdf" download className={styles.downloadBtn}>📄 Download Cultivation Calendar</a>
       </div>
     </article>
   )

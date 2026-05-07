@@ -224,6 +224,14 @@
   border-radius: var(--radius-sm); transition: var(--transition);
 }
 .cardCta:hover { background: var(--green-700); transform: translateY(-1px); }
+.cardDownload {
+  display: flex; align-items: center; justify-content: center; gap: 0.45rem;
+  width: 100%; margin-top: 0.875rem; padding: 0.55rem 1rem;
+  background: transparent; border: 1.5px solid var(--green-700);
+  color: var(--green-700); font-size: 0.78rem; font-weight: 600;
+  border-radius: var(--radius-sm); transition: var(--transition); text-decoration: none;
+}
+.cardDownload:hover { background: var(--green-700); color: var(--white); }
 
 /* ══════════════════════════════════════════════════════
    WHY SECTION
@@ -520,6 +528,15 @@
 .produceStats {
   display: flex; flex-wrap: wrap; gap: 0.5rem;
 }
+.produceDownload {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.25rem; padding: 0.65rem 1.5rem;
+  background: var(--green-800); color: var(--white);
+  font-size: 0.875rem; font-weight: 600;
+  border-radius: var(--radius-sm); transition: var(--transition); text-decoration: none;
+}
+.produceDownload:hover { background: var(--green-700); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
 .produceStats span {
   font-size: 0.8rem; font-weight: 600;
   color: var(--green-800);
