@@ -41,7 +41,20 @@
   font-size:0.95rem; font-weight:700; border-radius:var(--radius-sm);
   transition:var(--transition); margin-top:0.25rem;
 }
-.submitBtn:hover { background:var(--green-700); transform:translateY(-2px); box-shadow:var(--shadow-green); }
+.submitBtn:hover:not(:disabled) { background:var(--green-700); transform:translateY(-2px); box-shadow:var(--shadow-green); }
+.submitBtn:disabled { opacity:0.65; cursor:not-allowed; transform:none; }
+.btnSpinner { display:inline-block; margin-right:0.4rem; animation:spin 1s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* Server-side error banner */
+.serverErr {
+  display:flex; align-items:flex-start; gap:0.5rem;
+  padding:1rem 1.25rem;
+  background:#fff5f5; border:1.5px solid #fca5a5;
+  border-radius:var(--radius-sm);
+  font-size:0.88rem; color:#b91c1c; line-height:1.6;
+  margin-bottom:0.5rem;
+}
 
 /* ══ Success state ════════════════════════════════════ */
 .success { text-align:center; padding:3rem 2rem; }

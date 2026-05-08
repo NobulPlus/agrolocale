@@ -11,9 +11,18 @@ type Form = {
 
 const blank: Form = { name:'', email:'', phone:'', subject:'', propType:'', budget:'', message:'' }
 
+/* ─── Web3Forms access key ───────────────────────────────────────────────────
+   1. Go to https://web3forms.com  →  enter info@agrolocale.com  →  click "Create Access Key"
+   2. Check your inbox and copy the key
+   3. Add to .env.local:  NEXT_PUBLIC_WEB3FORMS_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   ─────────────────────────────────────────────────────────────────────────── */
+const W3F_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ''
+
 export default function ContactPage() {
   const [form,      setForm]      = useState<Form>(blank)
   const [submitted, setSubmitted] = useState(false)
+  const [loading,   setLoading]   = useState(false)
+  const [serverErr, setServerErr] = useState('')
   const [errors,    setErrors]    = useState<Partial<Form>>({})
 
   const change = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -29,9 +38,44 @@ export default function ContactPage() {
     return Object.keys(e).length === 0
   }
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validate()) setSubmitted(true)
+    if (!validate()) return
+
+    setLoading(true)
+    setServerErr('')
+
+    try {
+      const payload = {
+        access_key: W3F_KEY,
+        subject:    `Agrolocale enquiry – ${form.subject} (${form.name})`,
+        from_name:  'Agrolocale Contact Form',
+        name:       form.name,
+        email:      form.email,
+        phone:      form.phone   || '—',
+        enquiry:    form.subject,
+        propType:   form.propType || '—',
+        budget:     form.budget   || '—',
+        message:    form.message,
+      }
+
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body:    JSON.stringify(payload),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        setSubmitted(true)
+      } else {
+        setServerErr(data.message ?? 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setServerErr('Network error — please check your connection and try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -74,6 +118,12 @@ export default function ContactPage() {
                 <>
                   <h2 className={styles.formTitle}>Send Us a Message</h2>
                   <p className={styles.formSub}>Fill in your details and we'll reply within 24 hours.</p>
+
+                  {serverErr && (
+                    <div className={styles.serverErr} role="alert">
+                      ⚠️ {serverErr}
+                    </div>
+                  )}
 
                   <form id="contact-form" className={styles.form} onSubmit={submit} noValidate>
                     <div className={styles.row}>
@@ -147,8 +197,17 @@ export default function ContactPage() {
                       {errors.message && <span className={styles.err}>{errors.message}</span>}
                     </div>
 
-                    <button id="submit-contact" type="submit" className={styles.submitBtn}>
-                      Send Message →
+                    <button
+                      id="submit-contact"
+                      type="submit"
+                      className={styles.submitBtn}
+                      disabled={loading}
+                      aria-busy={loading}
+                    >
+                      {loading ? (
+                        <span className={styles.btnSpinner} aria-hidden>⏳</span>
+                      ) : null}
+                      {loading ? 'Sending…' : 'Send Message →'}
                     </button>
                   </form>
                 </>

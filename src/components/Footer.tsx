@@ -10,10 +10,10 @@ const footerLinks = [
 ]
 
 const currentOfferings = [
-  { label: 'Paradiso Farms II – Farm Investment',   href: '/listings'          },
-  { label: 'Paradiso II – Tomato Cultivation',      href: '/listings'          },
-  { label: 'Paradiso II – Habanero Pepper',         href: '/listings'          },
-  { label: 'Paradiso II – Sweet Potato',            href: '/listings'          },
+  { label: 'Paradiso Farms II – Farm Investment',   href: '/products/paradiso' },
+  { label: 'Paradiso II – Tomato Cultivation',      href: '/products/paradiso' },
+  { label: 'Paradiso II – Habanero Pepper',         href: '/products/paradiso' },
+  { label: 'Paradiso II – Sweet Potato',            href: '/products/paradiso' },
   { label: 'Garri Go! – Fresh Garri Ijebu',         href: '/products/garri-go' },
 ]
 
