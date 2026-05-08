@@ -13,6 +13,7 @@ const allListings = [
     image: '/products/paradiso_2.jpeg',
     badge: '🔥 New Launch', verified: true,
     priceLabel: '₦700K/Plot · ₦4M/Acre', acreageLabel: 'Batch B – 2026',
+    hasPdf: true,
   },
   {
     id: 2, title: 'Paradiso II – Tomato Cultivation', location: 'Alabata, Ogun State', state: 'Ogun',
@@ -20,6 +21,7 @@ const allListings = [
     image: '/products/paradiso_1.jpeg',
     badge: 'Available', verified: true,
     priceLabel: '₦1,100,000 / Plot', acreageLabel: 'Jun/Jul 2026',
+    hasPdf: true,
   },
   {
     id: 3, title: 'Paradiso II – Habanero Pepper',    location: 'Alabata, Ogun State', state: 'Ogun',
@@ -27,6 +29,7 @@ const allListings = [
     image: '/products/paradiso_3.jpeg',
     badge: 'Available', verified: true,
     priceLabel: '₦1,187,000 / Plot', acreageLabel: 'Jun/Jul 2026',
+    hasPdf: true,
   },
   {
     id: 4, title: 'Paradiso II – Sweet Potato',       location: 'Alabata, Ogun State', state: 'Ogun',
@@ -34,6 +37,7 @@ const allListings = [
     image: '/products/paradiso_4.jpeg',
     badge: 'Featured', verified: true,
     priceLabel: '₦285,000 / Plot', acreageLabel: 'Jun/Jul 2026',
+    hasPdf: true,
   },
   {
     id: 5, title: 'Garri Go! – Fresh & Crispy Garri Ijebu', location: 'Nationwide Delivery', state: 'All States',
@@ -41,6 +45,7 @@ const allListings = [
     image: '/products/garri.jpeg',
     badge: '🔥 Hot Cake', verified: true,
     priceLabel: '₦24,590 (25kg) · ₦48,590 (50kg)', acreageLabel: 'In Stock',
+    hasPdf: false,
   },
 ]
 
@@ -105,7 +110,9 @@ function ListingCard({ l, isFav, onFav, mode }: {
           </div>
           <Link href="/contact" className={styles.enquireBtn}>{isProduce ? 'Order Now' : 'Enquire Now'}</Link>
         </div>
-        <a href="/docs/Paradiso_Batch_B.pdf" download className={styles.downloadBtn}>📄 Download Cultivation Calendar</a>
+        {l.hasPdf && (
+          <a href="/docs/Paradiso_Batch_B.pdf" download className={styles.downloadBtn}>📄 Download Cultivation Calendar</a>
+        )}
       </div>
     </article>
   )

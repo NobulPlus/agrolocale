@@ -3,15 +3,18 @@ import styles from './Footer.module.css'
 
 const footerLinks = [
   { href: '/home',     label: 'Home' },
-  { href: '/listings', label: 'Find Land' },
+  { href: '/listings', label: 'Our Listings' },
   { href: '/blog',     label: 'Blog' },
   { href: '/about',    label: 'About Us' },
   { href: '/contact',  label: 'Contact' },
 ]
 
-const propertyTypes = [
-  'Arable Farmland', 'Plantation Land', 'Ranch & Pasture',
-  'Irrigated Plots', 'Mixed Farmland', 'Agricultural Estates',
+const currentOfferings = [
+  'Paradiso Farms II – Farm Investment',
+  'Paradiso II – Tomato Cultivation',
+  'Paradiso II – Habanero Pepper',
+  'Paradiso II – Sweet Potato',
+  'Garri Go! – Fresh Garri Ijebu',
 ]
 
 export default function Footer() {
@@ -66,11 +69,11 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Property types */}
+        {/* Current offerings */}
         <div className={styles.linkGroup}>
-          <h4 className={styles.groupTitle}>Property Types</h4>
+          <h4 className={styles.groupTitle}>Current Offerings</h4>
           <ul className={styles.links}>
-            {propertyTypes.map(t => (
+            {currentOfferings.map(t => (
               <li key={t}><Link href="/listings" className={styles.link}>{t}</Link></li>
             ))}
           </ul>

@@ -17,10 +17,10 @@ const featuredListings = [
 ]
 
 const statsData = [
-  { value: 500,  prefix: '',  suffix: '+',  label: 'Verified Listings' },
-  { value: 26,   prefix: '',  suffix: '',   label: 'States Covered'    },
-  { value: 120,  prefix: '₦', suffix: 'B+', label: 'In Transactions'  },
-  { value: 3000, prefix: '',  suffix: '+',  label: 'Happy Clients'     },
+  { value: 4,   prefix: '',  suffix: '',   label: 'Projects Completed'    },
+  { value: 250, prefix: '',  suffix: '+',  label: 'Registered Investors'  },
+  { value: 50,  prefix: '',  suffix: '+',  label: 'Hectares Sold Out'     },
+  { value: 350, prefix: '',  suffix: '+',  label: 'Households Served'     },
 ]
 
 const whyItems = [
@@ -397,7 +397,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <Image src="/gallery-3.png" alt="Agricultural land" fill sizes="30vw" style={{ objectFit: 'cover' }} />
               </div>
               <div className={styles.imgBadge}>
-                <span className={styles.imgBadgeNum}>8+</span>
+                <span className={styles.imgBadgeNum}>2+</span>
                 <span className={styles.imgBadgeLbl}>Years of Excellence</span>
               </div>
             </div>
@@ -406,15 +406,15 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <p className={styles.sectionTag}>Our Story</p>
               <h2 className={styles.sectionTitle}>Built for Nigeria's Agricultural Future</h2>
               <p className={styles.aboutText}>
-                Founded in 2016, Agrolocale was born from a simple belief: acquiring agricultural land in Nigeria should be transparent, efficient, and trustworthy. We bridge the gap between landowners, farmers, and investors across the country.
+                Founded in 2024, Agrolocale was born from a simple belief: acquiring agricultural land in Nigeria should be transparent, efficient, and trustworthy. We bridge the gap between landowners, farmers, and investors across the country.
               </p>
               <p className={styles.aboutText}>
                 Our certified agro-realty experts conduct rigorous due diligence on every listing — giving you accurate information, clear titles, and fair valuations every time.
               </p>
               <div className={styles.aboutMini}>
-                <div><div className={styles.miniNum}>500+</div><div className={styles.miniLbl}>Properties Listed</div></div>
-                <div><div className={styles.miniNum}>3,000+</div><div className={styles.miniLbl}>Clients Served</div></div>
-                <div><div className={styles.miniNum}>₦120B+</div><div className={styles.miniLbl}>Transacted</div></div>
+                <div><div className={styles.miniNum}>04</div><div className={styles.miniLbl}>Projects Completed</div></div>
+                <div><div className={styles.miniNum}>250+</div><div className={styles.miniLbl}>Registered Investors</div></div>
+                <div><div className={styles.miniNum}>350+</div><div className={styles.miniLbl}>Households Served</div></div>
               </div>
               <Link href="/about" className={styles.aboutCta}>Learn More About Us →</Link>
             </div>
