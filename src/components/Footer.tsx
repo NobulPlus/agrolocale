@@ -10,11 +10,11 @@ const footerLinks = [
 ]
 
 const currentOfferings = [
-  'Paradiso Farms II – Farm Investment',
-  'Paradiso II – Tomato Cultivation',
-  'Paradiso II – Habanero Pepper',
-  'Paradiso II – Sweet Potato',
-  'Garri Go! – Fresh Garri Ijebu',
+  { label: 'Paradiso Farms II – Farm Investment',   href: '/listings'          },
+  { label: 'Paradiso II – Tomato Cultivation',      href: '/listings'          },
+  { label: 'Paradiso II – Habanero Pepper',         href: '/listings'          },
+  { label: 'Paradiso II – Sweet Potato',            href: '/listings'          },
+  { label: 'Garri Go! – Fresh Garri Ijebu',         href: '/products/garri-go' },
 ]
 
 export default function Footer() {
@@ -74,7 +74,7 @@ export default function Footer() {
           <h4 className={styles.groupTitle}>Current Offerings</h4>
           <ul className={styles.links}>
             {currentOfferings.map(t => (
-              <li key={t}><Link href="/listings" className={styles.link}>{t}</Link></li>
+              <li key={t.label}><Link href={t.href} className={styles.link}>{t.label}</Link></li>
             ))}
           </ul>
         </div>

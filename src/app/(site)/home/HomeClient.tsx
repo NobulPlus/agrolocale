@@ -9,11 +9,11 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 1, title: 'Paradiso Farms II',                 location: 'Alabata, Ogun State', price: '₦700K/Plot · ₦4M/Acre', acreage: 'Batch B – 2026', type: 'Farm Investment', image: '/products/paradiso_2.jpeg', badge: '🔥 New Launch', badgeKey: 'red'   },
-  { id: 2, title: 'Paradiso II – Tomato Cultivation',  location: 'Alabata, Ogun State', price: '₦1,100,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_1.jpeg', badge: 'Available',    badgeKey: 'green' },
-  { id: 3, title: 'Paradiso II – Habanero Pepper',     location: 'Alabata, Ogun State', price: '₦1,187,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_3.jpeg', badge: 'Available',    badgeKey: 'green' },
-  { id: 4, title: 'Paradiso II – Sweet Potato',        location: 'Alabata, Ogun State', price: '₦285,000 / Plot',       acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_4.jpeg', badge: 'Featured',     badgeKey: 'gold'  },
-  { id: 5, title: 'Garri Go! – Fresh & Crispy',        location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',   badgeKey: 'red'   },
+  { id: 1, title: 'Paradiso Farms II',                 location: 'Alabata, Ogun State', price: '₦700K/Plot · ₦4M/Acre', acreage: 'Batch B – 2026', type: 'Farm Investment', image: '/products/paradiso_2.jpeg', badge: '🔥 New Launch', badgeKey: 'red',   href: '/listings'            },
+  { id: 2, title: 'Paradiso II – Tomato Cultivation',  location: 'Alabata, Ogun State', price: '₦1,100,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_1.jpeg', badge: 'Available',    badgeKey: 'green', href: '/listings'            },
+  { id: 3, title: 'Paradiso II – Habanero Pepper',     location: 'Alabata, Ogun State', price: '₦1,187,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_3.jpeg', badge: 'Available',    badgeKey: 'green', href: '/listings'            },
+  { id: 4, title: 'Paradiso II – Sweet Potato',        location: 'Alabata, Ogun State', price: '₦285,000 / Plot',       acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_4.jpeg', badge: 'Featured',     badgeKey: 'gold',  href: '/listings'            },
+  { id: 5, title: 'Garri Go! – Fresh & Crispy',        location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',   badgeKey: 'red',   href: '/products/garri-go'   },
 ]
 
 const statsData = [
@@ -91,7 +91,7 @@ function PropertyCard({ l }: { l: typeof featuredListings[0] }) {
             <div className={styles.cardPrice}>{l.price}</div>
             <span className={styles.cardPriceNote}>Asking Price</span>
           </div>
-          <Link href="/listings" className={styles.cardCta}>View Details</Link>
+          <Link href={l.href} className={styles.cardCta}>View Details</Link>
         </div>
       </div>
     </div>
