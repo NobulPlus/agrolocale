@@ -35,6 +35,12 @@
 }
 .logoLeaf  { font-size: 1.2rem; }
 .logoAccent { color: var(--gold-400); }
+.logoImg {
+  width: 36px; height: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
 
 /* ── Desktop nav ───────────────────────────────────── */
 .desktopNav {

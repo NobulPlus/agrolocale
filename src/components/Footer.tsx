@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Footer.module.css'
 
@@ -27,22 +28,32 @@ export default function Footer() {
         {/* Brand */}
         <div className={styles.brand}>
           <Link href="/home" className={styles.logo}>
-            🌾 Agro<span className={styles.logoAccent}>locale</span>
+            <Image
+              src="/images/logo2.png"
+              alt="Agrolocale"
+              width={40}
+              height={40}
+              className={styles.logoImg}
+            />
+            <span>Agro<span className={styles.logoAccent}>locale</span></span>
           </Link>
           <p className={styles.tagline}>
             Nigeria's premier platform for agricultural land discovery and acquisition. Connecting farmers, investors, and communities across the nation.
           </p>
           <div className={styles.socials}>
-            {[
-              { label: 'Facebook',  path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
-              { label: 'Twitter',   path: 'M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z' },
-            ].map(s => (
-              <a key={s.label} href="#" className={styles.social} aria-label={s.label}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d={s.path} />
-                </svg>
-              </a>
-            ))}
+            {/* Facebook */}
+            <a href="#" className={styles.social} aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            {/* YouTube */}
+            <a href="https://www.youtube.com/@Agrolocale" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--green-900)" />
+              </svg>
+            </a>
             <a href="#" className={styles.social} aria-label="Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="2" y="2" width="20" height="20" rx="5" />

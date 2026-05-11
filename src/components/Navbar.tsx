@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import styles from './Navbar.module.css'
@@ -35,8 +36,15 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/home" className={styles.logo} onClick={() => setMenuOpen(false)}>
-          <span className={styles.logoLeaf}>🌾</span>
-          Agro<span className={styles.logoAccent}>locale</span>
+          <Image
+            src="/images/logo2.png"
+            alt="Agrolocale"
+            width={36}
+            height={36}
+            className={styles.logoImg}
+            priority
+          />
+          <span>Agro<span className={styles.logoAccent}>locale</span></span>
         </Link>
 
         {/* Desktop nav */}

@@ -422,6 +422,72 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
         </div>
       </section>
 
+      {/* ─── FOUNDER VIDEO ───────────────────────────── */}
+      <section className={styles.founderSection}>
+        <div className={styles.founderBg} aria-hidden />
+        <div className="container">
+          <div className={styles.founderGrid}>
+
+            {/* Left: text */}
+            <div className={styles.founderText}>
+              <p className={`${styles.sectionTag} ${styles.sectionTagLight}`}>Meet Our Founder</p>
+              <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>
+                A Vision Rooted in Nigeria's Agricultural Future
+              </h2>
+              <p className={styles.founderPara}>
+                Korede Ayeni — founder and CEO of Agrolocale — built this company on a single conviction: that every Nigerian deserves transparent, dignified access to agricultural land and the prosperity that comes with it.
+              </p>
+              <p className={styles.founderPara}>
+                Since launching in 2024, Korede has steered Agrolocale to become a trusted platform bridging farmers, investors, and landowners. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>250+ investors</strong>, and successfully executed multiple farm estate projects — all while keeping food security and community impact at the heart of every decision.
+              </p>
+              <p className={styles.founderPara}>
+                His approach blends deep agricultural knowledge with modern technology, creating a platform that is not just a marketplace — but a movement toward sustainable food production and economic empowerment across Nigeria and beyond.
+              </p>
+              <div className={styles.founderQuote}>
+                <span className={styles.founderQuoteMark}>"</span>
+                <p>We are not just selling land. We are creating farmland owners — people who contribute to feeding Africa and building generational wealth for their families.</p>
+                <cite className={styles.founderCite}>— Korede Ayeni, Founder & CEO, Agrolocale</cite>
+              </div>
+            </div>
+
+            {/* Right: video */}
+            <div className={styles.founderVideoWrap}>
+              <div className={styles.founderVideoFrame}>
+                <iframe
+                  id="founder-video"
+                  src="https://www.youtube.com/embed/CmEZOJe_M6s?rel=0&modestbranding=1"
+                  title="Korede Ayeni – Founder & CEO of Agrolocale"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className={styles.founderIframe}
+                />
+              </div>
+              <div className={styles.founderVideoMeta}>
+                <div className={styles.founderAvatar}>KA</div>
+                <div>
+                  <div className={styles.founderName}>Korede Ayeni</div>
+                  <div className={styles.founderRole}>Founder &amp; CEO · Agrolocale</div>
+                </div>
+                <a
+                  href="https://www.youtube.com/@Agrolocale"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.founderYtBtn}
+                  aria-label="Agrolocale on YouTube"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1e4530"/>
+                  </svg>
+                  Subscribe on YouTube
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ─── GALLERY ─────────────────────────────────── */}
       <section className={styles.gallerySection}>
         <div className="container">

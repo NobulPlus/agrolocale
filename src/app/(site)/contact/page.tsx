@@ -6,10 +6,10 @@ import styles from './contact.module.css'
 
 type Form = {
   name: string; email: string; phone: string
-  subject: string; propType: string; budget: string; message: string
+  subject: string; budget: string; message: string
 }
 
-const blank: Form = { name:'', email:'', phone:'', subject:'', propType:'', budget:'', message:'' }
+const blank: Form = { name:'', email:'', phone:'', subject:'', budget:'', message:'' }
 
 /* ─── Web3Forms access key ───────────────────────────────────────────────────
    1. Go to https://web3forms.com  →  enter info@agrolocale.com  →  click "Create Access Key"
@@ -54,7 +54,6 @@ export default function ContactPage() {
         email:      form.email,
         phone:      form.phone   || '—',
         enquiry:    form.subject,
-        propType:   form.propType || '—',
         budget:     form.budget   || '—',
         message:    form.message,
       }
@@ -154,11 +153,13 @@ export default function ContactPage() {
                         <select id="cf-subject" name="subject" value={form.subject} onChange={change}
                           className={`${styles.select} ${errors.subject ? styles.inputErr : ''}`}>
                           <option value="">Select a subject…</option>
-                          <option value="buy">I want to buy land</option>
-                          <option value="sell">I want to sell land</option>
-                          <option value="list">List my property</option>
-                          <option value="inquiry">General inquiry</option>
-                          <option value="partnership">Partnership opportunity</option>
+                          <option value="cultivate">I want to cultivate / start farming</option>
+                          <option value="invest">I want to invest in a farm plot</option>
+                          <option value="buy-land">I want to acquire farmland</option>
+                          <option value="produce">I want to buy farm produce</option>
+                          <option value="garri-go">Order Garri Go!</option>
+                          <option value="partnership">Partnership / Business opportunity</option>
+                          <option value="inquiry">General enquiry</option>
                         </select>
                         {errors.subject && <span className={styles.err}>{errors.subject}</span>}
                       </div>
@@ -166,25 +167,14 @@ export default function ContactPage() {
 
                     <div className={styles.row}>
                       <div className={styles.field}>
-                        <label htmlFor="cf-proptype" className={styles.label}>Property Type</label>
-                        <select id="cf-proptype" name="propType" value={form.propType} onChange={change} className={styles.select}>
-                          <option value="">Any type</option>
-                          <option value="arable">Arable Farmland</option>
-                          <option value="plantation">Plantation</option>
-                          <option value="ranch">Ranch & Pasture</option>
-                          <option value="irrigated">Irrigated Plot</option>
-                          <option value="mixed">Mixed Farmland</option>
-                        </select>
-                      </div>
-                      <div className={styles.field}>
-                        <label htmlFor="cf-budget" className={styles.label}>Budget Range</label>
+                        <label htmlFor="cf-budget" className={styles.label}>Budget / Investment Range</label>
                         <select id="cf-budget" name="budget" value={form.budget} onChange={change} className={styles.select}>
-                          <option value="">Select budget</option>
-                          <option value="under50">Under ₦50M</option>
-                          <option value="50-100">₦50M – ₦100M</option>
-                          <option value="100-250">₦100M – ₦250M</option>
-                          <option value="250-500">₦250M – ₦500M</option>
-                          <option value="over500">Over ₦500M</option>
+                          <option value="">Select a range (optional)</option>
+                          <option value="under200k">Under ₦200,000</option>
+                          <option value="200k-500k">₦200,000 – ₦500,000</option>
+                          <option value="500k-1m">₦500,000 – ₦1M</option>
+                          <option value="1m-5m">₦1M – ₦5M</option>
+                          <option value="over5m">Over ₦5M</option>
                         </select>
                       </div>
                     </div>
@@ -235,8 +225,13 @@ export default function ContactPage() {
                   ))}
                 </ul>
                 <div className={styles.socials}>
-                  {['📘 Facebook','🐦 Twitter','📸 Instagram','💼 LinkedIn'].map(s => (
-                    <a key={s} href="#" className={styles.social} aria-label={s.split(' ')[1]}>{s.split(' ')[0]}</a>
+                  {[
+                    { emoji: '📘', label: 'Facebook', href: '#' },
+                    { emoji: '▶️', label: 'YouTube',  href: 'https://www.youtube.com/@Agrolocale' },
+                    { emoji: '📸', label: 'Instagram',href: '#' },
+                    { emoji: '💼', label: 'LinkedIn', href: '#' },
+                  ].map(s => (
+                    <a key={s.label} href={s.href} target={s.href !== '#' ? '_blank' : undefined} rel={s.href !== '#' ? 'noopener noreferrer' : undefined} className={styles.social} aria-label={s.label}>{s.emoji}</a>
                   ))}
                 </div>
               </div>
