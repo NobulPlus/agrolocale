@@ -129,7 +129,17 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
     <main>
       {/* ─── HERO ─────────────────────────────────────── */}
       <section className={styles.hero}>
-        <div className={styles.heroBg} aria-hidden />
+        {/* Video background */}
+        <div className={styles.heroBg} aria-hidden>
+          <iframe
+            className={styles.heroBgVideo}
+            src="https://www.youtube.com/embed/hChiqAQWyEM?autoplay=1&mute=1&loop=1&playlist=hChiqAQWyEM&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1"
+            title="Agrolocale hero background"
+            allow="autoplay; fullscreen"
+            aria-hidden="true"
+            tabIndex={-1}
+          />
+        </div>
         <div className={styles.heroOverlay} aria-hidden />
 
         <div className="container">

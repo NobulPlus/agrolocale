@@ -10,12 +10,27 @@
 }
 .heroBg {
   position: absolute; inset: 0;
+  /* fallback image while video loads */
   background: url('/hero-farmland.png') center/cover no-repeat;
-  transform: scale(1.04);
-  transition: transform 12s ease-out;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
-.hero:hover .heroBg { transform: scale(1.08); }
+/* YouTube iframe — full-bleed cover trick */
+.heroBgVideo {
+  position: absolute;
+  top: 50%; left: 50%;
+  /* scale up to fill: min-dimension covers */
+  width: 100vw;
+  height: 56.25vw;   /* 16:9 based on width */
+  min-height: 100vh;
+  min-width: 177.78vh; /* 16:9 based on height */
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none;
+  user-select: none;
+}
+.hero:hover .heroBg { /* remove old scale zoom on hover */ }
 .heroOverlay {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
