@@ -8,51 +8,38 @@ import styles from './listings.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
-    id: 1, title: 'Paradiso Farms II',                location: 'Alabata, Ogun State', state: 'Ogun',
-    price: 700_000, acreage: 0, type: 'mixed',
-    image: '/products/paradiso_2.jpeg',
-    badge: '🔥 New Launch', verified: true,
-    priceLabel: '₦700K/Plot · ₦4M/Acre', acreageLabel: 'Batch B – 2026',
-    hasPdf: true,
-  },
-  {
-    id: 2, title: 'Paradiso II – Tomato Cultivation', location: 'Alabata, Ogun State', state: 'Ogun',
-    price: 1_100_000, acreage: 0, type: 'produce',
-    image: '/products/paradiso_1.jpeg',
+    id: 2, title: 'Cottages Farm',               location: 'Alabata, Ogun State', state: 'Ogun',
+    price: 0, acreage: 0, type: 'resort',
+    image: '/products/cottages.jpeg',
     badge: 'Available', verified: true,
-    priceLabel: '₦1,100,000 / Plot', acreageLabel: 'Jun/Jul 2026',
-    hasPdf: true,
+    priceLabel: 'Contact Us', acreageLabel: 'Available',
+    hasPdf: false,
+    note: '',
   },
   {
-    id: 3, title: 'Paradiso II – Habanero Pepper',    location: 'Alabata, Ogun State', state: 'Ogun',
-    price: 1_187_000, acreage: 0, type: 'produce',
-    image: '/products/paradiso_3.jpeg',
+    id: 3, title: 'Elysian Farm',                  location: 'Alabata, Ogun State', state: 'Ogun',
+    price: 0, acreage: 0, type: 'resort',
+    image: '/products/elysian.jpeg',
     badge: 'Available', verified: true,
-    priceLabel: '₦1,187,000 / Plot', acreageLabel: 'Jun/Jul 2026',
-    hasPdf: true,
+    priceLabel: 'Contact Us', acreageLabel: 'Available',
+    hasPdf: false,
+    note: '',
   },
   {
-    id: 4, title: 'Paradiso II – Sweet Potato',       location: 'Alabata, Ogun State', state: 'Ogun',
-    price: 285_000, acreage: 0, type: 'produce',
-    image: '/products/paradiso_4.jpeg',
-    badge: 'Featured', verified: true,
-    priceLabel: '₦285,000 / Plot', acreageLabel: 'Jun/Jul 2026',
-    hasPdf: true,
-  },
-  {
-    id: 5, title: 'Garri Go! – Fresh & Crispy Garri Ijebu', location: 'Nationwide Delivery', state: 'All States',
+    id: 6, title: 'Garri Go! – Fresh & Crispy Garri Ijebu', location: 'Nationwide Delivery', state: 'All States',
     price: 24_590, acreage: 0, type: 'produce',
     image: '/products/garri.jpeg',
     badge: '🔥 Hot Cake', verified: true,
     priceLabel: '₦24,590 (25kg) · ₦48,590 (50kg)', acreageLabel: 'In Stock',
     hasPdf: false,
+    note: '',
   },
 ]
 
 const propTypes = [
   { value: '',         label: 'All Types'       },
   { value: 'produce',  label: 'Farm Produce'    },
-  { value: 'mixed',    label: 'Mixed Farmland'  },
+  { value: 'resort',   label: 'Farm & Resort'   },
 ]
 
 const states = ['All States', 'Ogun']
@@ -74,13 +61,15 @@ function fmt(n: number, label?: string) {
 }
 
 /* ─── Card ───────────────────────────────────────────── */
-function ListingCard({ l, isFav, onFav, mode }: {
-  l: Listing; isFav: boolean; onFav: () => void; mode: 'grid' | 'list'
+function ListingCard({ l, mode }: {
+  l: Listing; mode: 'grid' | 'list'
 }) {
   const isProduce = l.type === 'produce'
+  const isComingSoon = l.badge.toLowerCase().includes('coming soon')
   const badgeClass =
-    l.badge === 'Hot Deal' || l.badge === '🔥 Hot Cake' ? styles.badgeRed
+    l.badge === 'Hot Deal' || l.badge.includes('🔥') ? styles.badgeRed
     : l.badge === 'Premium' || l.badge === 'Available'  ? styles.badgeGreen
+    : l.badge.includes('🌿') ? styles.badgeGreen
     : styles.badgeGold
 
   return (
@@ -89,16 +78,22 @@ function ListingCard({ l, isFav, onFav, mode }: {
         <Image src={l.image} alt={l.title} fill sizes="(max-width:768px) 100vw, 40vw" className={styles.img} />
         {l.badge && <span className={`${styles.badge} ${badgeClass}`}>{l.badge}</span>}
         {l.verified && <span className={styles.verified}>{isProduce ? '✓ Fresh' : '✓ Verified'}</span>}
-        <button className={styles.fav} onClick={onFav} aria-label="Save listing">{isFav ? '❤️' : '🤍'}</button>
       </div>
 
       <div className={styles.cardBody}>
-        <p className={styles.cardType}>{isProduce ? 'Farm Produce' : `${l.type.charAt(0).toUpperCase() + l.type.slice(1)} Land`}</p>
+        <p className={styles.cardType}>
+          {l.type === 'resort' ? 'Farm & Resort Project'
+           : isProduce ? 'Farm Produce'
+           : `${l.type.charAt(0).toUpperCase() + l.type.slice(1)} Land`}
+        </p>
         <h2 className={styles.cardTitle}>{l.title}</h2>
         <p className={styles.cardLoc}>📍 {l.location}</p>
+        {l.note && <p className={styles.cardNote}>💬 {l.note}</p>}
         <div className={styles.cardMeta}>
           {isProduce ? (
             <><span>🌾 Farm Fresh</span><span>🚚 Direct Delivery</span><span>✅ {l.acreageLabel || 'In Stock'}</span></>
+          ) : l.type === 'resort' ? (
+            <><span>🌿 Farm & Resort</span><span>📍 {l.acreageLabel}</span><span>📞 Enquire</span></>
           ) : (
             <><span>📐 {l.acreage} Acres</span><span>📋 C of O Titled</span><span>🌱 Fertile Soil</span></>
           )}
@@ -106,13 +101,12 @@ function ListingCard({ l, isFav, onFav, mode }: {
         <div className={styles.cardFooter}>
           <div>
             <div className={styles.cardPrice}>{fmt(l.price, l.priceLabel || undefined)}</div>
-            <span className={styles.priceNote}>{isProduce ? 'Call to Order' : 'Negotiable'}</span>
+            <span className={styles.priceNote}>{isComingSoon ? 'Register Interest' : isProduce ? 'Call to Order' : 'Negotiable'}</span>
           </div>
-          <Link href="/contact" className={styles.enquireBtn}>{isProduce ? 'Order Now' : 'Enquire Now'}</Link>
+          <Link href="/contact" className={styles.enquireBtn}>
+            {isComingSoon ? 'Register Interest' : isProduce ? 'Order Now' : 'Enquire Now'}
+          </Link>
         </div>
-        {l.hasPdf && (
-          <a href="/docs/Paradiso_Batch_B.pdf" download className={styles.downloadBtn}>📄 Download Cultivation Calendar</a>
-        )}
       </div>
     </article>
   )
@@ -124,7 +118,6 @@ export default function ListingsPage() {
   const [state,    setState]    = useState('All States')
   const [maxPrice, setMaxPrice] = useState(300_000_000)
   const [sort,     setSort]     = useState('default')
-  const [favs,     setFavs]     = useState<number[]>([])
   const [mode,     setMode]     = useState<'grid' | 'list'>('grid')
 
   const results = useMemo(() => {
@@ -139,9 +132,6 @@ export default function ListingsPage() {
     return d
   }, [type, state, maxPrice, sort])
 
-  const toggleFav = (id: number) =>
-    setFavs(prev => prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id])
-
   const resetFilters = () => { setType(''); setState('All States'); setMaxPrice(300_000_000); setSort('default') }
 
   return (
@@ -149,10 +139,10 @@ export default function ListingsPage() {
       {/* Header */}
       <section className={styles.pageHeader}>
         <div className="container">
-          <p className={styles.headerTag}>Find Your Land</p>
-          <h1 className={styles.headerTitle}>Agricultural Property Listings</h1>
+          <p className={styles.headerTag}>Farm & Resort Projects</p>
+          <h1 className={styles.headerTitle}>Agricultural & Resort Listings</h1>
           <p className={styles.headerSub}>
-            Browse verified farmland across Nigeria — filter by type, state, and price to find your perfect property.
+            Since 2024, we've been the trusted bridge between agricultural farmland investment, resort projects, and the investors who need it most.
           </p>
         </div>
       </section>
@@ -234,8 +224,6 @@ export default function ListingsPage() {
                 {results.map(l => (
                   <ListingCard
                     key={l.id} l={l}
-                    isFav={favs.includes(l.id)}
-                    onFav={() => toggleFav(l.id)}
                     mode={mode}
                   />
                 ))}

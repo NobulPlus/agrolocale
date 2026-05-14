@@ -11,11 +11,9 @@ const footerLinks = [
 ]
 
 const currentOfferings = [
-  { label: 'Paradiso Farms II – Farm Investment',   href: '/products/paradiso' },
-  { label: 'Paradiso II – Tomato Cultivation',      href: '/products/paradiso' },
-  { label: 'Paradiso II – Habanero Pepper',         href: '/products/paradiso' },
-  { label: 'Paradiso II – Sweet Potato',            href: '/products/paradiso' },
-  { label: 'Garri Go! – Fresh Garri Ijebu',         href: '/products/garri-go' },
+  { label: 'Cottages Farm',                 href: '/listings' },
+  { label: 'Elysian Farm',                  href: '/listings' },
+  { label: 'Garri Go! – Fresh Garri Ijebu', href: '/products/garri-go' },
 ]
 
 export default function Footer() {
@@ -38,7 +36,7 @@ export default function Footer() {
             <span>Agro<span className={styles.logoAccent}>locale</span></span>
           </Link>
           <p className={styles.tagline}>
-            Nigeria's premier platform for agricultural land discovery and acquisition. Connecting farmers, investors, and communities across the nation.
+            Nigeria's premier platform for agricultural land discovery and acquisition. Developing farm estate and resort project across the nation.
           </p>
           <div className={styles.socials}>
             {/* Facebook */}

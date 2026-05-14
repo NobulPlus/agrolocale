@@ -326,20 +326,71 @@
 .aboutCta:hover { color: var(--gold-600); border-color: var(--gold-600); }
 
 /* ══════════════════════════════════════════════════════
-   GALLERY
+   GALLERY → PRODUCE SHOWCASE
 ══════════════════════════════════════════════════════ */
-.gallerySection { padding: 6rem 0; background: var(--white); }
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-rows: repeat(2, 220px);
-  gap: 0.875rem;
-  border-radius: var(--radius-xl); overflow: hidden;
+.gallerySection { padding: 6rem 0; background: var(--cream-light); }
+
+/* Crop Tab Buttons */
+.cropTabs {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
 }
-.galleryItem { position: relative; overflow: hidden; cursor: zoom-in; }
-.galleryItem:first-child { grid-row: span 2; }
-.galleryImg { transition: transform 0.65s var(--ease); object-fit: cover; }
-.galleryItem:hover .galleryImg { transform: scale(1.08); }
+.cropTab {
+  padding: 0.65rem 2rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.95rem; font-weight: 700;
+  background: var(--white);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.01em;
+}
+.cropTab:hover { border-color: var(--green-600); color: var(--green-700); }
+.cropTabActive {
+  background: var(--green-800);
+  border-color: var(--green-800);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(30,69,48,0.25);
+}
+
+.cropStripWrap {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 1.25rem;
+}
+.cropStrip {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: autoScroll 25s linear infinite;
+}
+.cropStrip:hover {
+  animation-play-state: paused;
+}
+@keyframes autoScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+.cropCard {
+  position: relative;
+  flex: 0 0 300px;
+  height: 400px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: zoom-in;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-slow);
+}
+.cropCard:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+.cropImg { transition: transform 0.65s var(--ease); object-fit: cover; }
+.cropCard:hover .cropImg { transform: scale(1.06); }
+
+/* Overlay shared with old gallery */
 .galleryOverlay {
   position: absolute; inset: 0;
   background: rgba(5,17,8,0);
@@ -347,7 +398,53 @@
   font-size: 2rem; color: var(--white);
   transition: background 0.35s var(--ease);
 }
-.galleryItem:hover .galleryOverlay { background: rgba(5,17,8,0.42); }
+.cropCard:hover .galleryOverlay { background: rgba(5,17,8,0.38); }
+
+/* Keep old selectors to avoid breaking any remaining references */
+.galleryGrid { display: none; }
+.galleryItem { position: relative; overflow: hidden; }
+.galleryImg { object-fit: cover; }
+
+/* Elysian notice strip */
+.elysianNotice {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(90deg, rgba(30,69,48,0.06), rgba(201,168,76,0.06));
+  border: 1px dashed rgba(30,69,48,0.25);
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+}
+.elysianBadge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: var(--gold-500);
+  color: var(--green-900);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.elysianNotice p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.elysianLink {
+  font-weight: 700;
+  color: var(--green-700);
+  border-bottom: 1px solid var(--green-700);
+  transition: var(--transition);
+}
+.elysianLink:hover { color: var(--gold-600); border-color: var(--gold-600); }
+
+@media (max-width: 640px) {
+  .cropCard { flex: 0 0 80vw; height: 300px; }
+  .cropTabs { gap: 0.5rem; }
+  .cropTab  { padding: 0.55rem 1.25rem; font-size: 0.85rem; }
+}
 
 /* ══════════════════════════════════════════════════════
    TESTIMONIALS

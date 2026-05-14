@@ -1,23 +1,20 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { urlFor } from '@/lib/sanity/image'
 import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 1, title: 'Paradiso Farms II',                 location: 'Alabata, Ogun State', price: '₦700K/Plot · ₦4M/Acre', acreage: 'Batch B – 2026', type: 'Farm Investment', image: '/products/paradiso_2.jpeg', badge: '🔥 New Launch', badgeKey: 'red',   href: '/products/paradiso' },
-  { id: 2, title: 'Paradiso II – Tomato Cultivation',  location: 'Alabata, Ogun State', price: '₦1,100,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_1.jpeg', badge: 'Available',    badgeKey: 'green', href: '/products/paradiso' },
-  { id: 3, title: 'Paradiso II – Habanero Pepper',     location: 'Alabata, Ogun State', price: '₦1,187,000 / Plot',     acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_3.jpeg', badge: 'Available',    badgeKey: 'green', href: '/products/paradiso' },
-  { id: 4, title: 'Paradiso II – Sweet Potato',        location: 'Alabata, Ogun State', price: '₦285,000 / Plot',       acreage: 'Jun/Jul 2026',   type: 'Farm Produce',    image: '/products/paradiso_4.jpeg', badge: 'Featured',     badgeKey: 'gold',  href: '/products/paradiso' },
-  { id: 5, title: 'Garri Go! – Fresh & Crispy',        location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',   badgeKey: 'red',   href: '/products/garri-go' },
+  { id: 2, title: 'Cottages Farm',                     location: 'Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
+  { id: 3, title: 'Elysian Farm',                      location: 'Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: 'Available',     badgeKey: 'green', href: '/listings' },
+  { id: 6, title: 'Garri Go! – Fresh & Crispy',       location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
 ]
 
 const statsData = [
-  { value: 4,   prefix: '',  suffix: '',   label: 'Projects Completed'    },
+  { value: 6,   prefix: '',  suffix: '+',  label: 'Projects Completed'    },
   { value: 250, prefix: '',  suffix: '+',  label: 'Registered Investors'  },
   { value: 50,  prefix: '',  suffix: '+',  label: 'Hectares Sold Out'     },
   { value: 350, prefix: '',  suffix: '+',  label: 'Households Served'     },
@@ -36,8 +33,41 @@ const testimonials = [
   { name: 'Ngozi Okafor',   role: 'Agri-Business Owner, Enugu',         initials: 'NO', color: '#2a6344', quote: 'Found the perfect irrigated farmland in Benue through Agrolocale. Their due-diligence support saved us from potential title issues — the deal closed smoothly and on time.' },
 ]
 
-const galleryImages = [
-  '/gallery-1.png', '/elysian-farm.png', '/bounty-harvest.png', '/gallery-2.png', '/gallery-3.png',
+const cropTabs = [
+  {
+    key: 'habanero',
+    label: '🌶️ Habanero',
+    images: [
+      '/images/gallery/habanero-1.jpeg',
+      '/images/gallery/habanero-2.jpeg',
+      '/images/gallery/habanero-3.jpeg',
+      '/images/gallery/habanero-4.jpeg',
+      '/images/gallery/habanero-5.jpeg',
+      '/images/gallery/habanero-6.jpeg',
+    ],
+  },
+  {
+    key: 'maize',
+    label: '🌽 Maize',
+    images: [
+      '/images/gallery/maize-1.jpeg',
+      '/images/gallery/maize-2.jpeg',
+      '/images/gallery/maize-3.jpeg',
+      '/images/gallery/maize-4.jpeg',
+      '/images/gallery/maize-5.jpeg',
+    ],
+  },
+  {
+    key: 'potato',
+    label: '🥔 Sweet Potato',
+    images: [
+      '/images/gallery/potato-1.jpeg',
+      '/images/gallery/potato-2.jpeg',
+      '/images/gallery/potato-3.jpeg',
+      '/images/gallery/potato-4.jpeg',
+      '/images/gallery/potato-5.jpeg',
+    ],
+  },
 ]
 
 /* ─── Animated counter hook ──────────────────────────── */
@@ -70,13 +100,11 @@ function StatItem({ value, prefix, suffix, label, running }: { value: number; pr
 
 /* ─── Property card ──────────────────────────────────── */
 function PropertyCard({ l }: { l: typeof featuredListings[0] }) {
-  const [fav, setFav] = useState(false)
   return (
     <div className={styles.card}>
       <div className={styles.cardImgWrap}>
         <Image src={l.image} alt={l.title} fill sizes="(max-width:768px) 100vw, 33vw" className={styles.cardImg} />
         <span className={`${styles.cardBadge} ${l.badgeKey === 'red' ? styles.badgeRed : l.badgeKey === 'green' ? styles.badgeGreen : styles.badgeGold}`}>{l.badge}</span>
-        <button className={styles.cardFav} onClick={() => setFav(v => !v)} aria-label="Save">{fav ? '❤️' : '🤍'}</button>
       </div>
       <div className={styles.cardBody}>
         <p className={styles.cardType}>{l.type}</p>
@@ -99,12 +127,11 @@ function PropertyCard({ l }: { l: typeof featuredListings[0] }) {
 }
 
 /* ─── Page ───────────────────────────────────────────── */
+
 export default function HomeClient({ posts = [] }: { posts?: any[] }) {
-  const router = useRouter()
-  const [location,   setLocation]   = useState('')
-  const [propType,   setPropType]   = useState('')
   const [statsOn,    setStatsOn]    = useState(false)
   const [activeTest, setActiveTest] = useState(0)
+  const [activeTab,  setActiveTab]  = useState(0)
   const statsRef = useRef<HTMLDivElement>(null)
 
   /* Intersect stats */
@@ -119,11 +146,6 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
     const t = setInterval(() => setActiveTest(v => (v + 1) % testimonials.length), 5000)
     return () => clearInterval(t)
   }, [])
-
-  const handleSearch = useCallback((e: React.FormEvent) => {
-    e.preventDefault()
-    router.push('/listings')
-  }, [router])
 
   return (
     <main>
@@ -144,42 +166,12 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
         <div className="container">
           <div className={styles.heroContent}>
-            <span className={styles.heroTag}>🌾 Nigeria's Premier Agro-Realty Platform</span>
+            <span className={styles.heroTag}>🌾 Nigeria's Innovative Agro-Realty Farm</span>
 
             <h1 className={styles.heroTitle}>
-              Discover Premium
-              <em className={styles.heroTitleAccent}> Agricultural Land</em>
+              Nigeria's Trusted Bridge for
+              <em className={styles.heroTitleAccent}> Farm &amp; Resort Investment</em>
             </h1>
-
-            <p className={styles.heroSub}>
-              From fertile arable fields to thriving plantations — find, verify, and acquire the perfect agricultural property for your investment or farming needs.
-            </p>
-
-            <form className={styles.searchBar} onSubmit={handleSearch}>
-              <input
-                id="hero-location"
-                className={styles.searchInput}
-                type="text"
-                placeholder="Search by state or location…"
-                value={location}
-                onChange={e => setLocation(e.target.value)}
-              />
-              <div className={styles.searchDivider} aria-hidden />
-              <select
-                id="hero-type"
-                className={styles.searchSelect}
-                value={propType}
-                onChange={e => setPropType(e.target.value)}
-              >
-                <option value="">All Property Types</option>
-                <option value="arable">Arable Farmland</option>
-                <option value="plantation">Plantation</option>
-                <option value="ranch">Ranch &amp; Pasture</option>
-                <option value="irrigated">Irrigated Plot</option>
-                <option value="mixed">Mixed Farmland</option>
-              </select>
-              <button type="submit" className={styles.searchBtn}>🔍 Search Land</button>
-            </form>
           </div>
         </div>
 
@@ -211,51 +203,45 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             </p>
           </div>
           <div className={styles.produceGrid}>
-            {/* HOT CAKE — Tomato Batch B */}
             <div className={styles.produceCard}>
               <div className={styles.produceImgWrap}>
                 <Image
-                  src="/products/paradiso_1.jpeg"
-                  alt="Paradiso Farms II – Tomato Cultivation"
+                  src="/products/cottages.jpeg"
+                  alt="Cottages"
                   fill
                   sizes="(max-width:768px) 100vw, 55vw"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
-                <span className={styles.produceBadgeAvail}>Batch B – Jun/Jul 2026</span>
+                <span className={styles.produceBadgeAvail}>Available</span>
               </div>
               <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Paradiso II – Tomato Cultivation</h3>
-                <p className={styles.produceDesc}>
-                  Batch B cultivation commencing June/July 2026 at Alabata, Ogun State. Per Plot: ₦1,100,000 total. Per Acre: ₦6,300,000 total.
-                </p>
+                <h3 className={styles.produceName}>Cottages Farm</h3>
                 <div className={styles.produceStats}>
-                  <span>🍅 Tomato</span>
                   <span>📍 Alabata, Ogun</span>
                   <span>✅ Open Now</span>
+                  <span>💯 Quality Assured</span>
                 </div>
               </div>
             </div>
-            {/* Habanero Pepper */}
+            {/* Elysian */}
             <div className={styles.produceCard}>
               <div className={styles.produceImgWrap}>
                 <Image
-                  src="/products/paradiso_3.jpeg"
-                  alt="Paradiso Farms II – Habanero Pepper"
+                  src="/products/elysian.jpeg"
+                  alt="Elysian"
                   fill
                   sizes="(max-width:768px) 100vw, 40vw"
                   style={{ objectFit: 'cover' }}
                 />
+                <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
                 <span className={styles.produceBadgeAvail}>Available</span>
               </div>
               <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Paradiso II – Habanero Pepper</h3>
-                <p className={styles.produceDesc}>
-                  Premium Habanero cultivation slot at Paradiso Farms II. Per Plot: ₦1,187,000 total. Per Acre: ₦6,922,000 total.
-                </p>
+                <h3 className={styles.produceName}>Elysian Farm</h3>
                 <div className={styles.produceStats}>
-                  <span>🌶️ Habanero</span>
                   <span>📍 Alabata, Ogun</span>
+                  <span>✅ Open Now</span>
                   <span>💯 Quality Assured</span>
                 </div>
               </div>
@@ -414,15 +400,15 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
             <div className={styles.aboutContent}>
               <p className={styles.sectionTag}>Our Story</p>
-              <h2 className={styles.sectionTitle}>Built for Nigeria's Agricultural Future</h2>
+              <h2 className={styles.sectionTitle}>Nigeria's Innovative Agro-Realty Farm</h2>
               <p className={styles.aboutText}>
-                Founded in 2024, Agrolocale was born from a simple belief: acquiring agricultural land in Nigeria should be transparent, efficient, and trustworthy. We bridge the gap between landowners, farmers, and investors across the country.
+                Since 2024, Agrolocale has been the trusted bridge between agricultural farmland investment, resort projects, and the investors who need it the most — making land ownership transparent, efficient, and rewarding.
               </p>
               <p className={styles.aboutText}>
                 Our certified agro-realty experts conduct rigorous due diligence on every listing — giving you accurate information, clear titles, and fair valuations every time.
               </p>
               <div className={styles.aboutMini}>
-                <div><div className={styles.miniNum}>04</div><div className={styles.miniLbl}>Projects Completed</div></div>
+                <div><div className={styles.miniNum}>6+</div><div className={styles.miniLbl}>Projects Completed</div></div>
                 <div><div className={styles.miniNum}>250+</div><div className={styles.miniLbl}>Registered Investors</div></div>
                 <div><div className={styles.miniNum}>350+</div><div className={styles.miniLbl}>Households Served</div></div>
               </div>
@@ -448,7 +434,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 Korede Ayeni — founder and CEO of Agrolocale — built this company on a single conviction: that every Nigerian deserves transparent, dignified access to agricultural land and the prosperity that comes with it.
               </p>
               <p className={styles.founderPara}>
-                Since launching in 2024, Korede has steered Agrolocale to become a trusted platform bridging farmers, investors, and landowners. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>250+ investors</strong>, and successfully executed multiple farm estate projects — all while keeping food security and community impact at the heart of every decision.
+                Since launching in 2024, Korede has steered Agrolocale to become the trusted bridge between agricultural farmland investment, resort projects, and the investors who need them most. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>250+ investors</strong>, and successfully completed <strong>6+ projects</strong> — all while keeping food security and community impact at the heart of every decision.
               </p>
               <p className={styles.founderPara}>
                 His approach blends deep agricultural knowledge with modern technology, creating a platform that is not just a marketplace — but a movement toward sustainable food production and economic empowerment across Nigeria and beyond.
@@ -498,20 +484,55 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
         </div>
       </section>
 
-      {/* ─── GALLERY ─────────────────────────────────── */}
+      {/* ─── PRODUCE GALLERY ──────────────────────────── */}
       <section className={styles.gallerySection}>
         <div className="container">
-          <div className={styles.sectionCenter} style={{ marginBottom: '2.5rem' }}>
-            <p className={styles.sectionTag}>Our Properties</p>
-            <h2 className={styles.sectionTitle}>A Glimpse of Nigeria's Farmlands</h2>
+          <div className={styles.sectionCenter} style={{ marginBottom: '2rem' }}>
+            <p className={styles.sectionTag}>Farm Produce Gallery</p>
+            <h2 className={styles.sectionTitle}>A Showcase of Farm-Fresh Produce</h2>
+            <p className={styles.sectionSub} style={{ margin: '0 auto' }}>
+              Explore the quality crops cultivated across our partner farms — from fiery habaneros to golden maize and hearty sweet potatoes.
+            </p>
           </div>
-          <div className={styles.galleryGrid}>
-            {galleryImages.map((src, i) => (
-              <div key={i} className={styles.galleryItem}>
-                <Image src={src} alt={`Farmland ${i + 1}`} fill sizes="(max-width:640px) 100vw,33vw" className={styles.galleryImg} />
-                <div className={styles.galleryOverlay}><span>🔍</span></div>
-              </div>
+
+          {/* Crop tabs */}
+          <div className={styles.cropTabs}>
+            {cropTabs.map((tab, i) => (
+              <button
+                key={tab.key}
+                className={`${styles.cropTab} ${activeTab === i ? styles.cropTabActive : ''}`}
+                onClick={() => setActiveTab(i)}
+              >
+                {tab.label}
+              </button>
             ))}
+          </div>
+
+          {/* Image scroll strip */}
+          <div className={styles.cropStripWrap}>
+            <div className={styles.cropStrip}>
+              {[...cropTabs[activeTab].images, ...cropTabs[activeTab].images].map((src, i) => (
+                <div key={i} className={styles.cropCard}>
+                  <Image
+                    src={src}
+                    alt={`${cropTabs[activeTab].label} ${i + 1}`}
+                    fill
+                    sizes="(max-width:640px) 80vw, 300px"
+                    className={styles.cropImg}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Elysian notice */}
+          <div className={styles.elysianNotice}>
+            <span className={styles.elysianBadge}>📸 Coming Soon</span>
+            <p>
+              <strong>Elysian Farmers Market</strong> gallery is being sourced by our team.
+              Photos will be uploaded once received.{' '}
+              <a href="/contact" className={styles.elysianLink}>Register your interest →</a>
+            </p>
           </div>
         </div>
       </section>

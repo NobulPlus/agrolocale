@@ -150,7 +150,7 @@ export default function AboutPage() {
               <em> Future Together</em>
             </h1>
             <p className={styles.heroSub}>
-              Since 2024, we've been the trusted bridge between agricultural land and the farmers, investors, and communities who need it most.
+              Since 2024, we've been the trusted bridge between agricultural farmland investment, resort projects, and the investors who need it most.
             </p>
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
                 <Image src="/gallery-2.png" alt="Farmland overview" fill sizes="45vw" style={{ objectFit: 'cover' }} />
               </div>
               <div className={styles.mImgSub}>
-                <Image src="/elysian-farm.png" alt="Agricultural estate" fill sizes="25vw" style={{ objectFit: 'cover' }} />
+                <Image src="/products/elysian.jpeg" alt="Agricultural estate" fill sizes="25vw" style={{ objectFit: 'cover' }} />
               </div>
             </div>
           </div>
