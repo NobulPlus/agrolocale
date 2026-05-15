@@ -150,7 +150,7 @@ export default function AboutPage() {
               <em> Future Together</em>
             </h1>
             <p className={styles.heroSub}>
-              Since 2024, we've been the trusted bridge between agricultural farmland investment, resort projects, and the investors who need it most.
+              Since 2024, we've been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most.
             </p>
           </div>
         </div>

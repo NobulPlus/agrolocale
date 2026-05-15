@@ -8,8 +8,9 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 2, title: 'Cottages Farm',                     location: 'Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
-  { id: 3, title: 'Elysian Farm',                      location: 'Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: 'Available',     badgeKey: 'green', href: '/listings' },
+  { id: 1, title: 'Paradiso Farms',                    location: 'Ayireke Village via Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/paradiso_1.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
+  { id: 2, title: 'Aduke Cottages',                    location: 'Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
+  { id: 3, title: 'Elysian Farms and Resort',          location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: 'Available',     badgeKey: 'green', href: '/listings' },
   { id: 6, title: 'Garri Go! – Fresh & Crispy',       location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
 ]
 
@@ -203,11 +204,12 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             </p>
           </div>
           <div className={styles.produceGrid}>
+            {/* Paradiso Farms */}
             <div className={styles.produceCard}>
               <div className={styles.produceImgWrap}>
                 <Image
-                  src="/products/cottages.jpeg"
-                  alt="Cottages"
+                  src="/products/paradiso_1.jpeg"
+                  alt="Paradiso Farms"
                   fill
                   sizes="(max-width:768px) 100vw, 55vw"
                   style={{ objectFit: 'cover' }}
@@ -216,7 +218,29 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <span className={styles.produceBadgeAvail}>Available</span>
               </div>
               <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Cottages Farm</h3>
+                <h3 className={styles.produceName}>Paradiso Farms</h3>
+                <div className={styles.produceStats}>
+                  <span>📍 Ayireke Village via Alabata, Ogun</span>
+                  <span>✅ Open Now</span>
+                  <span>💯 Quality Assured</span>
+                </div>
+              </div>
+            </div>
+            {/* Aduke Cottages */}
+            <div className={styles.produceCard}>
+              <div className={styles.produceImgWrap}>
+                <Image
+                  src="/products/cottages.jpeg"
+                  alt="Aduke Cottages"
+                  fill
+                  sizes="(max-width:768px) 100vw, 55vw"
+                  style={{ objectFit: 'cover' }}
+                />
+                <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
+                <span className={styles.produceBadgeAvail}>Available</span>
+              </div>
+              <div className={styles.produceBody}>
+                <h3 className={styles.produceName}>Aduke Cottages</h3>
                 <div className={styles.produceStats}>
                   <span>📍 Alabata, Ogun</span>
                   <span>✅ Open Now</span>
@@ -229,7 +253,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <div className={styles.produceImgWrap}>
                 <Image
                   src="/products/elysian.jpeg"
-                  alt="Elysian"
+                  alt="Elysian Farms and Resort"
                   fill
                   sizes="(max-width:768px) 100vw, 40vw"
                   style={{ objectFit: 'cover' }}
@@ -238,9 +262,9 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <span className={styles.produceBadgeAvail}>Available</span>
               </div>
               <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Elysian Farm</h3>
+                <h3 className={styles.produceName}>Elysian Farms and Resort</h3>
                 <div className={styles.produceStats}>
-                  <span>📍 Alabata, Ogun</span>
+                  <span>📍 Ido-Eruwa Expressway, Ibadan</span>
                   <span>✅ Open Now</span>
                   <span>💯 Quality Assured</span>
                 </div>
@@ -340,11 +364,11 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             <div className={styles.elysianVideoHeader}>
               <p className={`${styles.sectionTag} ${styles.sectionTagLight}`}>Farm &amp; Resort Spotlight</p>
               <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>
-                Discover the Elysian Farm &amp; Resort
+                Discover Elysian Farms and Resort
               </h2>
               <p className={styles.elysianVideoSub}>
                 Take a virtual tour of one of our flagship properties — a serene, premium-grade farm and resort
-                nestled in Alabata, Ogun State, built for both agricultural investment and leisure.
+                nestled along the Ido-Eruwa Expressway, Ibadan, built for both agricultural investment and leisure.
               </p>
             </div>
 
@@ -353,7 +377,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <iframe
                 id="elysian-farm-video"
                 src="https://www.youtube.com/embed/Gt0zpaq3-I4?rel=0&modestbranding=1"
-                title="Elysian Farm &amp; Resort – Property Tour"
+                title="Elysian Farms and Resort – Property Tour"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className={styles.elysianIframe}
@@ -362,7 +386,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
             {/* Meta row */}
             <div className={styles.elysianVideoMeta}>
-              <div className={styles.elysianMetaChip}>📍 Alabata, Ogun State</div>
+              <div className={styles.elysianMetaChip}>📍 Ido-Eruwa Expressway, Ibadan</div>
               <div className={styles.elysianMetaChip}>🌾 Farm &amp; Resort</div>
               <div className={styles.elysianMetaChip}>✅ Available Now</div>
               <a href="/listings" className={styles.elysianMetaCta}>View Listing Details →</a>
@@ -444,7 +468,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <p className={styles.sectionTag}>Our Story</p>
               <h2 className={styles.sectionTitle}>Nigeria's Innovative Agro-Realty Farm</h2>
               <p className={styles.aboutText}>
-                Since 2024, Agrolocale has been the trusted bridge between agricultural farmland investment, resort projects, and the investors who need it the most — making land ownership transparent, efficient, and rewarding.
+                Since 2024, Agrolocale has been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most — making land ownership transparent, efficient, and rewarding.
               </p>
               <p className={styles.aboutText}>
                 Our certified agro-realty experts conduct rigorous due diligence on every listing — giving you accurate information, clear titles, and fair valuations every time.
@@ -476,7 +500,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 Korede Ayeni — founder and CEO of Agrolocale — built this company on a single conviction: that every Nigerian deserves transparent, dignified access to agricultural land and the prosperity that comes with it.
               </p>
               <p className={styles.founderPara}>
-                Since launching in 2024, Korede has steered Agrolocale to become the trusted bridge between agricultural farmland investment, resort projects, and the investors who need them most. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>250+ investors</strong>, and successfully completed <strong>6+ projects</strong> — all while keeping food security and community impact at the heart of every decision.
+                Since launching in 2024, Korede has steered Agrolocale to become the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>250+ investors</strong>, and successfully completed <strong>6+ projects</strong> — all while keeping food security and community impact at the heart of every decision.
               </p>
               <p className={styles.founderPara}>
                 His approach blends deep agricultural knowledge with modern technology, creating a platform that is not just a marketplace — but a movement toward sustainable food production and economic empowerment across Nigeria and beyond.
@@ -571,7 +595,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
           <div className={styles.elysianNotice}>
             <span className={styles.elysianBadge}>📸 Coming Soon</span>
             <p>
-              <strong>Elysian Farmers Market</strong> gallery is being sourced by our team.
+              <strong>Elysian Farms and Resort</strong> gallery is being sourced by our team.
               Photos will be uploaded once received.{' '}
               <a href="/contact" className={styles.elysianLink}>Register your interest →</a>
             </p>

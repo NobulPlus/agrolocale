@@ -8,7 +8,16 @@ import styles from './listings.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
-    id: 2, title: 'Cottages Farm',               location: 'Alabata, Ogun State', state: 'Ogun',
+    id: 1, title: 'Paradiso Farms',                  location: 'Ayireke Village via Alabata, Ogun State', state: 'Ogun',
+    price: 0, acreage: 0, type: 'resort',
+    image: '/products/paradiso_1.jpeg',
+    badge: 'Available', verified: true,
+    priceLabel: 'Contact Us', acreageLabel: 'Available',
+    hasPdf: false,
+    note: '',
+  },
+  {
+    id: 2, title: 'Aduke Cottages',               location: 'Alabata, Ogun State', state: 'Ogun',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/cottages.jpeg',
     badge: 'Available', verified: true,
@@ -17,7 +26,7 @@ const allListings = [
     note: '',
   },
   {
-    id: 3, title: 'Elysian Farm',                  location: 'Alabata, Ogun State', state: 'Ogun',
+    id: 3, title: 'Elysian Farms and Resort',       location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/elysian.jpeg',
     badge: 'Available', verified: true,
@@ -42,7 +51,7 @@ const propTypes = [
   { value: 'resort',   label: 'Farm & Resort'   },
 ]
 
-const states = ['All States', 'Ogun']
+const states = ['All States', 'Ogun', 'Oyo']
 
 const sortOpts = [
   { value: 'default',     label: 'Default'               },
@@ -142,7 +151,7 @@ export default function ListingsPage() {
           <p className={styles.headerTag}>Farm & Resort Projects</p>
           <h1 className={styles.headerTitle}>Agricultural & Resort Listings</h1>
           <p className={styles.headerSub}>
-            Since 2024, we've been the trusted bridge between agricultural farmland investment, resort projects, and the investors who need it most.
+            Since 2024, we've been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most.
           </p>
         </div>
       </section>

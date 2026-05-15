@@ -11,8 +11,9 @@ const footerLinks = [
 ]
 
 const currentOfferings = [
-  { label: 'Cottages Farm',                 href: '/listings' },
-  { label: 'Elysian Farm',                  href: '/listings' },
+  { label: 'Paradiso Farms',                 href: '/listings' },
+  { label: 'Aduke Cottages',                href: '/listings' },
+  { label: 'Elysian Farms and Resort',      href: '/listings' },
   { label: 'Garri Go! – Fresh Garri Ijebu', href: '/products/garri-go' },
 ]
 
