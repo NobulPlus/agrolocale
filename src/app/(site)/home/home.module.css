@@ -840,3 +840,91 @@
   .founderYtBtn { margin-left: 0; }
 }
 
+/* ══════════════════════════════════════════════════════
+   ELYSIAN FARM & RESORT SPOTLIGHT VIDEO
+══════════════════════════════════════════════════════ */
+.elysianVideoSection {
+  position: relative;
+  padding: 7rem 0;
+  background: var(--green-900);
+  overflow: hidden;
+}
+.elysianVideoBg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 50%, rgba(201,168,76,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 80% at 90% 20%, rgba(30,69,48,0.55) 0%, transparent 70%);
+  pointer-events: none;
+}
+.elysianVideoInner {
+  position: relative; z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* Header */
+.elysianVideoHeader {
+  text-align: center;
+  max-width: 680px;
+}
+.elysianVideoSub {
+  font-size: 0.975rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  margin-top: 0.75rem;
+}
+
+/* Iframe wrapper – 16:9 */
+.elysianVideoFrame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.18);
+  background: #000;
+}
+.elysianIframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* Meta chips row */
+.elysianVideoMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.elysianMetaChip {
+  padding: 0.45rem 1.15rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+}
+.elysianMetaCta {
+  padding: 0.55rem 1.5rem;
+  background: var(--gold-500);
+  color: var(--green-900);
+  font-size: 0.85rem; font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.elysianMetaCta:hover { background: var(--gold-400); transform: translateY(-1px); box-shadow: var(--shadow-gold); }
+
+@media (max-width: 640px) {
+  .elysianVideoSection { padding: 5rem 0; }
+  .elysianVideoMeta { justify-content: flex-start; }
+}
+

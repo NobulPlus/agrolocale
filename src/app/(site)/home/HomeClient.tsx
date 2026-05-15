@@ -330,6 +330,48 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
         </div>
       </section>
 
+      {/* ─── ELYSIAN FARM SPOTLIGHT VIDEO ────────────── */}
+      <section className={styles.elysianVideoSection}>
+        <div className={styles.elysianVideoBg} aria-hidden />
+        <div className="container">
+          <div className={styles.elysianVideoInner}>
+
+            {/* Header */}
+            <div className={styles.elysianVideoHeader}>
+              <p className={`${styles.sectionTag} ${styles.sectionTagLight}`}>Farm &amp; Resort Spotlight</p>
+              <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>
+                Discover the Elysian Farm &amp; Resort
+              </h2>
+              <p className={styles.elysianVideoSub}>
+                Take a virtual tour of one of our flagship properties — a serene, premium-grade farm and resort
+                nestled in Alabata, Ogun State, built for both agricultural investment and leisure.
+              </p>
+            </div>
+
+            {/* Video frame */}
+            <div className={styles.elysianVideoFrame}>
+              <iframe
+                id="elysian-farm-video"
+                src="https://www.youtube.com/embed/Gt0zpaq3-I4?rel=0&modestbranding=1"
+                title="Elysian Farm &amp; Resort – Property Tour"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={styles.elysianIframe}
+              />
+            </div>
+
+            {/* Meta row */}
+            <div className={styles.elysianVideoMeta}>
+              <div className={styles.elysianMetaChip}>📍 Alabata, Ogun State</div>
+              <div className={styles.elysianMetaChip}>🌾 Farm &amp; Resort</div>
+              <div className={styles.elysianMetaChip}>✅ Available Now</div>
+              <a href="/listings" className={styles.elysianMetaCta}>View Listing Details →</a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ─── WHY AGROLOCALE ──────────────────────────── */}
       <section className={styles.whySection}>
         <div className="container">
