@@ -22,7 +22,6 @@ const statsData = [
 ]
 
 const whyItems = [
-  { icon: '🔍', title: 'Verified Listings',    desc: 'Every property is physically inspected and legally vetted by our expert agents before listing on our platform.' },
   { icon: '🤝', title: 'Expert Guidance',      desc: 'Dedicated agro-realty consultants guide you through every step — from discovery to title transfer.' },
   { icon: '🌍', title: 'Nationwide Coverage',  desc: 'Discover agricultural land across all 36 states and the FCT with our continuously growing network.' },
   { icon: '🔒', title: 'Secure Transactions',  desc: 'End-to-end legal documentation and title verification protects your investment at every stage.' },
