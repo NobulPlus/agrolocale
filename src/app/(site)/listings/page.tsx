@@ -17,7 +17,7 @@ const allListings = [
     note: '',
   },
   {
-    id: 2, title: 'Aduke Cottages',               location: 'Alabata, Ogun State', state: 'Ogun',
+    id: 2, title: 'Aduke Cottages',               location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/cottages.jpeg',
     badge: 'Available', verified: true,

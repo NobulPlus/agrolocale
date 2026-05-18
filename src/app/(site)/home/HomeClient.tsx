@@ -8,8 +8,8 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 1, title: 'Paradiso Farms',                    location: 'Ayireke Village via Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/paradiso_1.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
-  { id: 2, title: 'Aduke Cottages',                    location: 'Alabata, Ogun State', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
+
+  { id: 2, title: 'Aduke Cottages',                    location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
   { id: 3, title: 'Elysian Farms and Resort',          location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: 'Available',     badgeKey: 'green', href: '/listings' },
   { id: 6, title: 'Garri Go! – Fresh & Crispy',       location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
 ]
@@ -166,7 +166,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
         <div className="container">
           <div className={styles.heroContent}>
-            <span className={styles.heroTag}>🌾 Nigeria's Innovative Agro-Realty Farm</span>
+            <span className={styles.heroTag}>🌾 Nigeria's Innovative Agro-Realty Firm</span>
 
             <h1 className={styles.heroTitle}>
               Nigeria's Trusted Bridge for
@@ -203,28 +203,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             </p>
           </div>
           <div className={styles.produceGrid}>
-            {/* Paradiso Farms */}
-            <div className={styles.produceCard}>
-              <div className={styles.produceImgWrap}>
-                <Image
-                  src="/products/paradiso_1.jpeg"
-                  alt="Paradiso Farms"
-                  fill
-                  sizes="(max-width:768px) 100vw, 55vw"
-                  style={{ objectFit: 'cover' }}
-                />
-                <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
-                <span className={styles.produceBadgeAvail}>Available</span>
-              </div>
-              <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Paradiso Farms</h3>
-                <div className={styles.produceStats}>
-                  <span>📍 Ayireke Village via Alabata, Ogun</span>
-                  <span>✅ Open Now</span>
-                  <span>💯 Quality Assured</span>
-                </div>
-              </div>
-            </div>
+
             {/* Aduke Cottages */}
             <div className={styles.produceCard}>
               <div className={styles.produceImgWrap}>
@@ -241,7 +220,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <div className={styles.produceBody}>
                 <h3 className={styles.produceName}>Aduke Cottages</h3>
                 <div className={styles.produceStats}>
-                  <span>📍 Alabata, Ogun</span>
+                  <span>📍 Ido-Eruwa Expressway, Ibadan</span>
                   <span>✅ Open Now</span>
                   <span>💯 Quality Assured</span>
                 </div>
@@ -465,7 +444,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
             <div className={styles.aboutContent}>
               <p className={styles.sectionTag}>Our Story</p>
-              <h2 className={styles.sectionTitle}>Nigeria's Innovative Agro-Realty Farm</h2>
+              <h2 className={styles.sectionTitle}>Nigeria's Innovative Agro-Realty Firm</h2>
               <p className={styles.aboutText}>
                 Since 2024, Agrolocale has been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most — making land ownership transparent, efficient, and rewarding.
               </p>
