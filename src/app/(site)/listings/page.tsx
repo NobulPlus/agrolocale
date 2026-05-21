@@ -8,7 +8,7 @@ import styles from './listings.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
-    id: 1, title: 'Paradiso Farms',                  location: 'Ayireke Village via Alabata, Ogun State', state: 'Ogun',
+    id: 1, title: 'Paradiso Farms',                  location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/paradiso_new.jpeg',
     badge: 'Available', verified: true,
@@ -51,7 +51,7 @@ const propTypes = [
   { value: 'produce',  label: 'Farm Produce'    },
 ]
 
-const states = ['All States', 'Ogun', 'Oyo']
+const states = ['All States', 'Oyo']
 
 const sortOpts = [
   { value: 'default',     label: 'Default'               },
@@ -110,7 +110,7 @@ function ListingCard({ l, mode }: {
         <div className={styles.cardFooter}>
           <div>
             <div className={styles.cardPrice}>{fmt(l.price, l.priceLabel || undefined)}</div>
-            <span className={styles.priceNote}>{isComingSoon ? 'Register Interest' : isProduce ? 'Call to Order' : 'Negotiable'}</span>
+            <span className={styles.priceNote}>{isComingSoon ? 'Register Interest' : isProduce ? 'Call to Order' : ''}</span>
           </div>
           <Link href="/contact" className={styles.enquireBtn}>
             {isComingSoon ? 'Register Interest' : isProduce ? 'Order Now' : 'Enquire Now'}
