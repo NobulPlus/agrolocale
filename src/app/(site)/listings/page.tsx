@@ -8,6 +8,15 @@ import styles from './listings.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
+    id: 1, title: 'Paradiso Farms',                  location: 'Ayireke Village via Alabata, Ogun State', state: 'Ogun',
+    price: 0, acreage: 0, type: 'resort',
+    image: '/products/paradiso_new.jpeg',
+    badge: 'Available', verified: true,
+    priceLabel: 'Contact Us', acreageLabel: 'Available',
+    hasPdf: false,
+    note: '',
+  },
+  {
     id: 2, title: 'Aduke Cottages',               location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/cottages.jpeg',
@@ -42,7 +51,7 @@ const propTypes = [
   { value: 'produce',  label: 'Farm Produce'    },
 ]
 
-const states = ['All States', 'Oyo']
+const states = ['All States', 'Ogun', 'Oyo']
 
 const sortOpts = [
   { value: 'default',     label: 'Default'               },
