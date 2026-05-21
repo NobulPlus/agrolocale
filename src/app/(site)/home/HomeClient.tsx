@@ -222,7 +222,6 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <div className={styles.produceStats}>
                   <span>📍 Ido-Eruwa Expressway, Ibadan</span>
                   <span>✅ Open Now</span>
-                  <span>💯 Quality Assured</span>
                 </div>
               </div>
             </div>
@@ -244,7 +243,6 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <div className={styles.produceStats}>
                   <span>📍 Ido-Eruwa Expressway, Ibadan</span>
                   <span>✅ Open Now</span>
-                  <span>💯 Quality Assured</span>
                 </div>
               </div>
             </div>
