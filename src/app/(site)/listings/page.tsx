@@ -8,7 +8,7 @@ import styles from './listings.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
-    id: 1, title: 'Paradiso Farms',                  location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
+    id: 1, title: 'Paradiso Farms',                  location: 'Alabata Road, Abeokuta', state: 'Ogun',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/paradiso_new.jpeg',
     badge: 'Available', verified: true,

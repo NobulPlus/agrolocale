@@ -94,7 +94,7 @@ export default function Footer() {
           <h4 className={styles.groupTitle}>Get In Touch</h4>
           <ul className={styles.contactList}>
             {[
-              { icon: '📍', text: 'Paradiso to Alabata Road, Abeokuta, Ogun State' },
+              { icon: '📍', text: 'Ayobola Daodu, Lekki Scheme II, Ajah, Lagos State' },
               { icon: '📞', text: '+234 707 152 3904, +234 901 045 8648' },
               { icon: '✉️', text: 'info@agrolocale.com, customercare@agrolocale.com' },
               { icon: '🕐', text: 'Mon – Thu: 9am – 4pm | Fri: 10am – 4pm' },
