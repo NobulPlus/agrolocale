@@ -210,7 +210,7 @@ export default function ContactPage() {
                 <h3 className={styles.infoTitle}>Contact Information</h3>
                 <ul className={styles.infoList}>
                   {[
-                    { icon: '📍', lbl: 'Office Address',    val: 'Agrolocale HQ\nAyobola Daodu, Lekki Scheme II\nAjah, Lagos State' },
+                    { icon: '📍', lbl: 'Office Address',    val: 'Agrolocale HQ\nParadiso to Alabata Road\nAbeokuta, Ogun State' },
                     { icon: '📞', lbl: 'Phone',              val: '+234 707 152 3904\n+234 901 045 8648' },
                     { icon: '✉️', lbl: 'Email',              val: 'info@agrolocale.com\ncustomercare@agrolocale.com' },
                     { icon: '🕐', lbl: 'Office Hours',       val: 'Mon – Thursday: 9am – 4pm\nFriday: 10am – 4pm' },
@@ -240,7 +240,7 @@ export default function ContactPage() {
               <a href="https://maps.app.goo.gl/ZQu3b8ZezYgpNgwr8" target="_blank" rel="noopener noreferrer" className={styles.mapCard}>
                 <div className={styles.mapInner}>
                   <span className={styles.mapPin}>📍</span>
-                  <p className={styles.mapCity}>Ajah, Lagos State</p>
+                  <p className={styles.mapCity}>Abeokuta, Ogun State</p>
                   <p className={styles.mapNote}>Open in Google Maps</p>
                 </div>
               </a>
