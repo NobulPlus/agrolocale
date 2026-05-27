@@ -1,9 +1,26 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './listings.module.css'
+
+/* ─── Flier images ───────────────────────────────────── */
+const adukeFlierImages = [
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.50 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.51 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.53 AM.jpeg',
+]
+
+const elysianFlierImages = [
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AMt7789.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 9.13.22 AM1313.jpeg',
+]
 
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
@@ -13,26 +30,32 @@ const allListings = [
     image: '/products/paradiso_new.jpeg',
     badge: 'Available', verified: true,
     priceLabel: 'Contact Us', acreageLabel: 'Available',
-    hasPdf: false,
+    pdfUrl: '/docs/Paradiso_Batch_B.pdf',
     note: '',
+    cofo: false, paymentPlan: false,
+    flierImages: [] as string[],
   },
   {
     id: 2, title: 'Aduke Cottages',               location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/cottages.jpeg',
-    badge: 'Available', verified: true,
-    priceLabel: 'Contact Us', acreageLabel: 'Available',
-    hasPdf: false,
+    badge: '🏠 Housing Offer', verified: true,
+    priceLabel: 'Contact Us', acreageLabel: 'Available on Sale',
+    pdfUrl: '/docs/Aduke Brochure.pdf',
     note: '',
+    cofo: true, paymentPlan: true,
+    flierImages: adukeFlierImages,
   },
   {
     id: 3, title: 'Elysian Farms and Resort',       location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/elysian.jpeg',
-    badge: 'Available', verified: true,
-    priceLabel: 'Contact Us', acreageLabel: 'Available',
-    hasPdf: false,
+    badge: '🌿 Land Offer', verified: true,
+    priceLabel: 'Contact Us', acreageLabel: 'Available on Sale',
+    pdfUrl: undefined,
     note: '',
+    cofo: true, paymentPlan: true,
+    flierImages: elysianFlierImages,
   },
   {
     id: 6, title: 'Garri Go! – Fresh & Crispy Garri Ijebu', location: 'Nationwide Delivery', state: 'All States',
@@ -40,8 +63,10 @@ const allListings = [
     image: '/products/garri.jpeg',
     badge: '🔥 Hot Cake', verified: true,
     priceLabel: '₦24,590 (25kg) · ₦48,590 (50kg)', acreageLabel: 'In Stock',
-    hasPdf: false,
+    pdfUrl: undefined,
     note: '',
+    cofo: false, paymentPlan: false,
+    flierImages: [] as string[],
   },
 ]
 
@@ -69,17 +94,94 @@ function fmt(n: number, label?: string) {
   return `₦${(n/1e6).toFixed(0)}M`
 }
 
+/* ─── Flier Modal ────────────────────────────────────── */
+function FlierModal({ title, images, onClose, pdfUrl }: { title: string; images: string[]; onClose: () => void; pdfUrl?: string }) {
+  const [activeIdx, setActiveIdx] = useState(0)
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose])
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
+  const prev = () => setActiveIdx(i => (i - 1 + images.length) % images.length)
+  const next = () => setActiveIdx(i => (i + 1) % images.length)
+
+  return (
+    <div className={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true" aria-label={`${title} fliers`}>
+      <div className={styles.modalBox} onClick={e => e.stopPropagation()}>
+        {/* Header */}
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>{title} – Fliers &amp; Offers</h2>
+          <button className={styles.modalClose} onClick={onClose} aria-label="Close modal">✕</button>
+        </div>
+
+        {/* Main image */}
+        <div className={styles.modalImgWrap}>
+          <Image
+            src={images[activeIdx]}
+            alt={`${title} flier ${activeIdx + 1}`}
+            fill
+            sizes="(max-width:768px) 100vw, 70vw"
+            className={styles.modalImg}
+          />
+          {images.length > 1 && (
+            <>
+              <button className={`${styles.modalNav} ${styles.modalNavPrev}`} onClick={prev} aria-label="Previous">‹</button>
+              <button className={`${styles.modalNav} ${styles.modalNavNext}`} onClick={next} aria-label="Next">›</button>
+            </>
+          )}
+          <div className={styles.modalCounter}>{activeIdx + 1} / {images.length}</div>
+        </div>
+
+        {/* Thumbnails */}
+        {images.length > 1 && (
+          <div className={styles.modalThumbs}>
+            {images.map((src, i) => (
+              <button
+                key={i}
+                className={`${styles.modalThumb} ${i === activeIdx ? styles.modalThumbActive : ''}`}
+                onClick={() => setActiveIdx(i)}
+                aria-label={`View flier ${i + 1}`}
+              >
+                <Image src={src} alt={`Thumb ${i + 1}`} fill sizes="80px" style={{ objectFit: 'cover' }} />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Footer CTA */}
+        <div className={styles.modalFooter}>
+          {pdfUrl && (
+            <a href={pdfUrl} download className={styles.modalPdfDownload}>
+              📥 Download Brochure
+            </a>
+          )}
+          <Link href="/contact" className={styles.modalCta}>Enquire Now →</Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Card ───────────────────────────────────────────── */
-function ListingCard({ l, mode }: {
-  l: Listing; mode: 'grid' | 'list'
+function ListingCard({ l, mode, onFlierClick }: {
+  l: Listing; mode: 'grid' | 'list'; onFlierClick: (id: number) => void
 }) {
   const isProduce = l.type === 'produce'
   const isComingSoon = l.badge.toLowerCase().includes('coming soon')
   const badgeClass =
     l.badge === 'Hot Deal' || l.badge.includes('🔥') ? styles.badgeRed
-    : l.badge === 'Premium' || l.badge === 'Available'  ? styles.badgeGreen
+    : l.badge === 'Premium' || l.badge === 'Available' || l.badge.includes('🏠') || l.badge.includes('🌿') ? styles.badgeGreen
     : l.badge.includes('🌿') ? styles.badgeGreen
     : styles.badgeGold
+
+  const hasFliers = l.flierImages.length > 0
 
   return (
     <article className={`${styles.card} ${mode === 'list' ? styles.cardList : ''}`}>
@@ -87,6 +189,15 @@ function ListingCard({ l, mode }: {
         <Image src={l.image} alt={l.title} fill sizes="(max-width:768px) 100vw, 40vw" className={styles.img} />
         {l.badge && <span className={`${styles.badge} ${badgeClass}`}>{l.badge}</span>}
         {l.verified && <span className={styles.verified}>{isProduce ? '✓ Fresh' : '✓ Verified'}</span>}
+        {hasFliers && (
+          <button
+            className={styles.flierBtn}
+            onClick={() => onFlierClick(l.id)}
+            aria-label={`View ${l.title} fliers`}
+          >
+            📸 View Fliers
+          </button>
+        )}
       </div>
 
       <div className={styles.cardBody}>
@@ -98,6 +209,15 @@ function ListingCard({ l, mode }: {
         <h2 className={styles.cardTitle}>{l.title}</h2>
         <p className={styles.cardLoc}>📍 {l.location}</p>
         {l.note && <p className={styles.cardNote}>💬 {l.note}</p>}
+
+        {/* CofO + Payment Plan tags */}
+        {(l.cofo || l.paymentPlan) && (
+          <div className={styles.cardTagRow}>
+            {l.cofo && <span className={styles.cardTag}>📜 CofO</span>}
+            {l.paymentPlan && <span className={styles.cardTag}>💳 Payment Plan Available</span>}
+          </div>
+        )}
+
         <div className={styles.cardMeta}>
           {isProduce ? (
             <><span>🌾 Farm Fresh</span><span>🚚 Direct Delivery</span><span>✅ {l.acreageLabel || 'In Stock'}</span></>
@@ -116,6 +236,11 @@ function ListingCard({ l, mode }: {
             {isComingSoon ? 'Register Interest' : isProduce ? 'Order Now' : 'Enquire Now'}
           </Link>
         </div>
+        {l.pdfUrl && (
+          <a href={l.pdfUrl} download className={styles.downloadBtn}>
+            📥 Download Brochure
+          </a>
+        )}
       </div>
     </article>
   )
@@ -128,6 +253,7 @@ export default function ListingsPage() {
   const [maxPrice, setMaxPrice] = useState(300_000_000)
   const [sort,     setSort]     = useState('default')
   const [mode,     setMode]     = useState<'grid' | 'list'>('grid')
+  const [openFlier, setOpenFlier] = useState<number | null>(null)
 
   const results = useMemo(() => {
     let d = [...allListings]
@@ -142,6 +268,8 @@ export default function ListingsPage() {
   }, [type, state, maxPrice, sort])
 
   const resetFilters = () => { setType(''); setState('All States'); setMaxPrice(300_000_000); setSort('default') }
+
+  const openListing = openFlier != null ? allListings.find(l => l.id === openFlier) : null
 
   return (
     <main className={styles.main}>
@@ -234,6 +362,7 @@ export default function ListingsPage() {
                   <ListingCard
                     key={l.id} l={l}
                     mode={mode}
+                    onFlierClick={id => setOpenFlier(id)}
                   />
                 ))}
               </div>
@@ -248,6 +377,16 @@ export default function ListingsPage() {
           </div>
         </div>
       </div>
+
+      {/* ─── Flier Modal ───────────────────────────── */}
+      {openListing && openListing.flierImages.length > 0 && (
+        <FlierModal
+          title={openListing.title}
+          images={openListing.flierImages}
+          onClose={() => setOpenFlier(null)}
+          pdfUrl={openListing.pdfUrl}
+        />
+      )}
     </main>
   )
 }

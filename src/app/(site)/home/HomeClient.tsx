@@ -9,8 +9,8 @@ import styles from './home.module.css'
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
 
-  { id: 2, title: 'Aduke Cottages',                    location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: 'Available',     badgeKey: 'green', href: '/listings' },
-  { id: 3, title: 'Elysian Farms and Resort',          location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: 'Available',     badgeKey: 'green', href: '/listings' },
+  { id: 2, title: 'Aduke Cottages',                    location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: '🏠 Housing Offer', badgeKey: 'green', href: '/listings', pdfUrl: '/docs/Aduke Brochure.pdf' },
+  { id: 3, title: 'Elysian Farms and Resort',          location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: '🌿 Land Offer',   badgeKey: 'green', href: '/listings' },
   { id: 6, title: 'Garri Go! – Fresh & Crispy',       location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
 ]
 
@@ -70,6 +70,23 @@ const cropTabs = [
   },
 ]
 
+/* ─── Flier images ───────────────────────────────────── */
+const adukeFlierImages = [
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.50 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.51 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.53 AM.jpeg',
+]
+
+const elysianFlierImages = [
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AMt7789.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 9.13.22 AM1313.jpeg',
+]
+
 /* ─── Animated counter hook ──────────────────────────── */
 function useCountUp(target: number, running: boolean) {
   const [count, setCount] = useState(0)
@@ -99,7 +116,7 @@ function StatItem({ value, prefix, suffix, label, running }: { value: number; pr
 }
 
 /* ─── Property card ──────────────────────────────────── */
-function PropertyCard({ l }: { l: typeof featuredListings[0] }) {
+function PropertyCard({ l }: { l: typeof featuredListings[0] & { pdfUrl?: string } }) {
   return (
     <div className={styles.card}>
       <div className={styles.cardImgWrap}>
@@ -121,6 +138,88 @@ function PropertyCard({ l }: { l: typeof featuredListings[0] }) {
           </div>
           <Link href={l.href} className={styles.cardCta}>View Details</Link>
         </div>
+        {l.pdfUrl && (
+          <a href={l.pdfUrl} download className={styles.cardDownload}>
+            📥 Download Brochure
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
+/* ─── Flier Gallery Modal ────────────────────────────── */
+function FlierModal({ title, images, onClose, pdfUrl }: { title: string; images: string[]; onClose: () => void; pdfUrl?: string }) {
+  const [activeIdx, setActiveIdx] = useState(0)
+
+  // Close on ESC
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose])
+
+  // Prevent body scroll
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
+  const prev = () => setActiveIdx(i => (i - 1 + images.length) % images.length)
+  const next = () => setActiveIdx(i => (i + 1) % images.length)
+
+  return (
+    <div className={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true" aria-label={`${title} fliers`}>
+      <div className={styles.modalBox} onClick={e => e.stopPropagation()}>
+        {/* Header */}
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>{title} – Fliers &amp; Offers</h2>
+          <button className={styles.modalClose} onClick={onClose} aria-label="Close modal">✕</button>
+        </div>
+
+        {/* Main image */}
+        <div className={styles.modalImgWrap}>
+          <Image
+            src={images[activeIdx]}
+            alt={`${title} flier ${activeIdx + 1}`}
+            fill
+            sizes="(max-width:768px) 100vw, 70vw"
+            className={styles.modalImg}
+          />
+          {images.length > 1 && (
+            <>
+              <button className={`${styles.modalNav} ${styles.modalNavPrev}`} onClick={prev} aria-label="Previous">‹</button>
+              <button className={`${styles.modalNav} ${styles.modalNavNext}`} onClick={next} aria-label="Next">›</button>
+            </>
+          )}
+          <div className={styles.modalCounter}>{activeIdx + 1} / {images.length}</div>
+        </div>
+
+        {/* Thumbnails */}
+        {images.length > 1 && (
+          <div className={styles.modalThumbs}>
+            {images.map((src, i) => (
+              <button
+                key={i}
+                className={`${styles.modalThumb} ${i === activeIdx ? styles.modalThumbActive : ''}`}
+                onClick={() => setActiveIdx(i)}
+                aria-label={`View flier ${i + 1}`}
+              >
+                <Image src={src} alt={`Thumb ${i + 1}`} fill sizes="80px" style={{ objectFit: 'cover' }} />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className={styles.modalFooter}>
+          {pdfUrl && (
+            <a href={pdfUrl} download className={styles.modalPdfDownload}>
+              📥 Download Brochure
+            </a>
+          )}
+          <Link href="/contact" className={styles.modalCta}>Enquire Now →</Link>
+        </div>
       </div>
     </div>
   )
@@ -132,6 +231,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
   const [statsOn,    setStatsOn]    = useState(false)
   const [activeTest, setActiveTest] = useState(0)
   const [activeTab,  setActiveTab]  = useState(0)
+  const [openModal,  setOpenModal]  = useState<'aduke' | 'elysian' | null>(null)
   const statsRef = useRef<HTMLDivElement>(null)
 
   /* Intersect stats */
@@ -170,7 +270,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
             <h1 className={styles.heroTitle}>
               Nigeria's Trusted Bridge for
-              <em className={styles.heroTitleAccent}> Farm &amp; Resort Investment</em>
+              <em className={styles.heroTitleAccent}>Farm &amp; Resort Investment</em>
             </h1>
           </div>
         </div>
@@ -205,7 +305,14 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
           <div className={styles.produceGrid}>
 
             {/* Aduke Cottages */}
-            <div className={styles.produceCard}>
+            <div
+              className={`${styles.produceCard} ${styles.produceCardClickable}`}
+              onClick={() => setOpenModal('aduke')}
+              role="button"
+              tabIndex={0}
+              aria-label="View Aduke Cottages fliers"
+              onKeyDown={e => e.key === 'Enter' && setOpenModal('aduke')}
+            >
               <div className={styles.produceImgWrap}>
                 <Image
                   src="/products/cottages.jpeg"
@@ -214,19 +321,32 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                   sizes="(max-width:768px) 100vw, 55vw"
                   style={{ objectFit: 'cover' }}
                 />
-                <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
-                <span className={styles.produceBadgeAvail}>Available</span>
+                <span className={styles.produceBadgeHot}>🏠 Housing Offer</span>
+                <span className={styles.produceBadgeAvail}>Available on Sale</span>
+                <div className={styles.produceViewFlier}>📸 View Fliers</div>
               </div>
               <div className={styles.produceBody}>
                 <h3 className={styles.produceName}>Aduke Cottages</h3>
+                <div className={styles.produceTagRow}>
+                  <span className={styles.produceTag}>📜 CofO</span>
+                  <span className={styles.produceTag}>💳 Payment Plan Available</span>
+                </div>
                 <div className={styles.produceStats}>
                   <span>📍 Ido-Eruwa Expressway, Ibadan</span>
-                  <span>✅ Open Now</span>
+                  <span>✅ Available on Sale</span>
                 </div>
               </div>
             </div>
+
             {/* Elysian */}
-            <div className={styles.produceCard}>
+            <div
+              className={`${styles.produceCard} ${styles.produceCardClickable}`}
+              onClick={() => setOpenModal('elysian')}
+              role="button"
+              tabIndex={0}
+              aria-label="View Elysian Farms fliers"
+              onKeyDown={e => e.key === 'Enter' && setOpenModal('elysian')}
+            >
               <div className={styles.produceImgWrap}>
                 <Image
                   src="/products/elysian.jpeg"
@@ -235,14 +355,19 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                   sizes="(max-width:768px) 100vw, 40vw"
                   style={{ objectFit: 'cover' }}
                 />
-                <span className={styles.produceBadgeHot}>🔥 Hot Cake</span>
-                <span className={styles.produceBadgeAvail}>Available</span>
+                <span className={styles.produceBadgeHot}>🌿 Land Offer</span>
+                <span className={styles.produceBadgeAvail}>Available on Sale</span>
+                <div className={styles.produceViewFlier}>📸 View Fliers</div>
               </div>
               <div className={styles.produceBody}>
                 <h3 className={styles.produceName}>Elysian Farms and Resort</h3>
+                <div className={styles.produceTagRow}>
+                  <span className={styles.produceTag}>📜 CofO</span>
+                  <span className={styles.produceTag}>💳 Payment Plan Available</span>
+                </div>
                 <div className={styles.produceStats}>
                   <span>📍 Ido-Eruwa Expressway, Ibadan</span>
-                  <span>✅ Open Now</span>
+                  <span>✅ Available on Sale</span>
                 </div>
               </div>
             </div>
@@ -364,7 +489,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             <div className={styles.elysianVideoMeta}>
               <div className={styles.elysianMetaChip}>📍 Ido-Eruwa Expressway, Ibadan</div>
               <div className={styles.elysianMetaChip}>🌾 Farm &amp; Resort</div>
-              <div className={styles.elysianMetaChip}>✅ Available Now</div>
+              <div className={styles.elysianMetaChip}>✅ Available on Sale</div>
               <a href="/listings" className={styles.elysianMetaCta}>View Listing Details →</a>
             </div>
 
@@ -482,9 +607,9 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 His approach blends deep agricultural knowledge with modern technology, creating a platform that is not just a marketplace — but a movement toward sustainable food production and economic empowerment across Nigeria and beyond.
               </p>
               <div className={styles.founderQuote}>
-                <span className={styles.founderQuoteMark}>"</span>
+                <span className={styles.founderQuoteMark}>&quot;</span>
                 <p>We are not just selling land. We are creating farmland owners — people who contribute to feeding Africa and building generational wealth for their families.</p>
-                <cite className={styles.founderCite}>— Korede Ayeni, Founder & CEO, Agrolocale</cite>
+                <cite className={styles.founderCite}>— Korede Ayeni, Founder &amp; CEO, Agrolocale</cite>
               </div>
             </div>
 
@@ -681,6 +806,23 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
           </div>
         </div>
       </section>
+
+      {/* ─── FLIER MODALS ────────────────────────────── */}
+      {openModal === 'aduke' && (
+        <FlierModal
+          title="Aduke Cottages"
+          images={adukeFlierImages}
+          onClose={() => setOpenModal(null)}
+          pdfUrl="/docs/Aduke Brochure.pdf"
+        />
+      )}
+      {openModal === 'elysian' && (
+        <FlierModal
+          title="Elysian Farms & Resort"
+          images={elysianFlierImages}
+          onClose={() => setOpenModal(null)}
+        />
+      )}
     </main>
   )
 }
