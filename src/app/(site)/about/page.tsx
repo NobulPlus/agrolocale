@@ -194,7 +194,7 @@ export default function AboutPage() {
                 <Image src="/gallery-2.png" alt="Farmland overview" fill sizes="45vw" style={{ objectFit: 'cover' }} />
               </div>
               <div className={styles.mImgSub}>
-                <Image src="/products/elysian.jpeg" alt="Agricultural estate" fill sizes="25vw" style={{ objectFit: 'cover' }} />
+                <Image src="/products/elysian.png" alt="Agricultural estate" fill sizes="25vw" style={{ objectFit: 'cover' }} />
               </div>
             </div>
           </div>

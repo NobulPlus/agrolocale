@@ -7,19 +7,23 @@ import styles from './listings.module.css'
 
 /* ─── Flier images ───────────────────────────────────── */
 const adukeFlierImages = [
-  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
   '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.50 AM.jpeg',
   '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.51 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
   '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.53 AM.jpeg',
 ]
 
 const elysianFlierImages = [
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AM.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AMt7789.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 9.13.22 AM1313.jpeg',
+]
+
+/* ─── Aduke unit types ───────────────────────────────── */
+const adukeUnits = [
+  { label: '1 Bed Cottage – Terrace',        promo: '₦28M', deposit: '₦5M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
+  { label: '2 Bed Cottage – Semi Detached',   promo: '₦39M', deposit: '₦5M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
+  { label: '3 Bed Cottage – Fully Detached',  promo: '₦54M', deposit: '₦5M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
 ]
 
 /* ─── Data ───────────────────────────────────────────── */
@@ -36,26 +40,28 @@ const allListings = [
     flierImages: [] as string[],
   },
   {
-    id: 2, title: 'Aduke Cottages',               location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
+    id: 2, title: 'Aduke Cottages',               location: 'Inside Elysian Farm & Resort, Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
     image: '/products/cottages.jpeg',
     badge: '🏠 Housing Offer', verified: true,
-    priceLabel: 'Contact Us', acreageLabel: 'Available on Sale',
+    priceLabel: 'From ₦28M', acreageLabel: 'Available on Sale',
     pdfUrl: '/docs/Aduke Brochure.pdf',
-    note: '',
+    note: '6 months interest free · Initial deposit ₦5M · Managed by Localite Hospitality',
     cofo: true, paymentPlan: true,
     flierImages: adukeFlierImages,
+    units: adukeUnits,
   },
   {
     id: 3, title: 'Elysian Farms and Resort',       location: 'Ido-Eruwa Expressway, Ibadan', state: 'Oyo',
     price: 0, acreage: 0, type: 'resort',
-    image: '/products/elysian.jpeg',
+    image: '/products/elysian.png',
     badge: '🌿 Land Offer', verified: true,
     priceLabel: 'Contact Us', acreageLabel: 'Available on Sale',
     pdfUrl: undefined,
     note: '',
     cofo: true, paymentPlan: true,
     flierImages: elysianFlierImages,
+    units: undefined as typeof adukeUnits | undefined,
   },
   {
     id: 6, title: 'Garri Go! – Fresh & Crispy Garri Ijebu', location: 'Nationwide Delivery', state: 'All States',
@@ -67,8 +73,12 @@ const allListings = [
     note: '',
     cofo: false, paymentPlan: false,
     flierImages: [] as string[],
+    units: undefined as typeof adukeUnits | undefined,
   },
 ]
+
+// patch Paradiso to have units field for type compatibility
+;(allListings[0] as any).units = undefined
 
 const propTypes = [
   { value: '',         label: 'All Types'       },
@@ -227,6 +237,7 @@ function ListingCard({ l, mode, onFlierClick }: {
             <><span>📐 {l.acreage} Acres</span><span>📋 C of O Titled</span><span>🌱 Fertile Soil</span></>
           )}
         </div>
+
         <div className={styles.cardFooter}>
           <div>
             <div className={styles.cardPrice}>{fmt(l.price, l.priceLabel || undefined)}</div>

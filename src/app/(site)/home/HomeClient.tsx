@@ -8,10 +8,16 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
+  { id: 2, title: 'Aduke Cottages',             location: 'Inside Elysian Farm & Resort, Ido-Eruwa Expressway, Ibadan', price: 'From ₦28M', acreage: 'Available', type: 'Farm & Resort', image: '/products/cottages.jpeg', badge: '🏠 Housing Offer', badgeKey: 'green', href: '/listings', pdfUrl: '/docs/Aduke Brochure.pdf' },
+  { id: 3, title: 'Elysian Farms and Resort',   location: 'Ido-Eruwa Expressway, Ibadan',                               price: 'Contact Us',  acreage: 'Available', type: 'Farm & Resort', image: '/products/elysian.png',  badge: '🌿 Land Offer',   badgeKey: 'green', href: '/listings' },
+  { id: 6, title: 'Garri Go! – Fresh & Crispy', location: 'Nationwide Delivery',                                        price: '₦24,590 (25kg)', acreage: 'In Stock',   type: 'Farm Produce',  image: '/products/garri.jpeg',    badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
+]
 
-  { id: 2, title: 'Aduke Cottages',                    location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/cottages.jpeg', badge: '🏠 Housing Offer', badgeKey: 'green', href: '/listings', pdfUrl: '/docs/Aduke Brochure.pdf' },
-  { id: 3, title: 'Elysian Farms and Resort',          location: 'Ido-Eruwa Expressway, Ibadan', price: 'Contact Us',            acreage: 'Available',      type: 'Farm & Resort',   image: '/products/elysian.jpeg',  badge: '🌿 Land Offer',   badgeKey: 'green', href: '/listings' },
-  { id: 6, title: 'Garri Go! – Fresh & Crispy',       location: 'Nationwide Delivery', price: '₦24,590 (25kg)',        acreage: 'In Stock',       type: 'Farm Produce',    image: '/products/garri.jpeg',      badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
+/* ─── Aduke unit types ───────────────────────────────── */
+const adukeUnits = [
+  { label: '1 Bed – Terrace',       promo: '₦28M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
+  { label: '2 Bed – Semi Detached', promo: '₦39M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
+  { label: '3 Bed – Fully Detached',promo: '₦54M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
 ]
 
 const statsData = [
@@ -72,19 +78,16 @@ const cropTabs = [
 
 /* ─── Flier images ───────────────────────────────────── */
 const adukeFlierImages = [
-  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
   '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.50 AM.jpeg',
   '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.51 AM.jpeg',
+  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
   '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.53 AM.jpeg',
 ]
 
 const elysianFlierImages = [
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AM.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.24 AMt7789.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 9.13.22 AM1313.jpeg',
 ]
 
 /* ─── Animated counter hook ──────────────────────────── */
@@ -117,6 +120,7 @@ function StatItem({ value, prefix, suffix, label, running }: { value: number; pr
 
 /* ─── Property card ──────────────────────────────────── */
 function PropertyCard({ l }: { l: typeof featuredListings[0] & { pdfUrl?: string } }) {
+  const isAduke = l.id === 2
   return (
     <div className={styles.card}>
       <div className={styles.cardImgWrap}>
@@ -127,14 +131,16 @@ function PropertyCard({ l }: { l: typeof featuredListings[0] & { pdfUrl?: string
         <p className={styles.cardType}>{l.type}</p>
         <h3 className={styles.cardTitle}>{l.title}</h3>
         <p className={styles.cardLoc}>📍 {l.location}</p>
+
         <div className={styles.cardMeta}>
           <span>📐 {l.acreage}</span>
           <span>✅ Verified</span>
         </div>
+
         <div className={styles.cardFooter}>
           <div>
             <div className={styles.cardPrice}>{l.price}</div>
-            <span className={styles.cardPriceNote}>Asking Price</span>
+            <span className={styles.cardPriceNote}>{isAduke ? 'Promo Price' : 'Asking Price'}</span>
           </div>
           <Link href={l.href} className={styles.cardCta}>View Details</Link>
         </div>
@@ -296,10 +302,10 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
       <section className={styles.growSection}>
         <div className="container">
           <div className={styles.sectionCenter}>
-            <p className={styles.sectionTag}>The Best Taste Is Truly Local</p>
-            <h2 className={styles.sectionTitle}>Experience the Freshness Only Our Farm Can Deliver</h2>
+            <p className={styles.sectionTag}>Eco-Resort &amp; Farmlands</p>
+            <h2 className={styles.sectionTitle}>Invest in Premium eco-developments</h2>
             <p className={styles.sectionSub} style={{ margin: '0 auto' }}>
-              Explore Our Produce. We cultivate high-quality, organic crops tailored to meet the needs of households and food businesses alike.
+              Experience the perfect synergy of agricultural prosperity, luxury eco-resorts, and sustainable farm property investment.
             </p>
           </div>
           <div className={styles.produceGrid}>
@@ -323,7 +329,10 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 />
                 <span className={styles.produceBadgeHot}>🏠 Housing Offer</span>
                 <span className={styles.produceBadgeAvail}>Available on Sale</span>
-                <div className={styles.produceViewFlier}>📸 View Fliers</div>
+                <div className={styles.produceViewFlier}>
+                  <div className={styles.produceViewFlierIcon}>📸</div>
+                  <div className={styles.produceViewFlierText}>View Project Fliers</div>
+                </div>
               </div>
               <div className={styles.produceBody}>
                 <h3 className={styles.produceName}>Aduke Cottages</h3>
@@ -332,8 +341,18 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                   <span className={styles.produceTag}>💳 Payment Plan Available</span>
                 </div>
                 <div className={styles.produceStats}>
-                  <span>📍 Ido-Eruwa Expressway, Ibadan</span>
-                  <span>✅ Available on Sale</span>
+                  <div className={styles.produceStatsItem}>
+                    <span className={styles.produceStatsIcon}>📍</span>
+                    <span>Inside Elysian Farm &amp; Resort, Ibadan</span>
+                  </div>
+                  <div className={styles.produceStatsItem}>
+                    <span className={styles.produceStatsIcon}>✅</span>
+                    <span>Available on Sale</span>
+                  </div>
+                </div>
+                <div className={styles.produceActionBtn}>
+                  <span>Explore Brochure &amp; Fliers</span>
+                  <span className={styles.produceActionArrow}>→</span>
                 </div>
               </div>
             </div>
@@ -349,7 +368,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             >
               <div className={styles.produceImgWrap}>
                 <Image
-                  src="/products/elysian.jpeg"
+                  src="/products/elysian.png"
                   alt="Elysian Farms and Resort"
                   fill
                   sizes="(max-width:768px) 100vw, 40vw"
@@ -357,7 +376,10 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 />
                 <span className={styles.produceBadgeHot}>🌿 Land Offer</span>
                 <span className={styles.produceBadgeAvail}>Available on Sale</span>
-                <div className={styles.produceViewFlier}>📸 View Fliers</div>
+                <div className={styles.produceViewFlier}>
+                  <div className={styles.produceViewFlierIcon}>📸</div>
+                  <div className={styles.produceViewFlierText}>View Project Fliers</div>
+                </div>
               </div>
               <div className={styles.produceBody}>
                 <h3 className={styles.produceName}>Elysian Farms and Resort</h3>
@@ -366,8 +388,18 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                   <span className={styles.produceTag}>💳 Payment Plan Available</span>
                 </div>
                 <div className={styles.produceStats}>
-                  <span>📍 Ido-Eruwa Expressway, Ibadan</span>
-                  <span>✅ Available on Sale</span>
+                  <div className={styles.produceStatsItem}>
+                    <span className={styles.produceStatsIcon}>📍</span>
+                    <span>Ido-Eruwa Expressway, Ibadan</span>
+                  </div>
+                  <div className={styles.produceStatsItem}>
+                    <span className={styles.produceStatsIcon}>✅</span>
+                    <span>Available on Sale</span>
+                  </div>
+                </div>
+                <div className={styles.produceActionBtn}>
+                  <span>Explore Brochure &amp; Fliers</span>
+                  <span className={styles.produceActionArrow}>→</span>
                 </div>
               </div>
             </div>
