@@ -14,9 +14,9 @@ const adukeFlierImages = [
 ]
 
 const elysianFlierImages = [
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
+  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
 ]
 
 /* ─── Aduke unit types ───────────────────────────────── */
