@@ -170,7 +170,7 @@
 @media (max-width:768px) {
   .valuesGrid { grid-template-columns:repeat(2,1fr); }
   .teamCard { flex-direction:column; }
-  .teamPhotoWrap { width:100%; height:300px; }
+  .teamPhotoWrap { width:100%; height:340px; }
   .teamCardBody { padding:1.5rem; }
 }
 @media (max-width:640px) { .valuesGrid { grid-template-columns:1fr; } }

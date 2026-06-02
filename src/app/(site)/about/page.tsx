@@ -261,8 +261,8 @@ export default function AboutPage() {
                     src={m.photo}
                     alt={m.name}
                     fill
-                    sizes="150px"
-                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, 150px"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
                 </div>
                 <div className={styles.teamCardBody}>
