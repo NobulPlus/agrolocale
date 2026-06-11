@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './gallery.module.css'
-import { getAllGalleryEvents } from '@/lib/sanity/queries'
+import { getAllGalleryEvents, type GalleryEvent } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default async function GalleryPage() {
-  let galleryEvents = []
+  let galleryEvents: GalleryEvent[] = []
 
   try {
     galleryEvents = await getAllGalleryEvents()
