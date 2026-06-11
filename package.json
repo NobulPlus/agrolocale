@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
+    "dev:insecure-sanity": "node scripts/dev-with-insecure-sanity-tls.cjs",
+    "studio": "sanity dev",
+    "studio:deploy": "sanity deploy",
     "build": "next build && node postbuild.js",
     "start": "next start",
     "lint": "eslint"

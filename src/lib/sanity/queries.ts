@@ -16,6 +16,24 @@ export interface Post {
   }
 }
 
+export interface GalleryImage {
+  alt?: string
+  caption?: string
+  asset?: any
+}
+
+export interface GalleryEvent {
+  _id: string
+  title: string
+  slug: { current: string }
+  eventDate?: string
+  location?: string
+  coverImage?: any
+  description?: string
+  images?: GalleryImage[]
+  featured?: boolean
+}
+
 export async function getAllPosts(): Promise<Post[]> {
   return client.fetch(`
     *[_type == "post"] | order(publishedAt desc) {
@@ -48,4 +66,20 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   `, { slug })
   
   return posts.length > 0 ? posts[0] : null
+}
+
+export async function getAllGalleryEvents(): Promise<GalleryEvent[]> {
+  return client.fetch(`
+    *[_type == "galleryEvent"] | order(featured desc, eventDate desc, _createdAt desc) {
+      _id,
+      title,
+      slug,
+      eventDate,
+      location,
+      coverImage,
+      description,
+      images,
+      featured
+    }
+  `)
 }

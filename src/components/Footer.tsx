@@ -5,6 +5,7 @@ import styles from './Footer.module.css'
 const footerLinks = [
   { href: '/home',     label: 'Home' },
   { href: '/listings', label: 'Our Listings' },
+  { href: '/gallery',  label: 'Gallery' },
   { href: '/blog',     label: 'Blog' },
   { href: '/about',    label: 'About Us' },
   { href: '/contact',  label: 'Contact' },
