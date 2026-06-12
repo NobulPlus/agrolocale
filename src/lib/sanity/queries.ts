@@ -85,10 +85,16 @@ export async function getAllGalleryEvents(): Promise<GalleryEvent[]> {
       eventDate,
       category,
       location,
-      coverImage,
+      coverImage{
+        ...,
+        asset->
+      },
       description,
       story,
-      images,
+      images[]{
+        ...,
+        asset->
+      },
       highlightStats,
       featured
     }
@@ -105,10 +111,16 @@ export async function getGalleryEventBySlug(slug: string): Promise<GalleryEvent 
       eventDate,
       category,
       location,
-      coverImage,
+      coverImage{
+        ...,
+        asset->
+      },
       description,
       story,
-      images,
+      images[]{
+        ...,
+        asset->
+      },
       highlightStats,
       featured
     }
