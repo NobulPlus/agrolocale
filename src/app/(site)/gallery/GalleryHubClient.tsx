@@ -40,6 +40,9 @@ function formatDate(date?: string) {
 }
 
 function mapEvent(event: GalleryEvent): GalleryDetails {
+  const validImages =
+    event.images?.filter((image) => image?.asset?._ref || image?.asset?._id) || []
+
   return {
     id: event._id,
     title: event.title,
@@ -56,7 +59,7 @@ function mapEvent(event: GalleryEvent): GalleryDetails {
     story: event.story,
     highlightStats: event.highlightStats,
     images:
-      event.images?.map((image, index) => ({
+      validImages.map((image, index) => ({
         url: urlFor(image).width(1400).height(1050).url(),
         alt: image.alt || `${event.title} image ${index + 1}`,
         caption: image.caption,
