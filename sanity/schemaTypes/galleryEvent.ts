@@ -30,6 +30,22 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Harvest Events', value: 'Harvest Events' },
+          { title: "Farmer's Market", value: "Farmer's Market" },
+          { title: 'Farm Estate Tours', value: 'Farm Estate Tours' },
+          { title: 'Community Experience', value: 'Community Experience' },
+          { title: 'Produce Showcase', value: 'Produce Showcase' },
+          { title: 'Lifestyle & Resort', value: 'Lifestyle & Resort' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'location',
       title: 'Location',
       type: 'string',
@@ -58,6 +74,13 @@ export default defineType({
       description: 'A short summary for the gallery card and section intro.',
     }),
     defineField({
+      name: 'story',
+      title: 'Event Story',
+      type: 'array',
+      description: 'Optional richer narrative for the event detail page.',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
       name: 'images',
       title: 'Gallery Images',
       type: 'array',
@@ -82,6 +105,27 @@ export default defineType({
       validation: (Rule) => Rule.min(1),
     }),
     defineField({
+      name: 'highlightStats',
+      title: 'Highlight Stats',
+      type: 'array',
+      description: 'Optional short stats such as attendance, produce sold, or acres harvested.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', title: 'Label', type: 'string' },
+            { name: 'value', title: 'Value', type: 'string' },
+          ],
+          preview: {
+            select: {
+              title: 'value',
+              subtitle: 'label',
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'featured',
       title: 'Feature this Event',
       type: 'boolean',
@@ -91,7 +135,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'location',
+      subtitle: 'category',
       media: 'coverImage',
     },
   },

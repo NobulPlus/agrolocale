@@ -22,15 +22,23 @@ export interface GalleryImage {
   asset?: any
 }
 
+export interface GalleryStat {
+  label?: string
+  value?: string
+}
+
 export interface GalleryEvent {
   _id: string
   title: string
   slug: { current: string }
   eventDate?: string
+  category?: string
   location?: string
   coverImage?: any
   description?: string
+  story?: any[]
   images?: GalleryImage[]
+  highlightStats?: GalleryStat[]
   featured?: boolean
 }
 
@@ -75,11 +83,38 @@ export async function getAllGalleryEvents(): Promise<GalleryEvent[]> {
       title,
       slug,
       eventDate,
+      category,
       location,
       coverImage,
       description,
+      story,
       images,
+      highlightStats,
       featured
     }
   `)
+}
+
+export async function getGalleryEventBySlug(slug: string): Promise<GalleryEvent | null> {
+  const events = await client.fetch(
+    `
+    *[_type == "galleryEvent" && slug.current == $slug] {
+      _id,
+      title,
+      slug,
+      eventDate,
+      category,
+      location,
+      coverImage,
+      description,
+      story,
+      images,
+      highlightStats,
+      featured
+    }
+  `,
+    { slug }
+  )
+
+  return events.length > 0 ? events[0] : null
 }
