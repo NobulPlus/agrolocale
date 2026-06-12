@@ -50,19 +50,6 @@ function processDirectory(directory) {
   }
 }
 
-function deleteTxtFiles(directory) {
-  const files = fs.readdirSync(directory);
-  for (const file of files) {
-    const fullPath = path.join(directory, file);
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      deleteTxtFiles(fullPath);
-    } else if (path.extname(fullPath) === '.txt') {
-      fs.unlinkSync(fullPath);
-    }
-  }
-}
-
 function generateHtaccess() {
   const htaccessContent = `# Serve index.html as the default document
 DirectoryIndex index.html
@@ -113,9 +100,8 @@ Options -Indexes
 
 if (fs.existsSync(outDir)) {
   processDirectory(outDir);
-  deleteTxtFiles(outDir);
   generateHtaccess();
-  console.log('Successfully renamed _next to assets and removed .txt files.');
+  console.log('Successfully renamed _next to assets.');
 } else {
   console.log('out directory not found.');
 }
