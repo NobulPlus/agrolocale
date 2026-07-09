@@ -29,10 +29,10 @@ export default function Footer() {
         <div className={styles.brand}>
           <Link href="/home" className={styles.logo}>
             <Image
-              src="/images/logo2.png"
-              alt="Agrolocale"
+              src="/images/logo_anniversary.png"
+              alt="Agrolocale – Celebrating 2 Years"
               width={40}
-              height={40}
+              height={52}
               className={styles.logoImg}
             />
             <span>Agro<span className={styles.logoAccent}>locale</span></span>

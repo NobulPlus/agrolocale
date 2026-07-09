@@ -67,10 +67,63 @@ function mapEvent(event: GalleryEvent): GalleryDetails {
   }
 }
 
+const anniversaryEvent: GalleryDetails = {
+  id: 'anniversary-2-years',
+  title: 'Celebrating 2 Years of Agrolocale',
+  category: 'Milestone Celebration',
+  location: 'Agrolocale HQ, Lagos',
+  eventDate: '5 July 2026',
+  description: 'Marking two years of pioneering agro-realty excellence, empowering investors, and building communities across Nigeria.',
+  coverImageUrl: '/images/anniversary.png',
+  coverImageAlt: 'Agrolocale 2 Year Anniversary Celebration Banner',
+  imageCount: 4,
+  featured: true,
+  story: [
+    {
+      _key: 'story-1',
+      _type: 'block',
+      children: [
+        {
+          _key: 'story-child-1',
+          _type: 'span',
+          text: 'We are incredibly proud to celebrate two years of dedication, growth, and partnership. Since our inception in 2024, Agrolocale has set out to transform how agricultural land is acquired and developed in Nigeria. By offering meticulously verified farmlands, luxury farm-resort properties, and dedicated advisory services, we have helped hundreds of investors secure their agricultural future.'
+        }
+      ],
+      markDefs: [],
+      style: 'normal'
+    },
+    {
+      _key: 'story-2',
+      _type: 'block',
+      children: [
+        {
+          _key: 'story-child-2',
+          _type: 'span',
+          text: 'Our 2nd anniversary celebration brought together team members, partners, and clients to celebrate our achievements and map out our ambitious vision for the future. From launching Aduke Cottages and Elysian Farms to expanding our nationwide agricultural network, this milestone belongs to everyone who believed in our mission.'
+        }
+      ],
+      markDefs: [],
+      style: 'normal'
+    }
+  ] as any,
+  highlightStats: [
+    { value: '2+', label: 'Years of Excellence' },
+    { value: '6+', label: 'Successful Projects' },
+    { value: '250+', label: 'Registered Investors' }
+  ],
+  images: [
+    { url: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.58 PM.jpeg', alt: 'Team celebration and cake cutting' },
+    { url: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.59 PM.jpeg', alt: 'Agrolocale anniversary event moments' },
+    { url: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.59 PM (1).jpeg', alt: 'Celebrants at Agrolocale anniversary' },
+    { url: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.01.00 PM.jpeg', alt: 'Agrolocale office celebration cake and setup' }
+  ]
+}
+
 export default function GalleryHubClient() {
   const [events, setEvents] = useState<GalleryDetails[]>([])
   const [activeCategory, setActiveCategory] = useState('All')
   const [activeEvent, setActiveEvent] = useState<GalleryDetails | null>(null)
+  const [selectedEvent, setSelectedEvent] = useState<GalleryDetails | null>(null)
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
@@ -83,7 +136,7 @@ export default function GalleryHubClient() {
         const galleryEvents = await getAllGalleryEvents()
         if (!mounted) return
 
-        const mapped = galleryEvents.map(mapEvent)
+        const mapped = [anniversaryEvent, ...galleryEvents.map(mapEvent)]
         setEvents(mapped)
         setActiveEvent(mapped.find((event) => event.featured) || mapped[0] || null)
         setHasError(false)
@@ -113,7 +166,7 @@ export default function GalleryHubClient() {
     return events.filter((event) => event.category === activeCategory)
   }, [activeCategory, events])
 
-  const modalImages = activeEvent?.images || []
+  const modalImages = selectedEvent?.images || []
   const lightboxImage = activeImageIndex !== null ? modalImages[activeImageIndex] : null
 
   if (isLoading) {
@@ -172,7 +225,10 @@ export default function GalleryHubClient() {
             <button
               type="button"
               className={styles.featuredCta}
-              onClick={() => setActiveEvent(activeEvent)}
+              onClick={() => {
+                setSelectedEvent(activeEvent)
+                setActiveImageIndex(null)
+              }}
             >
               Open featured story
             </button>
@@ -210,7 +266,7 @@ export default function GalleryHubClient() {
                 type="button"
                 className={styles.cardLink}
                 onClick={() => {
-                  setActiveEvent(event)
+                  setSelectedEvent(event)
                   setActiveImageIndex(null)
                 }}
               >
@@ -255,14 +311,14 @@ export default function GalleryHubClient() {
         </div>
       )}
 
-      {activeEvent ? (
+      {selectedEvent ? (
         <div
           className={styles.modalBackdrop}
           role="dialog"
           aria-modal="true"
-          aria-label={`${activeEvent.title} gallery details`}
+          aria-label={`${selectedEvent.title} gallery details`}
           onClick={() => {
-            setActiveEvent(null)
+            setSelectedEvent(null)
             setActiveImageIndex(null)
           }}
         >
@@ -271,7 +327,7 @@ export default function GalleryHubClient() {
               type="button"
               className={styles.modalClose}
               onClick={() => {
-                setActiveEvent(null)
+                setSelectedEvent(null)
                 setActiveImageIndex(null)
               }}
               aria-label="Close event details"
@@ -281,23 +337,23 @@ export default function GalleryHubClient() {
 
             <div className={styles.modalHero}>
               <div className={styles.modalHeroCopy}>
-                <span className={styles.cardCategory}>{activeEvent.category}</span>
-                <h3 className={styles.modalTitle}>{activeEvent.title}</h3>
+                <span className={styles.cardCategory}>{selectedEvent.category}</span>
+                <h3 className={styles.modalTitle}>{selectedEvent.title}</h3>
                 <p className={styles.modalText}>
-                  {activeEvent.description || 'A visual story from the Agrolocale community.'}
+                  {selectedEvent.description || 'A visual story from the Agrolocale community.'}
                 </p>
                 <div className={styles.modalMetaRow}>
-                  {activeEvent.eventDate ? <span>{activeEvent.eventDate}</span> : null}
-                  {activeEvent.location ? <span>{activeEvent.location}</span> : null}
-                  <span>{activeEvent.imageCount} photos</span>
+                  {selectedEvent.eventDate ? <span>{selectedEvent.eventDate}</span> : null}
+                  {selectedEvent.location ? <span>{selectedEvent.location}</span> : null}
+                  <span>{selectedEvent.imageCount} photos</span>
                 </div>
               </div>
 
               <div className={styles.modalHeroMedia}>
-                {activeEvent.coverImageUrl ? (
+                {selectedEvent.coverImageUrl ? (
                   <Image
-                    src={activeEvent.coverImageUrl}
-                    alt={activeEvent.coverImageAlt || activeEvent.title}
+                    src={selectedEvent.coverImageUrl}
+                    alt={selectedEvent.coverImageAlt || selectedEvent.title}
                     fill
                     sizes="(max-width: 900px) 100vw, 42vw"
                     className={styles.featuredImage}
@@ -308,9 +364,9 @@ export default function GalleryHubClient() {
               </div>
             </div>
 
-            {activeEvent.highlightStats && activeEvent.highlightStats.length > 0 ? (
+            {selectedEvent.highlightStats && selectedEvent.highlightStats.length > 0 ? (
               <div className={styles.statsGrid}>
-                {activeEvent.highlightStats.map((stat, index) => (
+                {selectedEvent.highlightStats.map((stat, index) => (
                   <article
                     key={`${stat.label || stat.value || 'stat'}-${index}`}
                     className={styles.statCard}
@@ -326,8 +382,8 @@ export default function GalleryHubClient() {
               <div className={styles.modalStory}>
                 <p className={styles.sectionTag}>Event story</p>
                 <div className={styles.modalProse}>
-                  {activeEvent.story && activeEvent.story.length > 0 ? (
-                    <PortableText value={activeEvent.story} />
+                  {selectedEvent.story && selectedEvent.story.length > 0 ? (
+                    <PortableText value={selectedEvent.story} />
                   ) : (
                     <p>More details about this event coming soon.</p>
                   )}
@@ -340,23 +396,23 @@ export default function GalleryHubClient() {
                   <ul>
                     <li>
                       <strong>Category</strong>
-                      <span>{activeEvent.category}</span>
+                      <span>{selectedEvent.category}</span>
                     </li>
-                    {activeEvent.eventDate ? (
+                    {selectedEvent.eventDate ? (
                       <li>
                         <strong>Date</strong>
-                        <span>{activeEvent.eventDate}</span>
+                        <span>{selectedEvent.eventDate}</span>
                       </li>
                     ) : null}
-                    {activeEvent.location ? (
+                    {selectedEvent.location ? (
                       <li>
                         <strong>Location</strong>
-                        <span>{activeEvent.location}</span>
+                        <span>{selectedEvent.location}</span>
                       </li>
                     ) : null}
                     <li>
                       <strong>Gallery size</strong>
-                      <span>{activeEvent.imageCount} photos</span>
+                      <span>{selectedEvent.imageCount} photos</span>
                     </li>
                   </ul>
                 </div>
@@ -367,11 +423,11 @@ export default function GalleryHubClient() {
               </aside>
             </div>
 
-            {activeEvent.images.length > 0 ? (
+            {selectedEvent.images.length > 0 ? (
               <div className={styles.modalGallery}>
                 <p className={styles.sectionTag}>Photo story</p>
                 <div className={styles.modalImageGrid}>
-                  {activeEvent.images.map((image, index) => (
+                  {selectedEvent.images.map((image, index) => (
                     <button
                       key={`${image.url}-${index}`}
                       type="button"
@@ -404,7 +460,7 @@ export default function GalleryHubClient() {
           className={styles.lightbox}
           role="dialog"
           aria-modal="true"
-          aria-label={`${activeEvent?.title || 'Gallery'} image viewer`}
+          aria-label={`${selectedEvent?.title || 'Gallery'} image viewer`}
           onClick={() => setActiveImageIndex(null)}
         >
           <button

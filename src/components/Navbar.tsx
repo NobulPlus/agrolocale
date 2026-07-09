@@ -38,10 +38,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/home" className={styles.logo} onClick={() => setMenuOpen(false)}>
           <Image
-            src="/images/logo2.png"
-            alt="Agrolocale"
+            src="/images/logo_anniversary.png"
+            alt="Agrolocale – Celebrating 2 Years"
             width={36}
-            height={36}
+            height={47}
             className={styles.logoImg}
             priority
           />

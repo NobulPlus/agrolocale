@@ -578,6 +578,190 @@
 .featuredLogo { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--gold-400); letter-spacing: 0.05em; }
 
 /* ------------------------------------------------------
+   2-YEAR ANNIVERSARY BANNER & GALLERY
+------------------------------------------------------ */
+.anniversaryPromoSection {
+  padding: 6.5rem 0;
+  background: var(--cream);
+  overflow: hidden;
+  position: relative;
+}
+.anniversaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.anniversaryImgZone {
+  position: relative;
+  height: 480px;
+}
+.anniversaryImgMain {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(30, 69, 48, 0.1);
+}
+.anniversaryBadgeOverlay {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-2xl);
+  z-index: 5;
+  border: 2px solid var(--gold-400);
+  animation: floatBadge 4s ease-in-out infinite;
+}
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.anniversaryLogoFloat {
+  object-fit: contain;
+}
+.anniversaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.anniversaryTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-800);
+  background: rgba(30, 69, 48, 0.08);
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+.anniversaryTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--green-900);
+  margin-bottom: 0.5rem;
+}
+.goldText {
+  color: var(--gold-600);
+}
+.anniversaryText {
+  font-size: 0.975rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+.anniversaryCtaRow {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.anniversaryCtaBtn {
+  padding: 1rem 2.25rem;
+  background: var(--green-800);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 15px rgba(30, 69, 48, 0.18);
+  transition: all 0.3s var(--ease);
+}
+.anniversaryCtaBtn:hover {
+  background: var(--green-700);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(30, 69, 48, 0.25);
+}
+.anniversarySecondaryBtn {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--green-800);
+  border: 1.5px solid var(--green-800);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  transition: all 0.3s var(--ease);
+}
+.anniversarySecondaryBtn:hover {
+  background: rgba(30, 69, 48, 0.05);
+  transform: translateY(-2px);
+}
+.anniversaryPhotosWrap {
+  border-top: 1px solid rgba(30, 69, 48, 0.1);
+  padding-top: 4.5rem;
+}
+.anniversaryPhotosTitle {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green-900);
+  margin-bottom: 2.25rem;
+  text-align: center;
+}
+.anniversaryPhotosGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.anniversaryPhotoCard {
+  position: relative;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(30, 69, 48, 0.08);
+  transition: all 0.4s var(--ease);
+}
+.anniversaryPhotoCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+.anniversaryPhoto {
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.anniversaryPhotoCard:hover .anniversaryPhoto {
+  transform: scale(1.05);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .anniversaryGrid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  .anniversaryImgZone {
+    height: 400px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .anniversaryBadgeOverlay {
+    top: -15px;
+    right: -15px;
+  }
+  .anniversaryPhotosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .anniversaryPhotosGrid {
+    grid-template-columns: 1fr;
+  }
+  .anniversaryPhotoCard {
+    height: 320px;
+  }
+}
+
+/* ------------------------------------------------------
    ECO-DEVELOPMENTS
 ------------------------------------------------------ */
 .growSection {

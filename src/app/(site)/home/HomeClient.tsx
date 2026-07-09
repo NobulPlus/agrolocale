@@ -88,6 +88,10 @@ const elysianFlierImages = [
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
   '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
+  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.00.58 PM.jpeg',
+  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.00.59 PM.jpeg',
+  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.00.59 PM (1).jpeg',
+  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.01.00 PM.jpeg',
 ]
 
 /* ─── Animated counter hook ──────────────────────────── */
@@ -294,6 +298,79 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             <span className={styles.featuredLabel}>As Featured On</span>
             <span className={styles.featuredLogo}>TVC NEWS</span>
             <span className={styles.featuredLogo}>VANGUARD NEWS</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 2-YEAR ANNIVERSARY CELEBRATION ───────────────── */}
+      <section className={styles.anniversaryPromoSection}>
+        <div className="container">
+          <div className={styles.anniversaryGrid}>
+            <div className={styles.anniversaryImgZone}>
+              <div className={styles.anniversaryBadgeOverlay}>
+                <Image
+                  src="/images/logo_anniversary.png"
+                  alt="Agrolocale @ 2 Logo"
+                  width={80}
+                  height={104}
+                  className={styles.anniversaryLogoFloat}
+                />
+              </div>
+              <div className={styles.anniversaryImgMain}>
+                <Image
+                  src="/images/anniversary.png"
+                  alt="Agrolocale Celebrating 2 Years"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                  priority
+                />
+              </div>
+            </div>
+            <div className={styles.anniversaryContent}>
+              <span className={styles.anniversaryTag}>🎉 Milestone Celebration</span>
+              <h2 className={styles.anniversaryTitle}>
+                Celebrating 2 Years of <br />
+                <span className={styles.goldText}>Agro-Realty Excellence</span>
+              </h2>
+              <p className={styles.anniversaryText}>
+                We are thrilled to celebrate Agrolocale's 2-Year Anniversary! Since our launch in 2024, we have served as Nigeria's trusted bridge for premium agricultural investments, farm resort developments, and land acquisitions. 
+              </p>
+              <p className={styles.anniversaryText}>
+                Over the past two years, we have empowered over 250 registered investors, developed thriving farm estate projects, and served hundreds of households nationwide. Thank you for your continued trust.
+              </p>
+              <div className={styles.anniversaryCtaRow}>
+                <Link href="/gallery" className={styles.anniversaryCtaBtn}>
+                  Explore Celebration Gallery
+                </Link>
+                <Link href="/about" className={styles.anniversarySecondaryBtn}>
+                  Read Our Story →
+                </Link>
+              </div>
+            </div>
+          </div>
+          
+          {/* Photos from the Celebration Event */}
+          <div className={styles.anniversaryPhotosWrap}>
+            <h3 className={styles.anniversaryPhotosTitle}>Moments from our 2-Year Celebration</h3>
+            <div className={styles.anniversaryPhotosGrid}>
+              {[
+                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.58 PM.jpeg', alt: 'Agrolocale Celebration Moment 1' },
+                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.59 PM.jpeg', alt: 'Agrolocale Celebration Moment 2' },
+                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.59 PM (1).jpeg', alt: 'Agrolocale Celebration Moment 3' },
+                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.01.00 PM.jpeg', alt: 'Agrolocale Celebration Moment 4' },
+              ].map((img, i) => (
+                <div key={i} className={styles.anniversaryPhotoCard}>
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 25vw"
+                    className={styles.anniversaryPhoto}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -592,6 +669,15 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <Image src="/gallery-3.png" alt="Agricultural land" fill sizes="30vw" style={{ objectFit: 'cover' }} />
               </div>
               <div className={styles.imgBadge}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
+                  <Image
+                    src="/images/logo_anniversary.png"
+                    alt="Agrolocale 2 Year Anniversary"
+                    width={48}
+                    height={62}
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
                 <span className={styles.imgBadgeNum}>2+</span>
                 <span className={styles.imgBadgeLbl}>Years of Excellence</span>
               </div>
@@ -724,13 +810,11 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             </div>
           </div>
 
-          {/* Elysian notice */}
+          {/* Anniversary notice */}
           <div className={styles.elysianNotice}>
-            <span className={styles.elysianBadge}>📸 Coming Soon</span>
+            <span className={styles.elysianBadge} style={{ background: 'var(--gold-500)', color: 'var(--green-900)' }}>🎉 2 Years Celebration</span>
             <p>
-              <strong>Elysian Farms and Resort</strong> gallery is being sourced by our team.
-              Photos will be uploaded once received.{' '}
-              <a href="/contact" className={styles.elysianLink}>Register your interest →</a>
+              Agrolocale is proud to celebrate <strong>2 Years of Excellence</strong>. Discover our journey, our milestones, and our vision for the next decade.
             </p>
           </div>
         </div>

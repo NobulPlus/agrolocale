@@ -176,7 +176,7 @@ export default function AboutPage() {
 
               <div className={styles.missionStats}>
                 {[
-                  { num: '04', lbl: 'Projects Completed' },
+                  { num: '6+', lbl: 'Projects Completed' },
                   { num: '250+', lbl: 'Registered Investors' },
                   { num: '50+', lbl: 'Hectares Sold Out' },
                   { num: '350+', lbl: 'Households Served' },
