@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const posts = await getAllPosts()
 
-  return ( 
+  return (
     <main>
       {/* ─── HERO ─────────────────────────────────────── */}
       <section className={styles.blogHero}>
