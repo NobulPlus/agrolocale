@@ -183,6 +183,38 @@
   white-space: nowrap;
 }
 
+.productWrap {
+  margin-bottom: 0.75rem;
+}
+
+.productLabel {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.productTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.productTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(30, 69, 48, 0.08);
+  border: 1px solid rgba(30, 69, 48, 0.14);
+  color: var(--green-800);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 /* ══ Modal ══════════════════════════════════════════════ */
 .modalOverlay {
   position: fixed; inset: 0; z-index: 9999;

@@ -109,7 +109,7 @@ const anniversaryEvent: GalleryDetails = {
   highlightStats: [
     { value: '2+', label: 'Years of Excellence' },
     { value: '6+', label: 'Successful Projects' },
-    { value: '250+', label: 'Registered Investors' }
+    { value: '832+', label: 'Registered Investors' }
   ],
   images: [
     { url: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.58 PM.jpeg', alt: 'Team celebration and cake cutting' },
