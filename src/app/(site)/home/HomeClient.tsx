@@ -22,8 +22,8 @@ const adukeUnits = [
 
 const statsData = [
   { value: 6,   prefix: '',  suffix: '+',  label: 'Projects Completed'    },
-  { value: 250, prefix: '',  suffix: '+',  label: 'Registered Investors'  },
-  { value: 50,  prefix: '',  suffix: '+',  label: 'Hectares Sold Out'     },
+  { value: 832, prefix: '',  suffix: '+',  label: 'Registered Investors'  },
+  { value: 139,  prefix: '',  suffix: '+',  label: 'Hectares Sold Out'     },
   { value: 350, prefix: '',  suffix: '+',  label: 'Households Served'     },
 ]
 

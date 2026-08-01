@@ -177,8 +177,8 @@ export default function AboutPage() {
               <div className={styles.missionStats}>
                 {[
                   { num: '6+', lbl: 'Projects Completed' },
-                  { num: '250+', lbl: 'Registered Investors' },
-                  { num: '50+', lbl: 'Hectares Sold Out' },
+                  { num: '832+', lbl: 'Registered Investors' },
+                  { num: '139+', lbl: 'Hectares Sold Out' },
                   { num: '350+', lbl: 'Households Served' },
                 ].map((s, i) => (
                   <div key={i} className={styles.mStatItem}>

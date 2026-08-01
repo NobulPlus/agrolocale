@@ -23,23 +23,49 @@ const elysianFlierImages = [
   '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.01.00 PM.jpeg',
 ]
 
+const paradisoProducts2 = [
+  "Tomato",
+  "Pepper",
+  "Cucumber",
+  "Sweet Potato"
+]
+
+const paradisoProducts3 = [
+  "Cocoa",
+  "oil palm"
+]
+
 /* ─── Aduke unit types ───────────────────────────────── */
 const adukeUnits = [
-  { label: '1 Bed Cottage – Terrace',        promo: '₦28M', deposit: '₦5M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
-  { label: '2 Bed Cottage – Semi Detached',   promo: '₦39M', deposit: '₦5M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
-  { label: '3 Bed Cottage – Fully Detached',  promo: '₦54M', deposit: '₦5M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
+  { label: '1 Bed Cottage - Terrace',        promo: '₦28M', deposit: '₦5M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
+  { label: '2 Bed Cottage - Semi Detached',   promo: '₦39M', deposit: '₦5M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
+  { label: '3 Bed Cottage - Fully Detached',  promo: '₦54M', deposit: '₦5M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
 ]
 
 /* ─── Data ───────────────────────────────────────────── */
 const allListings = [
   {
-    id: 1, title: 'Paradiso Farms',                  location: 'Alabata Road, Abeokuta', state: 'Ogun',
+    id: 5, title: 'Paradiso Farms III',                  location: 'Alabata Road, Abeokuta', state: 'Ogun',
     price: 0, acreage: 0, type: 'resort',
-    image: '/products/paradiso_new.jpeg',
+    image: '/products/paradiso_iii.jpeg',
     badge: 'Available', verified: true,
     priceLabel: 'Contact Us', acreageLabel: 'Available',
+    pdfUrl: '/docs/paradiso_3_brochure.pdf',
+    note: '',
+    products: paradisoProducts3,
+    cofo: false, paymentPlan: false,
+    flierImages: [] as string[],
+  },
+  {
+    id: 4, title: 'Paradiso Farms II',                  location: 'Alabata Road, Abeokuta', state: 'Ogun',
+    price: 0, acreage: 0, type: 'resort',
+    image: '/products/paradiso_2_listing.jpeg',
+    badge: 'Sold Out', verified: true,
+    status: 'sold-out',
+    priceLabel: 'Contact Us', acreageLabel: 'Sold Out',
     pdfUrl: '/docs/Paradiso_Batch_B.pdf',
     note: '',
+    products: paradisoProducts2,
     cofo: false, paymentPlan: false,
     flierImages: [] as string[],
   },
@@ -79,6 +105,18 @@ const allListings = [
     flierImages: [] as string[],
     units: undefined as typeof adukeUnits | undefined,
   },
+  {
+    id: 1, title: 'Paradiso Farms I',                  location: 'Alabata Road, Abeokuta', state: 'Ogun',
+    price: 0, acreage: 0, type: 'resort',
+    image: '/products/paradiso_new.jpeg',
+    badge: 'Sold Out', verified: true,
+    status: 'sold-out',
+    priceLabel: 'Contact Us', acreageLabel: 'Sold Out',
+    pdfUrl: '/docs/Paradiso_Batch_B.pdf',
+    note: '',
+    cofo: false, paymentPlan: false,
+    flierImages: [] as string[],
+  },
 ]
 
 // patch Paradiso to have units field for type compatibility
@@ -100,7 +138,9 @@ const sortOpts = [
   { value: 'acre-desc',   label: 'Acreage: Largest'      },
 ]
 
-type Listing = typeof allListings[0]
+type Listing = typeof allListings[0] & {
+  products?: string[]
+}
 
 function fmt(n: number, label?: string) {
   if (label) return label
@@ -189,6 +229,7 @@ function ListingCard({ l, mode, onFlierClick }: {
 }) {
   const isProduce = l.type === 'produce'
   const isComingSoon = l.badge.toLowerCase().includes('coming soon')
+  const isSoldOut = l.status === 'sold-out'
   const badgeClass =
     l.badge === 'Hot Deal' || l.badge.includes('🔥') ? styles.badgeRed
     : l.badge === 'Premium' || l.badge === 'Available' || l.badge.includes('🏠') || l.badge.includes('🌿') ? styles.badgeGreen
@@ -222,7 +263,19 @@ function ListingCard({ l, mode, onFlierClick }: {
         </p>
         <h2 className={styles.cardTitle}>{l.title}</h2>
         <p className={styles.cardLoc}>📍 {l.location}</p>
+
+        {l.products?.length ? (
+          <div className={styles.productWrap}>
+            <span className={styles.productLabel}>Crops:</span>
+            <div className={styles.productTags}>
+              {l.products.map(product => (
+                <span key={product} className={styles.productTag}>{product}</span>
+              ))}
+            </div>
+          </div>
+        ) : null}
         {l.note && <p className={styles.cardNote}>💬 {l.note}</p>}
+
 
         {/* CofO + Payment Plan tags */}
         {(l.cofo || l.paymentPlan) && (
@@ -245,11 +298,20 @@ function ListingCard({ l, mode, onFlierClick }: {
         <div className={styles.cardFooter}>
           <div>
             <div className={styles.cardPrice}>{fmt(l.price, l.priceLabel || undefined)}</div>
-            <span className={styles.priceNote}>{isComingSoon ? 'Register Interest' : isProduce ? 'Call to Order' : ''}</span>
+            <span className={styles.priceNote}>
+              {/* {isComingSoon ? 'Register Interest' : isProduce ? 'Call to Order' : ''} */}
+              {isSoldOut ? 'No longer available' : isComingSoon ? 'Register Interest' : isProduce ? 'Call to Order' : ''}
+              </span>
           </div>
-          <Link href="/contact" className={styles.enquireBtn}>
-            {isComingSoon ? 'Register Interest' : isProduce ? 'Order Now' : 'Enquire Now'}
-          </Link>
+          {isSoldOut ? (
+            <span className={styles.enquireBtn} style={{ opacity: 0.7, pointerEvents: 'none' }}>
+              Sold Out
+            </span>
+          ) : (
+            <Link href="/contact" className={styles.enquireBtn}>
+              {isComingSoon ? 'Register Interest' : isProduce ? 'Order Now' : 'Enquire Now'}
+            </Link>
+          )}
         </div>
         {l.pdfUrl && (
           <a href={l.pdfUrl} download className={styles.downloadBtn}>
@@ -294,7 +356,7 @@ export default function ListingsPage() {
           <p className={styles.headerTag}>Farm & Resort Projects</p>
           <h1 className={styles.headerTitle}>Agricultural & Resort Listings</h1>
           <p className={styles.headerSub}>
-            Since 2024, we've been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most.
+            Since 2024, we&apos;ve been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most.
           </p>
         </div>
       </section>
