@@ -42,8 +42,22 @@ export interface GalleryEvent {
   featured?: boolean
 }
 
+function normalizeSlugValue(slug?: string): string {
+  return slug?.trim() ?? ''
+}
+
+function normalizePost(post: Post): Post {
+  return {
+    ...post,
+    slug: {
+      ...post.slug,
+      current: normalizeSlugValue(post.slug?.current),
+    },
+  }
+}
+
 export async function getAllPosts(): Promise<Post[]> {
-  return client.fetch(`
+  const posts = await client.fetch<Post[]>(`
     *[_type == "post"] | order(publishedAt desc) {
       _id,
       title,
@@ -55,10 +69,19 @@ export async function getAllPosts(): Promise<Post[]> {
       categories
     }
   `)
+
+  return posts
+    .map(normalizePost)
+    .filter((post) => post.slug.current.length > 0)
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const posts = await client.fetch(`
+  const normalizedSlug = normalizeSlugValue(slug)
+  if (!normalizedSlug) {
+    return null
+  }
+
+  const posts = await client.fetch<Post[]>(`
     *[_type == "post" && slug.current == $slug] {
       _id,
       title,
@@ -71,9 +94,29 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       categories,
       seo
     }
-  `, { slug })
-  
-  return posts.length > 0 ? posts[0] : null
+  `, { slug: normalizedSlug })
+
+  if (posts.length > 0) {
+    return normalizePost(posts[0])
+  }
+
+  const allPosts = await client.fetch<Post[]>(`
+    *[_type == "post" && defined(slug.current)] {
+      _id,
+      title,
+      slug,
+      author,
+      publishedAt,
+      coverImage,
+      excerpt,
+      body,
+      categories,
+      seo
+    }
+  `)
+
+  const fallbackMatch = allPosts.find((post) => normalizeSlugValue(post.slug?.current) === normalizedSlug)
+  return fallbackMatch ? normalizePost(fallbackMatch) : null
 }
 
 export async function getAllGalleryEvents(): Promise<GalleryEvent[]> {
