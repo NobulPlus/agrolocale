@@ -8,17 +8,17 @@ import styles from './home.module.css'
 
 /* ─── Data ───────────────────────────────────────────── */
 const featuredListings = [
-  { id: 2, title: 'Aduke Cottages',             location: 'Inside Elysian Farm & Resort, Ido-Eruwa Expressway, Ibadan', price: 'From ₦28M', acreage: 'Available', type: 'Farm & Resort', image: '/products/cottages.jpeg', badge: '🏠 Housing Offer', badgeKey: 'green', href: '/listings', pdfUrl: '/docs/Aduke Brochure.pdf' },
+  { id: 2, title: 'Aduke Cottages',             location: 'Inside Elysian Farm & Resort, Ido-Eruwa Expressway, Ibadan', price: 'From ₦28M', acreage: 'Available', type: 'Farm & Resort', image: '/products/cottages.jpeg', badge: '🏠 Housing Offer', badgeKey: 'green', href: '/listings', pdfUrl: undefined },
   { id: 3, title: 'Elysian Farms and Resort',   location: 'Ido-Eruwa Expressway, Ibadan',                               price: 'Contact Us',  acreage: 'Available', type: 'Farm & Resort', image: '/products/elysian.png',  badge: '🌿 Land Offer',   badgeKey: 'green', href: '/listings' },
   { id: 6, title: 'Garri Go! – Fresh & Crispy', location: 'Nationwide Delivery',                                        price: '₦24,590 (25kg)', acreage: 'In Stock',   type: 'Farm Produce',  image: '/products/garri.jpeg',    badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
 ]
 
 /* ─── Aduke unit types ───────────────────────────────── */
-const adukeUnits = [
-  { label: '1 Bed – Terrace',       promo: '₦28M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
-  { label: '2 Bed – Semi Detached', promo: '₦39M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
-  { label: '3 Bed – Fully Detached',promo: '₦54M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
-]
+// const adukeUnits = [
+//   { label: '1 Bed – Terrace',       promo: '₦28M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
+//   { label: '2 Bed – Semi Detached', promo: '₦39M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
+//   { label: '3 Bed – Fully Detached',promo: '₦54M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
+// ]
 
 const statsData = [
   { value: 6,   prefix: '',  suffix: '+',  label: 'Projects Completed'    },
@@ -276,10 +276,10 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
         <div className="container">
           <div className={styles.heroContent}>
-            <span className={styles.heroTag}>🌾 Nigeria's Innovative Agro-Realty Firm</span>
+            <span className={styles.heroTag}>🌾 Nigeria&apos;s Innovative Agro-Realty Firm</span>
 
             <h1 className={styles.heroTitle}>
-              Nigeria's Trusted Bridge for
+              Nigeria&apos;s Trusted Bridge for
               <em className={styles.heroTitleAccent}>Farm &amp; Resort Investment</em>
             </h1>
           </div>
@@ -334,7 +334,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <span className={styles.goldText}>Agro-Realty Excellence</span>
               </h2>
               <p className={styles.anniversaryText}>
-                We are thrilled to celebrate Agrolocale's 2-Year Anniversary! Since our launch in 2024, we have served as Nigeria's trusted bridge for premium agricultural investments, farm resort developments, and land acquisitions. 
+                We are thrilled to celebrate Agrolocale&apos;s 2-Year Anniversary! Since our launch in 2024, we have served as Nigeria's trusted bridge for premium agricultural investments, farm resort developments, and land acquisitions. 
               </p>
               <p className={styles.anniversaryText}>
                 Over the past two years, we have empowered over 250 registered investors, developed thriving farm estate projects, and served hundreds of households nationwide. Thank you for your continued trust.
@@ -552,7 +552,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <p className={styles.sectionTag}>Farm Properties</p>
               <h2 className={styles.sectionTitle}>Featured Listings</h2>
               <p className={styles.sectionSub}>
-                Hand-picked premium agricultural properties across Nigeria's most fertile regions.
+                Hand-picked premium agricultural properties across Nigeria&apos;s most fertile regions.
               </p>
             </div>
             <Link href="/listings" className={styles.viewAll}>View All Listings →</Link>
@@ -685,7 +685,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
             <div className={styles.aboutContent}>
               <p className={styles.sectionTag}>Our Story</p>
-              <h2 className={styles.sectionTitle}>Nigeria's Innovative Agro-Realty Firm</h2>
+              <h2 className={styles.sectionTitle}>Nigeria&apos;s Innovative Agro-Realty Firm</h2>
               <p className={styles.aboutText}>
                 Since 2024, Agrolocale has been the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most — making land ownership transparent, efficient, and rewarding.
               </p>
@@ -694,7 +694,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               </p>
               <div className={styles.aboutMini}>
                 <div><div className={styles.miniNum}>6+</div><div className={styles.miniLbl}>Projects Completed</div></div>
-                <div><div className={styles.miniNum}>250+</div><div className={styles.miniLbl}>Registered Investors</div></div>
+                <div><div className={styles.miniNum}>832+</div><div className={styles.miniLbl}>Registered Investors</div></div>
                 <div><div className={styles.miniNum}>350+</div><div className={styles.miniLbl}>Households Served</div></div>
               </div>
               <Link href="/about" className={styles.aboutCta}>Learn More About Us →</Link>
@@ -713,13 +713,13 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             <div className={styles.founderText}>
               <p className={`${styles.sectionTag} ${styles.sectionTagLight}`}>Meet Our Founder</p>
               <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLight}`}>
-                A Vision Rooted in Nigeria's Agricultural Future
+                A Vision Rooted in Nigeria&apos;s Agricultural Future
               </h2>
               <p className={styles.founderPara}>
                 Korede Ayeni — founder and CEO of Agrolocale — built this company on a single conviction: that every Nigerian deserves transparent, dignified access to agricultural land and the prosperity that comes with it.
               </p>
               <p className={styles.founderPara}>
-                Since launching in 2024, Korede has steered Agrolocale to become the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>250+ investors</strong>, and successfully completed <strong>6+ projects</strong> — all while keeping food security and community impact at the heart of every decision.
+                Since launching in 2024, Korede has steered Agrolocale to become the bridge between profitable farmland investment and ownership, farm resort projects and the investors who need it the most. Under his leadership, Agrolocale has grown to serve over <strong>350+ households</strong>, registered <strong>832+ investors</strong>, and successfully completed <strong>6+ projects</strong> — all while keeping food security and community impact at the heart of every decision.
               </p>
               <p className={styles.founderPara}>
                 His approach blends deep agricultural knowledge with modern technology, creating a platform that is not just a marketplace — but a movement toward sustainable food production and economic empowerment across Nigeria and beyond.
@@ -913,7 +913,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Ready to Find Your Perfect Farmland?</h2>
             <p className={styles.ctaSub}>
-              Join thousands of farmers and investors who've found their ideal agricultural property through Agrolocale.
+              Join thousands of farmers and investors who&apos;ve found their ideal agricultural property through Agrolocale.
             </p>
             <div className={styles.ctaBtns}>
               <Link href="/listings" className={styles.ctaPrimary}>Browse Listings</Link>

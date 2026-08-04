@@ -180,7 +180,7 @@ export default function GalleryHubClient() {
   if (hasError) {
     return (
       <div className={styles.emptyState}>
-        <p>We couldn't load the gallery right now. Please try refreshing the page.</p>
+        <p>We couldn&apos;t load the gallery right now. Please try refreshing the page.</p>
       </div>
     )
   }
