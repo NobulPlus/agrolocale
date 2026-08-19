@@ -57,63 +57,90 @@ export default function ReferralForm() {
         }
     }
 
-    if (status === 'success') {
-        return (
-            <div className={styles.successCard}>
-                <p className={styles.successMessage}>You&apos;re registered! Share your link:</p>
-                <input
-                    readOnly
-                    value={referralLink}
-                    onFocus={(e) => e.target.select()}
-                    className={styles.input}
-                />
-                <button
-                    type="button"
-                    onClick={() => navigator.clipboard.writeText(referralLink)}
-                    className={styles.secondaryButton}
-                >
-                    Copy link
-                </button>
-            </div>
-        );
-    }
-
     return (
-        <form onSubmit={handleSubmit} className={styles.form}>
-            {referredBy && (
-                <p className={styles.referredBy}>Referred by: {referredBy}</p>
-            )}
+        <div className={styles.page}>
+            <section className={styles.hero}>
+                <div className={styles.heroBg} aria-hidden />
+                <div className="container">
+                    <div className={styles.heroContent}>
+                        <p className={styles.heroTag}>Realtor Partner Program</p>
+                        <h1 className={styles.heroTitle}>Register as an Agrolocale Realtor</h1>
+                        <p className={styles.heroSub}>
+                            Fill out this form to join our realtor network, receive your unique referral link, and start earning commissions from verified land sales.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-            <div className={styles.field}>
-                <label className={styles.label}>Full name</label>
-                <input
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className={styles.input}
-                />
-            </div>
+            <section className={styles.formSection}>
+                <div className="container">
+                    <div className={styles.formCard}>
+                        {status === 'success' ? (
+                            <div className={styles.successCard}>
+                                <p className={styles.successMessage}>You&apos;re now registered as an Agrolocale realtor.</p>
+                                <p className={styles.successSubtext}>Share your referral link with clients so every qualified lead is tracked to your account.</p>
+                                <input
+                                    readOnly
+                                    value={referralLink}
+                                    onFocus={(e) => e.target.select()}
+                                    className={styles.input}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => navigator.clipboard.writeText(referralLink)}
+                                    className={styles.secondaryButton}
+                                >
+                                    Copy referral link
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <h2 className={styles.formTitle}>Realtor Registration Form</h2>
+                                <p className={styles.formIntro}>Complete your details below to activate your realtor profile and get started with referrals.</p>
+                                <form onSubmit={handleSubmit} className={styles.form}>
+                                    {referredBy && (
+                                        <p className={styles.referredBy}>Referred by: {referredBy}</p>
+                                    )}
 
-            <div className={styles.field}>
-                <label className={styles.label}>Email</label>
-                <input
-                    required
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={styles.input}
-                />
-            </div>
+                                    <div className={styles.field}>
+                                        <label className={styles.label}>Full name</label>
+                                        <input
+                                            required
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            className={styles.input}
+                                            placeholder="e.g. Adaora Okonkwo"
+                                        />
+                                    </div>
 
-            <button
-                type="submit"
-                disabled={status === 'loading'}
-                className={styles.submitButton}
-            >
-                {status === 'loading' ? 'Submitting…' : 'Register'}
-            </button>
+                                    <div className={styles.field}>
+                                        <label className={styles.label}>Work email</label>
+                                        <input
+                                            required
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className={styles.input}
+                                            placeholder="you@agency.com"
+                                        />
+                                    </div>
 
-            {status === 'error' && <p className={styles.errorText}>{message}</p>}
-        </form>
+                                    <button
+                                        type="submit"
+                                        disabled={status === 'loading'}
+                                        className={styles.submitButton}
+                                    >
+                                        {status === 'loading' ? 'Submitting...' : 'Register as Realtor'}
+                                    </button>
+
+                                    {status === 'error' && <p className={styles.errorText}>{message}</p>}
+                                    <p className={styles.formNote}>After registration, your referral link will be generated instantly for client sharing.</p>
+                                </form>
+                            </>
+                        )}
+                    </div>
+                </div>
+            </section>
+        </div>
     );
 }

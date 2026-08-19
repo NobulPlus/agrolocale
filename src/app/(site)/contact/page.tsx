@@ -85,7 +85,7 @@ export default function ContactPage() {
         <div className="container">
           <div className={styles.heroContent}>
             <p className={styles.heroTag}>Get In Touch</p>
-            <h1 className={styles.heroTitle}>We're Here to Help You Find Your Land</h1>
+            <h1 className={styles.heroTitle}>We&apos;re Here to Help You Find Your Land</h1>
             <p className={styles.heroSub}>
               Our expert consultants are ready to guide you through every step of the acquisition process.
             </p>
@@ -116,7 +116,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   <h2 className={styles.formTitle}>Send Us a Message</h2>
-                  <p className={styles.formSub}>Fill in your details and we'll reply within 24 hours.</p>
+                  <p className={styles.formSub}>Fill in your details and we&apos;ll reply within 24 hours.</p>
 
                   {serverErr && (
                     <div className={styles.serverErr} role="alert">
