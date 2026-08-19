@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import styles from './ReferralForm.module.css';
 
 // Paste your Apps Script deployment URL here.
-// const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5cqeqgOCRsbAqCJS5irR4CwPg2mesLq-uFoPJeuwcuEB5EkT7V5O_0L7s45x0WI1P/exec";
+// const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5cqeqgOCRsbAqCJS5irR4CwPg2mesLq-uFoPJeuwcuEB5EkT7V5O_0L7s45x0WI1P/exec";   \\ mine
 
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmVU2vhQLPBFAZd0RYYn1EIHZ1PyQKztVxZaPDU47gT8BHYXKFwUUrSVjXAGtbUxo2/exec"
 
@@ -130,7 +130,7 @@ export default function ReferralForm() {
                         ) : (
                             <>
                                 <h2 className={styles.formTitle}>Realtor Registration Form</h2>
-                                <p className={styles.formIntro}>Complete your details below to activate your realtor profile and get started with referrals.</p>
+                                <p className={styles.formIntro}>Complete your details below to activate your realtor profile.</p>
                                 <form onSubmit={handleSubmit} className={styles.form}>
                                     {referredBy && (
                                         <p className={styles.referredBy}>Referred by: {referredBy}</p>
@@ -263,7 +263,7 @@ export default function ReferralForm() {
                                     </button>
 
                                     {status === 'error' && <p className={styles.errorText}>{message}</p>}
-                                    <p className={styles.formNote}>After registration, your referral link will be generated instantly for downline registration.</p>
+                                    <p className={styles.formNote}>A referral link will be generated instantly for your downline registration.</p>
                                 </form>
                             </>
                         )}
