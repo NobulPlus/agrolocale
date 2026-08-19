@@ -1,0 +1,68 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.referredBy {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.submitButton,
+.secondaryButton {
+  border: none;
+  border-radius: 0.375rem;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.submitButton {
+  width: 100%;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.successCard {
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.successMessage {
+  margin: 0 0 0.75rem;
+  font-weight: 500;
+}
+
+.secondaryButton {
+  margin-top: 0.75rem;
+}
+
+.errorText {
+  font-size: 0.875rem;
+  color: #dc2626;
+}
