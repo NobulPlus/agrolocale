@@ -5,12 +5,12 @@ import { useSearchParams } from 'next/navigation';
 import styles from './ReferralForm.module.css';
 
 // Paste your Apps Script deployment URL here.
-// const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5cqeqgOCRsbAqCJS5irR4CwPg2mesLq-uFoPJeuwcuEB5EkT7V5O_0L7s45x0WI1P/exec";   \\ mine
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxndSuqkzXAnjDJaNB4ivxSndIpZ7vjLe6q0YBYY2T_kmKPbsaZYdtPL5ezcklehEl5/exec";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmVU2vhQLPBFAZd0RYYn1EIHZ1PyQKztVxZaPDU47gT8BHYXKFwUUrSVjXAGtbUxo2/exec"
+// const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmVU2vhQLPBFAZd0RYYn1EIHZ1PyQKztVxZaPDU47gT8BHYXKFwUUrSVjXAGtbUxo2/exec"
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
- 
+
 /**
  * NOTE: because this reads useSearchParams(), the page that renders this
  * component must wrap it in <Suspense> for `next build` with output: 'export'
@@ -24,7 +24,7 @@ export default function ReferralForm() {
     const searchParams = useSearchParams();
     const referredBy = searchParams.get('ref') || '';
     const uplineDisplay = referredBy ? `Yes — referred by ${referredBy}` : 'No';
- 
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
@@ -34,7 +34,7 @@ export default function ReferralForm() {
     const [accountNumber, setAccountNumber] = useState('');
     const [accountName, setAccountName] = useState('');
     const [realtorsGroup, setRealtorsGroup] = useState('');
- 
+
     const [status, setStatus] = useState<Status>('idle');
     const [message, setMessage] = useState('');
     const [referralLink, setReferralLink] = useState('');
@@ -50,12 +50,12 @@ export default function ReferralForm() {
         setCopied(false)
     }, 2000)
 }
- 
+
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
         setStatus('loading');
         setMessage('');
- 
+
         try {
             const res = await fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
@@ -75,9 +75,9 @@ export default function ReferralForm() {
                     referredBy,
                 }),
             });
- 
+
             const data = await res.json();
- 
+
             if (data.success) {
                 setStatus('success');
                 setReferralLink(`${window.location.origin}/register?ref=${data.referralCode}`);
@@ -85,12 +85,13 @@ export default function ReferralForm() {
                 setStatus('error');
                 setMessage(data.error || 'Something went wrong. Please try again.');
             }
-        } catch {
+        } catch (error) {
             setStatus('error');
             setMessage('Network error. Please check your connection and try again.');
+            console.log('Error submitting form:', error);
         }
     }
- 
+
     return (
         <div className={styles.page}>
             <section className={styles.hero}>
@@ -105,7 +106,7 @@ export default function ReferralForm() {
                     </div>
                 </div>
             </section>
- 
+
             <section className={styles.formSection}>
                 <div className="container">
                     <div className={styles.formCard}>
@@ -135,7 +136,7 @@ export default function ReferralForm() {
                                     {referredBy && (
                                         <p className={styles.referredBy}>Referred by: {referredBy}</p>
                                     )}
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Full name</label>
                                         <input
@@ -146,7 +147,7 @@ export default function ReferralForm() {
                                             placeholder="e.g. Adaora Okonkwo"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Work email</label>
                                         <input
@@ -158,7 +159,7 @@ export default function ReferralForm() {
                                             placeholder="you@agency.com"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>WhatsApp number</label>
                                         <input
@@ -170,7 +171,7 @@ export default function ReferralForm() {
                                             placeholder="e.g. 08012345678"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Are you an existing or newbie realtor?</label>
                                         <select
@@ -184,7 +185,7 @@ export default function ReferralForm() {
                                             <option value="Newbie Realtor">Newbie Realtor</option>
                                         </select>
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Birthday</label>
                                         <input
@@ -195,7 +196,7 @@ export default function ReferralForm() {
                                             className={styles.input}
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Bank name</label>
                                         <input
@@ -206,7 +207,7 @@ export default function ReferralForm() {
                                             placeholder="e.g. GTBank"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Account number</label>
                                         <input
@@ -221,7 +222,7 @@ export default function ReferralForm() {
                                             title="Enter a 10-digit account number"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Account name</label>
                                         <input
@@ -232,7 +233,7 @@ export default function ReferralForm() {
                                             placeholder="Name on the bank account"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Realtors group</label>
                                         <input
@@ -243,7 +244,7 @@ export default function ReferralForm() {
                                             placeholder="Which realtors group are you part of?"
                                         />
                                     </div>
- 
+
                                     <div className={styles.field}>
                                         <label className={styles.label}>Do you have an upline?</label>
                                         <input
