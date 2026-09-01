@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+// import Link from 'next/link'
 import styles from './contact.module.css'
+import { contactInfo, faq, socialLinks } from '@/data/contact.data'
 
 type Form = {
   name: string; email: string; phone: string
@@ -16,7 +17,7 @@ const blank: Form = { name:'', email:'', phone:'', subject:'', budget:'', messag
    2. Check your inbox and copy the key
    3. Add to .env.local:  NEXT_PUBLIC_WEB3FORMS_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
    ─────────────────────────────────────────────────────────────────────────── */
-const W3F_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ''
+const W3F_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '6e1fb46f-a961-471c-944e-9d8b99906834'
 
 export default function ContactPage() {
   const [form,      setForm]      = useState<Form>(blank)
@@ -85,9 +86,14 @@ export default function ContactPage() {
         <div className="container">
           <div className={styles.heroContent}>
             <p className={styles.heroTag}>Get In Touch</p>
-            <h1 className={styles.heroTitle}>We&apos;re Here to Help You Find Your Land</h1>
+            <h1 className={styles.heroTitle}>
+              Your Land. Your Vision. <br />
+              Let&apos;s Make It Happen.
+            </h1>
+
             <p className={styles.heroSub}>
-              Our expert consultants are ready to guide you through every step of the acquisition process.
+              From finding the right property to securing it with confidence, our experts
+              are here to guide you every step of the way.
             </p>
           </div>
         </div>
@@ -209,29 +215,47 @@ export default function ContactPage() {
               <div className={styles.infoCard}>
                 <h3 className={styles.infoTitle}>Contact Information</h3>
                 <ul className={styles.infoList}>
-                  {[
-                    { icon: '📍', lbl: 'Office Address',    val: 'Agrolocale HQ\nAyobola Daodu, Lekki Scheme II\nAjah, Lagos State' },
-                    { icon: '📞', lbl: 'Phone',              val: '+234 707 152 3904\n+234 901 045 8648' },
-                    { icon: '✉️', lbl: 'Email',              val: 'info@agrolocale.com\ncustomercare@agrolocale.com' },
-                    { icon: '🕐', lbl: 'Office Hours',       val: 'Mon – Thursday: 9am – 4pm\nFriday: 10am – 4pm' },
-                  ].map((item, i) => (
-                    <li key={i} className={styles.infoItem}>
+                  {contactInfo.map((item, idx) => (
+                    <li key={idx} className={styles.infoItem}>
                       <span className={styles.infoIcon}>{item.icon}</span>
                       <div>
                         <div className={styles.infoLbl}>{item.lbl}</div>
-                        <div className={styles.infoVal}>{item.val}</div>
+                        <div className={styles.infoVal}>
+                          {item.val.split('\n').map((line, i, arr) =>
+                            item.lbl === 'Email' ? (
+                              <a key={i} href={`mailto:${line}`} className={styles.contactLink}>
+                                {line}
+                                {i < arr.length - 1 && <br />}
+                              </a>
+                            ) : item.lbl === 'Phone' ? (
+                              <a key={i} href={`tel:${line.replace(/\s+/g, '')}`} className={styles.contactLink}>
+                                {line}
+                                {i < arr.length - 1 && <br />}
+                              </a>
+                            ) : (
+                              <span key={i}>
+                                {line}
+                                {i < arr.length - 1 && <br />}
+                              </span>
+                            )
+                          )}
+                        </div>
                       </div>
                     </li>
                   ))}
                 </ul>
                 <div className={styles.socials}>
-                  {[
-                    { emoji: '📘', label: 'Facebook', href: '#' },
-                    { emoji: '▶️', label: 'YouTube',  href: 'https://www.youtube.com/@Agrolocale' },
-                    { emoji: '📸', label: 'Instagram',href: '#' },
-                    { emoji: '💼', label: 'LinkedIn', href: '#' },
-                  ].map(s => (
-                    <a key={s.label} href={s.href} target={s.href !== '#' ? '_blank' : undefined} rel={s.href !== '#' ? 'noopener noreferrer' : undefined} className={styles.social} aria-label={s.label}>{s.emoji}</a>
+                  {socialLinks.map(s => (
+                    <a 
+                    key={s.label} 
+                    href={s.href} 
+                    target={s.href !== '#' ? '_blank' : undefined} 
+                    rel={s.href !== '#' ? 'noopener noreferrer' : undefined} 
+                    className={styles.social} 
+                    aria-label={s.label}
+                  >
+                    {s.icon}
+                  </a>
                   ))}
                 </div>
               </div>
@@ -263,12 +287,7 @@ export default function ContactPage() {
       <section className={styles.faqSection}>
         <div className="container">
           <div className={styles.faqGrid}>
-            {[
-              { q: 'How long does it take to close a deal?',             a: 'Most transactions close within 4 – 8 weeks depending on due diligence and documentation.' },
-              { q: 'Are all listings physically verified?',              a: 'Yes. Every listing goes through a mandatory on-site inspection by our certified field agents.' },
-              { q: 'Can I sell my land through Agrolocale?',            a: 'Absolutely. Contact us to list your property and reach thousands of qualified buyers.' },
-              { q: 'Do you offer financing options?',                    a: 'We partner with agricultural finance institutions and can connect you with suitable options.' },
-            ].map((f, i) => (
+            {faq.map((f, i) => (
               <div key={i} className={styles.faqCard}>
                 <h4 className={styles.faqQ}>{f.q}</h4>
                 <p className={styles.faqA}>{f.a}</p>

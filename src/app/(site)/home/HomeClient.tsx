@@ -5,94 +5,22 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/image'
 import styles from './home.module.css'
+import {
+  ProjectId,
+  featuredProjects,
+  farmProduce,
+  homeData,
+  testimonials,
+  whyItems,
+  cropTabs,
+  adukeFlierImages,
+  elysianFlierImages,
+  anniversaryEventImages
+} from '@/data/home.data'
+import { Post } from '@/lib/sanity/queries'
+import { useCarousel } from "@/hooks/useCarousel"
 
-/* ─── Data ───────────────────────────────────────────── */
-const featuredListings = [
-  { id: 2, title: 'Aduke Cottages',             location: 'Inside Elysian Farm & Resort, Ido-Eruwa Expressway, Ibadan', price: 'From ₦28M', acreage: 'Available', type: 'Farm & Resort', image: '/products/cottages.jpeg', badge: '🏠 Housing Offer', badgeKey: 'green', href: '/listings', pdfUrl: undefined },
-  { id: 3, title: 'Elysian Farms and Resort',   location: 'Ido-Eruwa Expressway, Ibadan',                               price: 'Contact Us',  acreage: 'Available', type: 'Farm & Resort', image: '/products/elysian.png',  badge: '🌿 Land Offer',   badgeKey: 'green', href: '/listings' },
-  { id: 6, title: 'Garri Go! – Fresh & Crispy', location: 'Nationwide Delivery',                                        price: '₦24,590 (25kg)', acreage: 'In Stock',   type: 'Farm Produce',  image: '/products/garri.jpeg',    badge: '🔥 Hot Cake',    badgeKey: 'red',   href: '/products/garri-go' },
-]
 
-/* ─── Aduke unit types ───────────────────────────────── */
-// const adukeUnits = [
-//   { label: '1 Bed – Terrace',       promo: '₦28M', plan6: '₦3,833,333/mo', plan12: '₦2,250,000/mo' },
-//   { label: '2 Bed – Semi Detached', promo: '₦39M', plan6: '₦5,666,666/mo', plan12: '₦3,166,666/mo' },
-//   { label: '3 Bed – Fully Detached',promo: '₦54M', plan6: '₦8,166,666/mo', plan12: '₦4,416,666/mo' },
-// ]
-
-const statsData = [
-  { value: 6,   prefix: '',  suffix: '+',  label: 'Projects Completed'    },
-  { value: 832, prefix: '',  suffix: '+',  label: 'Registered Investors'  },
-  { value: 139,  prefix: '',  suffix: '+',  label: 'Hectares Sold Out'     },
-  { value: 350, prefix: '',  suffix: '+',  label: 'Households Served'     },
-]
-
-const whyItems = [
-  { icon: '🤝', title: 'Expert Guidance',      desc: 'Dedicated agro-realty consultants guide you through every step — from discovery to title transfer.' },
-  { icon: '🌍', title: 'Nationwide Coverage',  desc: 'Discover agricultural land across all 36 states and the FCT with our continuously growing network.' },
-  { icon: '🔒', title: 'Secure Transactions',  desc: 'End-to-end legal documentation and title verification protects your investment at every stage.' },
-]
-
-const testimonials = [
-  { name: 'Adeola Bankole', role: 'Commercial Farmer, Lagos',           initials: 'AB', color: '#1e4530', quote: 'Agrolocale helped me find a 60-acre plantation in Kwara that met every requirement. The process was seamless and their support team was outstanding throughout the entire deal.' },
-  { name: 'Ibrahim Musa',   role: 'Agricultural Investor, Abuja',       initials: 'IM', color: '#c9a84c', quote: "I've used several platforms but nothing matches Agrolocale's listing quality and verification rigour. I've made three successful acquisitions through them and I keep coming back." },
-  { name: 'Ngozi Okafor',   role: 'Agri-Business Owner, Enugu',         initials: 'NO', color: '#2a6344', quote: 'Found the perfect irrigated farmland in Benue through Agrolocale. Their due-diligence support saved us from potential title issues — the deal closed smoothly and on time.' },
-]
-
-const cropTabs = [
-  {
-    key: 'habanero',
-    label: '🌶️ Habanero',
-    images: [
-      '/images/gallery/habanero-1.jpeg',
-      '/images/gallery/habanero-2.jpeg',
-      '/images/gallery/habanero-3.jpeg',
-      '/images/gallery/habanero-4.jpeg',
-      '/images/gallery/habanero-5.jpeg',
-      '/images/gallery/habanero-6.jpeg',
-    ],
-  },
-  {
-    key: 'maize',
-    label: '🌽 Maize',
-    images: [
-      '/images/gallery/maize-1.jpeg',
-      '/images/gallery/maize-2.jpeg',
-      '/images/gallery/maize-3.jpeg',
-      '/images/gallery/maize-4.jpeg',
-      '/images/gallery/maize-5.jpeg',
-    ],
-  },
-  {
-    key: 'potato',
-    label: '🥔 Sweet Potato',
-    images: [
-      '/images/gallery/potato-1.jpeg',
-      '/images/gallery/potato-2.jpeg',
-      '/images/gallery/potato-3.jpeg',
-      '/images/gallery/potato-4.jpeg',
-      '/images/gallery/potato-5.jpeg',
-    ],
-  },
-]
-
-/* ─── Flier images ───────────────────────────────────── */
-const adukeFlierImages = [
-  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.50 AM.jpeg',
-  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.51 AM.jpeg',
-  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.49 AM.jpeg',
-  '/images/aduke_flier/WhatsApp Image 2026-05-27 at 8.52.53 AM.jpeg',
-]
-
-const elysianFlierImages = [
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.55.51 AM594.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.12 AM.jpeg',
-  '/images/elysian_flier/WhatsApp Image 2026-05-27 at 8.54.11 AM.jpeg',
-  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.00.58 PM.jpeg',
-  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.00.59 PM.jpeg',
-  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.00.59 PM (1).jpeg',
-  '/images/gallery/elysian/WhatsApp Image 2026-07-05 at 8.01.00 PM.jpeg',
-]
 
 /* ─── Animated counter hook ──────────────────────────── */
 function useCountUp(target: number, running: boolean) {
@@ -123,8 +51,8 @@ function StatItem({ value, prefix, suffix, label, running }: { value: number; pr
 }
 
 /* ─── Property card ──────────────────────────────────── */
-function PropertyCard({ l }: { l: typeof featuredListings[0] & { pdfUrl?: string } }) {
-  const isAduke = l.id === 2
+function PropertyCard({ l }: { l: typeof farmProduce[0] & { pdfUrl?: string } }) {
+  // const isAduke = l.id === 'aduke'
   return (
     <div className={styles.card}>
       <div className={styles.cardImgWrap}>
@@ -144,7 +72,7 @@ function PropertyCard({ l }: { l: typeof featuredListings[0] & { pdfUrl?: string
         <div className={styles.cardFooter}>
           <div>
             <div className={styles.cardPrice}>{l.price}</div>
-            <span className={styles.cardPriceNote}>{isAduke ? 'Promo Price' : 'Asking Price'}</span>
+            <span className={styles.cardPriceNote}>{/* isAduke ? 'Promo Price' : 'Asking Price' */}</span>
           </div>
           <Link href={l.href} className={styles.cardCta}>View Details</Link>
         </div>
@@ -237,12 +165,25 @@ function FlierModal({ title, images, onClose, pdfUrl }: { title: string; images:
 
 /* ─── Page ───────────────────────────────────────────── */
 
-export default function HomeClient({ posts = [] }: { posts?: any[] }) {
-  const [statsOn,    setStatsOn]    = useState(false)
+export default function HomeClient({ posts = [] }: { posts?: Post[] }) {
+  const [statsOn, setStatsOn] = useState(false)
   const [activeTest, setActiveTest] = useState(0)
-  const [activeTab,  setActiveTab]  = useState(0)
-  const [openModal,  setOpenModal]  = useState<'aduke' | 'elysian' | null>(null)
+  const [activeTab, setActiveTab] = useState(0)
+  const [openModal, setOpenModal] = useState<ProjectId | null>(null)
   const statsRef = useRef<HTMLDivElement>(null)
+  const {
+    scrollRef: produceScrollRef,
+    scrollByCard: produceScrollByCard,
+    startAutoScroll: produceStartAutoScroll,
+    stopAutoScroll: produceStopAutoScroll,
+  } = useCarousel(styles.produceCard, 40);
+
+  const {
+    scrollRef: listingsScrollRef,
+    scrollByCard: listingsScrollByCard,
+    startAutoScroll: listingsStartAutoScroll,
+    stopAutoScroll: listingsStopAutoScroll,
+  } = useCarousel(styles.card, 45);
 
   /* Intersect stats */
   useEffect(() => {
@@ -334,7 +275,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 <span className={styles.goldText}>Agro-Realty Excellence</span>
               </h2>
               <p className={styles.anniversaryText}>
-                We are thrilled to celebrate Agrolocale&apos;s 2-Year Anniversary! Since our launch in 2024, we have served as Nigeria's trusted bridge for premium agricultural investments, farm resort developments, and land acquisitions. 
+                We are thrilled to celebrate Agrolocale&apos;s 2-Year Anniversary! Since our launch in 2024, we have served as Nigeria&apos;s trusted bridge for premium agricultural investments, farm resort developments, and land acquisitions.
               </p>
               <p className={styles.anniversaryText}>
                 Over the past two years, we have empowered over 250 registered investors, developed thriving farm estate projects, and served hundreds of households nationwide. Thank you for your continued trust.
@@ -349,17 +290,12 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               </div>
             </div>
           </div>
-          
+
           {/* Photos from the Celebration Event */}
           <div className={styles.anniversaryPhotosWrap}>
             <h3 className={styles.anniversaryPhotosTitle}>Moments from our 2-Year Celebration</h3>
             <div className={styles.anniversaryPhotosGrid}>
-              {[
-                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.58 PM.jpeg', alt: 'Agrolocale Celebration Moment 1' },
-                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.59 PM.jpeg', alt: 'Agrolocale Celebration Moment 2' },
-                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.00.59 PM (1).jpeg', alt: 'Agrolocale Celebration Moment 3' },
-                { src: '/images/gallery/anniversary/WhatsApp Image 2026-07-05 at 8.01.00 PM.jpeg', alt: 'Agrolocale Celebration Moment 4' },
-              ].map((img, i) => (
+              {anniversaryEventImages.map((img, i) => (
                 <div key={i} className={styles.anniversaryPhotoCard}>
                   <Image
                     src={img.src}
@@ -380,106 +316,141 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
         <div className="container">
           <div className={styles.sectionCenter}>
             <p className={styles.sectionTag}>Eco-Resort &amp; Farmlands</p>
-            <h2 className={styles.sectionTitle}>Invest in Premium eco-developments</h2>
+
+            <h2 className={styles.sectionTitle}>
+              Invest in Premium eco-developments
+            </h2>
+
             <p className={styles.sectionSub} style={{ margin: '0 auto' }}>
-              Experience the perfect synergy of agricultural prosperity, luxury eco-resorts, and sustainable farm property investment.
+              Experience the perfect synergy of agricultural prosperity, luxury
+              eco-resorts, and sustainable farm property investment.
             </p>
+            <Link href="/projects" className={styles.viewAll}>View All Projects →</Link>
           </div>
-          <div className={styles.produceGrid}>
 
-            {/* Aduke Cottages */}
-            <div
-              className={`${styles.produceCard} ${styles.produceCardClickable}`}
-              onClick={() => setOpenModal('aduke')}
-              role="button"
-              tabIndex={0}
-              aria-label="View Aduke Cottages fliers"
-              onKeyDown={e => e.key === 'Enter' && setOpenModal('aduke')}
+          <div
+            className={styles.produceCarouselWrap}
+            onMouseEnter={produceStopAutoScroll}
+            onMouseLeave={produceStartAutoScroll}
+            onTouchStart={produceStopAutoScroll}
+          >
+            <button
+              type="button"
+              className={`${styles.produceCarouselBtn} ${styles.produceCarouselBtnPrev}`}
+              onClick={() => { produceStopAutoScroll(); produceScrollByCard('left'); }}
+              aria-label="Previous project"
             >
-              <div className={styles.produceImgWrap}>
-                <Image
-                  src="/products/cottages.jpeg"
-                  alt="Aduke Cottages"
-                  fill
-                  sizes="(max-width:768px) 100vw, 55vw"
-                  style={{ objectFit: 'cover' }}
-                />
-                <span className={styles.produceBadgeHot}>🏠 Housing Offer</span>
-                <span className={styles.produceBadgeAvail}>Available on Sale</span>
-                <div className={styles.produceViewFlier}>
-                  <div className={styles.produceViewFlierIcon}>📸</div>
-                  <div className={styles.produceViewFlierText}>View Project Fliers</div>
-                </div>
-              </div>
-              <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Aduke Cottages</h3>
-                <div className={styles.produceTagRow}>
-                  <span className={styles.produceTag}>📜 CofO</span>
-                  <span className={styles.produceTag}>💳 Payment Plan Available</span>
-                </div>
-                <div className={styles.produceStats}>
-                  <div className={styles.produceStatsItem}>
-                    <span className={styles.produceStatsIcon}>📍</span>
-                    <span>Inside Elysian Farm &amp; Resort, Ibadan</span>
+              ←
+            </button>
+
+            <div className={styles.produceGrid} ref={produceScrollRef}>
+              {featuredProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className={`${styles.produceCard} ${styles.produceCardClickable}`}
+                  onClick={() => setOpenModal(project.id)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View ${project.title} fliers`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      setOpenModal(project.id)
+                    }
+                  }}
+                >
+                  <div className={styles.produceImgWrap}>
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.alt}
+                        fill
+                        sizes="(max-width:768px) 100vw, 55vw"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    ) : project.video ? (
+                      <div className={styles.produceVideoWrap}>
+                        <iframe
+                          src={project.video}
+                          title={project.alt}
+                          allow="autoplay; encrypted-media"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : null}
+
+                    <span className={styles.produceBadgeHot}>
+                      {project.badgeIcon} {project.badge}
+                    </span>
+
+                    <span className={styles.produceBadgeAvail}>
+                      {project.status}
+                    </span>
+
+                    <div className={styles.produceViewFlier}>
+                      <div className={styles.produceViewFlierIcon}>
+                        📸
+                      </div>
+
+                      <div className={styles.produceViewFlierText}>
+                        View Project Fliers
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.produceStatsItem}>
-                    <span className={styles.produceStatsIcon}>✅</span>
-                    <span>Available on Sale</span>
+
+                  <div className={styles.produceBody}>
+                    <h3 className={styles.produceName}>
+                      {project.title}
+                    </h3>
+
+                    <div className={styles.produceTagRow}>
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={styles.produceTag}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className={styles.produceStats}>
+                      <div className={styles.produceStatsItem}>
+                        <span className={styles.produceStatsIcon}>
+                          📍
+                        </span>
+
+                        <span>{project.location}</span>
+                      </div>
+
+                      <div className={styles.produceStatsItem}>
+                        <span className={styles.produceStatsIcon}>
+                          ✅
+                        </span>
+
+                        <span>{project.status}</span>
+                      </div>
+                    </div>
+
+                    <div className={styles.produceActionBtn}>
+                      <span>Explore Brochure &amp; Fliers</span>
+
+                      <span className={styles.produceActionArrow}>
+                        →
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className={styles.produceActionBtn}>
-                  <span>Explore Brochure &amp; Fliers</span>
-                  <span className={styles.produceActionArrow}>→</span>
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* Elysian */}
-            <div
-              className={`${styles.produceCard} ${styles.produceCardClickable}`}
-              onClick={() => setOpenModal('elysian')}
-              role="button"
-              tabIndex={0}
-              aria-label="View Elysian Farms fliers"
-              onKeyDown={e => e.key === 'Enter' && setOpenModal('elysian')}
+            <button
+              type="button"
+              className={`${styles.produceCarouselBtn} ${styles.produceCarouselBtnNext}`}
+              onClick={() => { produceStopAutoScroll(); produceScrollByCard('right'); }}
+              aria-label="Next project"
             >
-              <div className={styles.produceImgWrap}>
-                <Image
-                  src="/products/elysian.png"
-                  alt="Elysian Farms and Resort"
-                  fill
-                  sizes="(max-width:768px) 100vw, 40vw"
-                  style={{ objectFit: 'cover' }}
-                />
-                <span className={styles.produceBadgeHot}>🌿 Land Offer</span>
-                <span className={styles.produceBadgeAvail}>Available on Sale</span>
-                <div className={styles.produceViewFlier}>
-                  <div className={styles.produceViewFlierIcon}>📸</div>
-                  <div className={styles.produceViewFlierText}>View Project Fliers</div>
-                </div>
-              </div>
-              <div className={styles.produceBody}>
-                <h3 className={styles.produceName}>Elysian Farms and Resort</h3>
-                <div className={styles.produceTagRow}>
-                  <span className={styles.produceTag}>📜 CofO</span>
-                  <span className={styles.produceTag}>💳 Payment Plan Available</span>
-                </div>
-                <div className={styles.produceStats}>
-                  <div className={styles.produceStatsItem}>
-                    <span className={styles.produceStatsIcon}>📍</span>
-                    <span>Ido-Eruwa Expressway, Ibadan</span>
-                  </div>
-                  <div className={styles.produceStatsItem}>
-                    <span className={styles.produceStatsIcon}>✅</span>
-                    <span>Available on Sale</span>
-                  </div>
-                </div>
-                <div className={styles.produceActionBtn}>
-                  <span>Explore Brochure &amp; Fliers</span>
-                  <span className={styles.produceActionArrow}>→</span>
-                </div>
-              </div>
-            </div>
+              →
+            </button>
           </div>
         </div>
       </section>
@@ -537,7 +508,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
       <section className={styles.statsSection} ref={statsRef}>
         <div className="container">
           <div className={styles.statsGrid}>
-            {statsData.map((s, i) => (
+            {homeData.map((s, i) => (
               <StatItem key={i} {...s} running={statsOn} />
             ))}
           </div>
@@ -549,17 +520,47 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
         <div className="container">
           <div className={styles.sectionHeader}>
             <div>
-              <p className={styles.sectionTag}>Farm Properties</p>
-              <h2 className={styles.sectionTitle}>Featured Listings</h2>
+              <p className={styles.sectionTag}>Farm Produce</p>
+              <h2 className={styles.sectionTitle}>Featured Produce</h2>
               <p className={styles.sectionSub}>
-                Hand-picked premium agricultural properties across Nigeria&apos;s most fertile regions.
+                Hand-picked premium agricultural products across Nigeria&apos;s most fertile regions.
               </p>
             </div>
-            <Link href="/listings" className={styles.viewAll}>View All Listings →</Link>
+            <Link href="/projects" className={styles.viewAll}>View All Produce →</Link>
           </div>
 
-          <div className={styles.cardsGrid}>
-            {featuredListings.map(l => <PropertyCard key={l.id} l={l} />)}
+          <div
+            className={styles.cardsCarouselWrap}
+            onMouseEnter={listingsStopAutoScroll}
+            onMouseLeave={listingsStartAutoScroll}
+            onTouchStart={listingsStopAutoScroll}
+          >
+            <button
+              type="button"
+              className={`${styles.cardsCarouselBtn} ${styles.cardsCarouselBtnPrev}`}
+              onClick={() => { listingsStopAutoScroll(); listingsScrollByCard('left'); }}
+              aria-label="Previous listing"
+            >
+              ←
+            </button>
+
+            <div className={styles.cardsGrid} ref={listingsScrollRef}>
+              {(() => {
+                const filtered = farmProduce.filter((l) => [4, 3, 2, 5].includes(l.id));
+                return [...filtered, ...filtered].map((l, i) => (
+                  <PropertyCard key={`${l.id}-${i}`} l={l} />
+                ));
+              })()}
+            </div>
+
+            <button
+              type="button"
+              className={`${styles.cardsCarouselBtn} ${styles.cardsCarouselBtnNext}`}
+              onClick={() => { listingsStopAutoScroll(); listingsScrollByCard('right'); }}
+              aria-label="Next listing"
+            >
+              →
+            </button>
           </div>
         </div>
       </section>
@@ -586,9 +587,10 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
             <div className={styles.elysianVideoFrame}>
               <iframe
                 id="elysian-farm-video"
-                src="https://www.youtube.com/embed/Gt0zpaq3-I4?rel=0&modestbranding=1"
+                src="https://www.youtube.com/embed/Gt0zpaq3-I4?autoplay=1&mute=1&mute=1&rel=0&modestbranding=1"
                 title="Elysian Farms and Resort – Property Tour"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="autoplay; fullscreen"
                 allowFullScreen
                 className={styles.elysianIframe}
               />
@@ -599,7 +601,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <div className={styles.elysianMetaChip}>📍 Ido-Eruwa Expressway, Ibadan</div>
               <div className={styles.elysianMetaChip}>🌾 Farm &amp; Resort</div>
               <div className={styles.elysianMetaChip}>✅ Available on Sale</div>
-              <a href="/listings" className={styles.elysianMetaCta}>View Listing Details →</a>
+              <a href="/projects" className={styles.elysianMetaCta}>View Listing Details →</a>
             </div>
 
           </div>
@@ -668,19 +670,6 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               <div className={styles.imgSub}>
                 <Image src="/gallery-3.png" alt="Agricultural land" fill sizes="30vw" style={{ objectFit: 'cover' }} />
               </div>
-              <div className={styles.imgBadge}>
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
-                  <Image
-                    src="/images/logo_anniversary.png"
-                    alt="Agrolocale 2 Year Anniversary"
-                    width={48}
-                    height={62}
-                    style={{ objectFit: 'contain' }}
-                  />
-                </div>
-                <span className={styles.imgBadgeNum}>2+</span>
-                <span className={styles.imgBadgeLbl}>Years of Excellence</span>
-              </div>
             </div>
 
             <div className={styles.aboutContent}>
@@ -693,7 +682,7 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                 Our certified agro-realty experts conduct rigorous due diligence on every listing — giving you accurate information, clear titles, and fair valuations every time.
               </p>
               <div className={styles.aboutMini}>
-                <div><div className={styles.miniNum}>6+</div><div className={styles.miniLbl}>Projects Completed</div></div>
+                <div><div className={styles.miniNum}>9+</div><div className={styles.miniLbl}>Projects Completed</div></div>
                 <div><div className={styles.miniNum}>832+</div><div className={styles.miniLbl}>Registered Investors</div></div>
                 <div><div className={styles.miniNum}>350+</div><div className={styles.miniLbl}>Households Served</div></div>
               </div>
@@ -757,8 +746,8 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
                   aria-label="Agrolocale on YouTube"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1e4530"/>
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1e4530" />
                   </svg>
                   Subscribe on YouTube
                 </a>
@@ -873,8 +862,14 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
 
           {posts.length > 0 ? (
             <div className={styles.cardsGrid}>
-              {posts.map((post) => (
-                <Link key={post._id} href={`/blog/${post.slug.current}`} className={styles.blogCard}>
+              {[...posts, ...posts].map((post, i) => (
+                <Link
+                  key={`${post._id}-${i}`}
+                  href={`/blog/${post.slug.current}`}
+                  className={`${styles.blogCard} ${i >= posts.length ? styles.blogCardDupe : ''}`}
+                  aria-hidden={i >= posts.length ? true : undefined}
+                  tabIndex={i >= posts.length ? -1 : undefined}
+                >
                   <div className={styles.blogImgWrap}>
                     {post.coverImage ? (
                       <Image
@@ -916,8 +911,8 @@ export default function HomeClient({ posts = [] }: { posts?: any[] }) {
               Join thousands of farmers and investors who&apos;ve found their ideal agricultural property through Agrolocale.
             </p>
             <div className={styles.ctaBtns}>
-              <Link href="/listings" className={styles.ctaPrimary}>Browse Listings</Link>
-              <Link href="/contact"  className={styles.ctaSecondary}>Talk to an Expert</Link>
+              <Link href="/projects" className={styles.ctaPrimary}>Browse Listings</Link>
+              <Link href="/contact" className={styles.ctaSecondary}>Talk to an Expert</Link>
             </div>
           </div>
         </div>

@@ -240,6 +240,96 @@
 }
 
 /* ══════════════════════════════════════════════════════
+   SIZES — pictorial pack picker
+══════════════════════════════════════════════════════ */
+.sizesSection { padding: 6rem 0; background: var(--cream-light); }
+.sizesSub {
+  font-size: 0.975rem; color: var(--text-muted);
+  line-height: 1.75; margin-top: 0.5rem;
+}
+.sizesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+.sizeCard {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+}
+.sizeCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+.sizeImgWrap {
+  position: relative;
+  height: 220px;
+  background: var(--cream-light);
+  overflow: hidden;
+}
+.sizeImg {
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.sizeCard:hover .sizeImg { transform: scale(1.06); }
+.sizeBadge {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  background: var(--green-800);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-full);
+}
+.sizeBody {
+  padding: 1.5rem 1.5rem 1.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.sizeLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.sizePrice {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--green-800);
+  margin-bottom: 1.25rem;
+}
+.sizeBtn {
+  margin-top: auto;
+  padding: 0.75rem 1.25rem;
+  background: var(--gold-500);
+  color: var(--green-900);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.sizeBtn:hover {
+  background: var(--gold-400);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .sizesGrid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════
    ACCOUNTABILITY
 ══════════════════════════════════════════════════════ */
 .accountSection { padding: 6rem 0; background: var(--green-800); }

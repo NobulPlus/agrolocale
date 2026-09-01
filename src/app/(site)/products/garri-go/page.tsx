@@ -6,7 +6,7 @@ import styles from './garri-go.module.css'
 export const metadata: Metadata = {
   title: 'Garri Go – Fresh & Crispy Premium Garri | Agrolocale',
   description:
-    'Garri Go is premium garri made from the finest quality cassava with a strict fermentation process. Consistent, accountable, and delicious. ₦24,590 / 25 kg — nationwide delivery.',
+    'Garri Go is premium garri made from the finest quality cassava with a strict fermentation process. Consistent, accountable, and delicious. Available in 1.5 kg, 3 kg, and 25 kg — nationwide delivery.',
 }
 
 const accountabilityPoints = [
@@ -25,6 +25,14 @@ const accountabilityPoints = [
     title: 'Controlled Processing',
     desc: 'The drying and processing happen under controlled conditions that we manage directly — no shortcuts, no outsourced quality.',
   },
+]
+
+// NOTE: all three sizes currently share one product photo. Swap in a
+// dedicated image per size (e.g. /products/garri-1.5kg.jpeg) once available.
+const sizeOptions = [
+  { size: '1.5 kg', label: 'Trial Pack', price: '₦4,000', image: '/farm-produce/garrigo_1kg.jpeg' },
+  { size: '2 kg', label: 'Household Pack', price: '₦5,000', image: '/farm-produce/garrigo_2kg.jpeg' },
+  { size: '25 kg', label: 'Bulk / Reseller Pack', price: '₦24,590', image: '/farm-produce/garri.jpeg' },
 ]
 
 export default function GarriGoPage() {
@@ -48,7 +56,7 @@ export default function GarriGoPage() {
                 every step is controlled, consistent, and deliberate.
               </p>
               <div className={styles.heroCtas}>
-                <a href="#buy" className={styles.ctaBuy}>Buy Garri Go Today</a>
+                <a href="#sizes" className={styles.ctaBuy}>Choose Your Size</a>
                 <a href="#accountability" className={styles.ctaLearn}>See What&apos;s Inside ↓</a>
               </div>
             </div>
@@ -57,7 +65,7 @@ export default function GarriGoPage() {
               <div className={styles.heroBadgeStock}>In Stock</div>
               <Image
                 src="/products/garri.jpeg"
-                alt="Garri Go – Fresh & Crispy Premium Garri 25 kg"
+                alt="Garri Go – Fresh & Crispy Premium Garri"
                 fill
                 sizes="(max-width: 900px) 100vw, 50vw"
                 className={styles.heroImg}
@@ -120,16 +128,16 @@ export default function GarriGoPage() {
           <div className={styles.originGrid}>
             <div className={styles.originImgWrap}>
               <Image
-                src="/products/garri.jpeg"
-                alt="Garri Go 25 kg premium garri bag"
+                src="/farm-produce/garri.jpeg"
+                alt="Garri Go premium garri bag"
                 fill
                 sizes="(max-width: 900px) 100vw, 45vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
               <div className={styles.originOverlay} aria-hidden />
               <div className={styles.originPriceBadge}>
-                <span className={styles.originPriceAmount}>₦24,590</span>
-                <span className={styles.originPriceUnit}>per 25 kg bag</span>
+                <span className={styles.originPriceAmount}>From ₦4,000</span>
+                <span className={styles.originPriceUnit}>3 sizes available</span>
               </div>
             </div>
             <div className={styles.originContent}>
@@ -149,6 +157,49 @@ export default function GarriGoPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SIZES — pictorial pack picker */}
+      <section id="sizes" className={styles.sizesSection}>
+        <div className="container">
+          <div className={styles.sectionCenter}>
+            <p className={styles.sectionTag}>Pick Your Pack</p>
+            <h2 className={styles.sectionTitle}>Garri Go Comes in 3 Sizes</h2>
+            <p className={styles.sizesSub}>
+              Whether you&apos;re trying it for the first time or stocking up for the household,
+              there&apos;s a pack size for you.
+            </p>
+          </div>
+
+          <div className={styles.sizesGrid}>
+            {sizeOptions.map((opt) => (
+              <div key={opt.size} className={styles.sizeCard}>
+                <div className={styles.sizeImgWrap}>
+                  <Image
+                    src={opt.image}
+                    alt={`Garri Go – ${opt.size} bag`}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 33vw"
+                    className={styles.sizeImg}
+                  />
+                  <span className={styles.sizeBadge}>{opt.size}</span>
+                </div>
+                <div className={styles.sizeBody}>
+                  <p className={styles.sizeLabel}>{opt.label}</p>
+                  <div className={styles.sizePrice}>{opt.price}</div>
+                  <Link
+                    href={`https://wa.me/2348081977992?text=${encodeURIComponent(
+                      `Hello, I am interested in buying the ${opt.size} pack of Garri Go (${opt.price}).`
+                    )}`}
+                    className={styles.sizeBtn}
+                  >
+                    Order {opt.size} →
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -198,10 +249,10 @@ export default function GarriGoPage() {
             </div>
             <div className={styles.closeStats}>
               {[
-                { num: '25 kg', lbl: 'Per Bag' },
-                { num: '₦24,590', lbl: 'Current Price' },
+                { num: '3', lbl: 'Pack Sizes' },
                 { num: '🚚', lbl: 'Nationwide Delivery' },
                 { num: '✅', lbl: 'Quality Guaranteed' },
+                { num: '🌾', lbl: 'Farm-Direct' },
               ].map((s, i) => (
                 <div key={i} className={styles.closeStat}>
                   <span className={styles.closeStatNum}>{s.num}</span>
@@ -225,12 +276,14 @@ export default function GarriGoPage() {
               garri. Nationwide delivery available.
             </p>
             <div className={styles.buyPrice}>
-              <span className={styles.buyPriceAmount}>₦24,590</span>
-              <span className={styles.buyPriceUnit}>/ 25 kg bag</span>
+              <span className={styles.buyPriceAmount}>From ₦4,000</span>
+              <span className={styles.buyPriceUnit}>· 1.5 kg, 3 kg & 25 kg packs</span>
             </div>
             <div className={styles.buyBtns}>
-              <Link href="/contact" className={styles.buyPrimary}>Place an Order →</Link>
-              <Link href="/contact" className={styles.buySecondary}>Enquire via WhatsApp</Link>
+              <a href="#sizes" className={styles.buyPrimary}>Choose Your Size ↑</a>
+              <Link href={`https://wa.me/2348081977992?text=${encodeURIComponent(
+                  `Hello, I am interested in buying garri go.`
+                )}`} className={styles.buySecondary}>Enquire via WhatsApp</Link>
             </div>
           </div>
         </div>
@@ -239,7 +292,7 @@ export default function GarriGoPage() {
       {/* BACK LINK */}
       <section className={styles.backSection}>
         <div className="container">
-          <Link href="/listings" className={styles.backLink}>← Back to All Listings</Link>
+          <Link href="/projects" className={styles.backLink}>← Back to All Listings</Link>
         </div>
       </section>
     </main>

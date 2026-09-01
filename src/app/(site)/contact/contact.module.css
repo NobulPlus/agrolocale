@@ -56,6 +56,26 @@
   margin-bottom:0.5rem;
 }
 
+/* Social media links */
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* keep your existing width/height/border-radius/background here */
+  color: var(--green-800); /* icon color via currentColor */
+  transition: var(--transition);
+}
+
+.social:hover {
+  color: var(--white);
+  background: var(--green-800); /* or your accent color */
+  transform: translateY(-2px);
+}
+
+.social svg {
+  display: block;
+}
+
 /* ══ Success state ════════════════════════════════════ */
 .success { text-align:center; padding:3rem 2rem; }
 .successIcon  { font-size:3.5rem; margin-bottom:1.25rem; }

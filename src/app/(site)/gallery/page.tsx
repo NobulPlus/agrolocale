@@ -21,7 +21,7 @@ export default async function GalleryPage() {
             <p className={styles.heroSub}>
               Step inside the Agrolocale experience. From harvest days and estate tours to
               community events and resort activities — every moment captured here is a glimpse
-              into the life we're building together.
+              into the life we&apos;re building together.
             </p>
             <div className={styles.heroActions}>
               <a href="#events" className={styles.primaryBtn}>

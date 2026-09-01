@@ -7,8 +7,9 @@ import { usePathname } from 'next/navigation'
 import styles from './Navbar.module.css'
 
 const navLinks = [
-  { href: '/home',     label: 'Home' },
-  { href: '/listings', label: 'Find Land' },
+  // { href: '/home',     label: 'Home' },
+  { href: '/projects', label: 'Find Land' },
+  { href: '/farm-produce', label: 'Farm Produce' },
   { href: '/gallery',  label: 'Gallery' },
   { href: '/blog',     label: 'Blog' },
   { href: '/about',    label: 'About Us' },

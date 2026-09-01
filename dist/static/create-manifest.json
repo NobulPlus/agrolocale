@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-05-04T19:57:15.366Z",
+  "createdAt": "2026-08-25T11:44:18.891Z",
   "studioVersion": "5.23.0",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "default",
       "projectId": "9oq1p93e",
-      "schema": "458d1bc5.create-schema.json",
+      "schema": "ff22468f.create-schema.json",
       "title": "Agrolocale",
       "tools": "a1fd46b5.create-tools.json"
     }
